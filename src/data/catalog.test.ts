@@ -21,7 +21,9 @@ describe('approved body colours', () => {
 
   it('uses the supplied body palette exactly', () => {
     expect(optionColour(option('body', 'dark-green'))).toBe('#006553');
-    expect(optionColour(option('body', 'green'))).toBe('#A1FF44');
+    expect(optionColour(option('body', 'caramel-brown'))).toBe('#B9843C');
+    expect(optionColour(option('body', 'light-orange'))).toBe('#E6B327');
+    expect(optionColour(option('body', 'green'))).toBe('#7BAA37');
     expect(optionColour(option('body', 'blue'))).toBe('#58AAD6');
     expect(optionColour(option('body', 'light-purple'))).toBe('#BCAFD2');
   });

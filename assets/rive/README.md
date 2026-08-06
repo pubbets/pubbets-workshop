@@ -19,14 +19,14 @@ Recommended import order:
 The approved customer palette is recorded in `pubbet-base.rig.json` under `bodyColours`:
 
 - Dark Green — `#006553`
-- Caramel Brown — `#E39519`
+- Caramel Brown — `#B9843C`
 - Yellow — `#FBEE01`
-- Light Orange — `#FFBA4A`
+- Light Orange — `#E6B327`
 - Blue — `#58AAD6`
 - Light Purple — `#BCAFD2`
 - Pink — `#EF9DC3`
 - Beige — `#F3DABB`
-- Green — `#A1FF44`
+- Green — `#7BAA37`
 
 White (`#FFFFFF`) is the neutral authoring fill and is not a customer colour option.
 

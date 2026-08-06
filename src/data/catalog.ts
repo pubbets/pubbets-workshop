@@ -129,14 +129,14 @@ export const colourHex: Record<string, string> = {
 
 export const bodyColourHex: Record<string, string> = {
   'dark-green': '#006553',
-  'caramel-brown': '#E39519',
+  'caramel-brown': '#B9843C',
   yellow: '#FBEE01',
-  'light-orange': '#FFBA4A',
+  'light-orange': '#E6B327',
   blue: '#58AAD6',
   'light-purple': '#BCAFD2',
   pink: '#EF9DC3',
   beige: '#F3DABB',
-  green: '#A1FF44'
+  green: '#7BAA37'
 };
 
 export function optionColour(option: AssetOption | null, fallback = '#79513b'): string {
