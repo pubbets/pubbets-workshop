@@ -127,8 +127,21 @@ export const colourHex: Record<string, string> = {
   yellow: '#f2c72f'
 };
 
+export const bodyColourHex: Record<string, string> = {
+  'dark-green': '#006553',
+  'caramel-brown': '#E39519',
+  yellow: '#FBEE01',
+  'light-orange': '#FFBA4A',
+  blue: '#4ABAEC',
+  'light-purple': '#C5A0D3',
+  pink: '#EF9DC3',
+  beige: '#F3DABB',
+  green: '#A1FF44'
+};
+
 export function optionColour(option: AssetOption | null, fallback = '#79513b'): string {
   if (!option) return fallback;
+  if (option.category === 'body') return bodyColourHex[option.id] ?? fallback;
   return colourHex[option.colour ?? ''] ?? colourHex[option.id] ??
     Object.entries(colourHex).find(([name]) => option.id.endsWith(`-${name}`))?.[1] ?? fallback;
 }

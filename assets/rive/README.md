@@ -14,4 +14,20 @@ Recommended import order:
 4. Add eyes, nose, hair, clothing, shoes, and accessories as layers above this base.
 5. Bind every white body-part fill to one shared Rive colour property instead of duplicating the full rig for every body colour.
 
+## Body colour values
+
+The approved customer palette is recorded in `pubbet-base.rig.json` under `bodyColours`:
+
+- Dark Green — `#006553`
+- Caramel Brown — `#E39519`
+- Yellow — `#FBEE01`
+- Light Orange — `#FFBA4A`
+- Blue — `#4ABAEC`
+- Light Purple — `#C5A0D3`
+- Pink — `#EF9DC3`
+- Beige — `#F3DABB`
+- Green — `#A1FF44`
+
+White (`#FFFFFF`) is the neutral authoring fill and is not a customer colour option.
+
 The SVG deliberately avoids gradients, masks, filters, raster images, and embedded fonts.
