@@ -1,0 +1,36 @@
+{
+  "source": "t-shirt-base.svg",
+  "canvas": { "width": 1280, "height": 1280 },
+  "reference": {
+    "canvaDesignId": "DAHOoWyTCkE",
+    "sectionPage": 52,
+    "referencePage": 54,
+    "referenceVariant": "plain white crew-neck T-shirt"
+  },
+  "palette": {
+    "garment": "#FFFFFF",
+    "outline": "#2C2030"
+  },
+  "colourBinding": {
+    "name": "tshirtColor",
+    "default": "#FFFFFF",
+    "nodes": ["left_sleeve", "right_sleeve", "shirt_body"]
+  },
+  "parts": [
+    { "id": "shirt_body", "pivot": [640, 482], "role": "torso-garment" },
+    { "id": "left_sleeve", "pivot": [548, 493], "role": "left-arm-garment" },
+    { "id": "right_sleeve", "pivot": [732, 493], "role": "right-arm-garment" },
+    { "id": "seams", "pivot": [640, 482], "role": "static-detail" }
+  ],
+  "printArea": {
+    "id": "tshirtPrintArea",
+    "bounds": { "x": 540, "y": 535, "width": 200, "height": 170 },
+    "notes": "Keep garment graphics inside this area unless a deliberate all-over print is required. Convert every graphic to vector paths before Rive import."
+  },
+  "layerOrder": [
+    "left_sleeve",
+    "right_sleeve",
+    "shirt_body",
+    "seams"
+  ]
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pubbet T-shirt vector preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f4f0f7; color: #2c2030; font-family: Arial, sans-serif; }
+      main { display: flex; justify-content: center; gap: 28px; padding: 28px; }
+      .card { width: 584px; height: 664px; padding: 14px; background: #fff; border: 2px solid #d9cfdf; border-radius: 24px; box-shadow: 0 8px 24px #2c203018; }
+      h2 { height: 34px; margin: 0; text-align: center; font-size: 20px; line-height: 34px; }
+      .stage { width: 552px; height: 552px; overflow: hidden; border-radius: 16px; background: linear-gradient(#fff, #faf8fb); }
+      .stage svg { display: block; width: 100%; height: 100%; }
+      p { margin: 12px 0 0; text-align: center; color: #65576b; font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <h2>Neutral white T-shirt</h2>
+        <div class="stage" data-body="#BCAFD2" data-shirt="#FFFFFF"></div>
+        <p>White authoring fill on purple Pubbet</p>
+      </section>
+      <section class="card">
+        <h2>Shared colour property test</h2>
+        <div class="stage" data-body="#F3DABB" data-shirt="#006553"></div>
+        <p>The same SVG recoloured dark green</p>
+      </section>
+    </main>
+    <script type="module">
+      const [baseSource, shirtSource] = await Promise.all([
+        fetch('../pubbet-base.svg').then((response) => response.text()),
+        fetch('./t-shirt-base.svg').then((response) => response.text()),
+      ]);
+
+      for (const stage of document.querySelectorAll('.stage')) {
+        const base = baseSource.replace('fill="#FFFFFF"', `fill="${stage.dataset.body}"`);
+        const shirt = shirtSource.replace('fill="#FFFFFF"', `fill="${stage.dataset.shirt}"`);
+        const baseInner = base.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1] ?? '';
+        const shirtInner = shirt.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1] ?? '';
+        stage.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280">${baseInner}${shirtInner}</svg>`;
+      }
+    </script>
+  </body>
+</html>

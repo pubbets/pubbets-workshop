@@ -31,3 +31,7 @@ The approved customer palette is recorded in `pubbet-base.rig.json` under `bodyC
 White (`#FFFFFF`) is the neutral authoring fill and is not a customer colour option.
 
 The SVG deliberately avoids gradients, masks, filters, raster images, and embedded fonts.
+
+## Garments
+
+Rive-ready clothing masters live in `garments/`. Start with `garments/t-shirt-base.svg`; its colourable panels, pivots, layer order, and safe print area are documented in `garments/t-shirt-base.rig.json`.

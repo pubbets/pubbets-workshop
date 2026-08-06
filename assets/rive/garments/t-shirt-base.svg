@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" role="img" aria-labelledby="title description">
+  <title id="title">Pubbet plain T-shirt base</title>
+  <desc id="description">Layered, colour-ready short-sleeve crew-neck T-shirt fitted to the Pubbet base.</desc>
+
+  <g id="tshirt_base" fill="#FFFFFF" stroke="#2C2030" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="sleeves">
+      <path id="left_sleeve" d="M552 481 C526 482 501 493 482 510 L449 545 C440 555 442 566 452 574 L483 599 C493 607 505 603 512 592 L540 551 C550 536 554 511 552 481 Z"/>
+      <path id="right_sleeve" d="M728 481 C754 482 779 493 798 510 L831 545 C840 555 838 566 828 574 L797 599 C787 607 775 603 768 592 L740 551 C730 536 726 511 728 481 Z"/>
+    </g>
+
+    <path id="shirt_body" d="M548 482 C568 471 589 463 610 458 C615 482 626 496 640 496 C654 496 665 482 670 458 C691 463 712 471 732 482 C756 511 775 554 787 607 C798 660 796 715 780 758 C743 779 695 790 640 790 C585 790 537 779 500 758 C484 715 482 660 493 607 C505 554 524 511 548 482 Z"/>
+
+    <g id="seams" fill="none" stroke-width="4">
+      <path id="collar_outer" d="M604 460 C610 489 623 506 640 506 C657 506 670 489 676 460"/>
+      <path id="collar_inner" d="M614 458 C619 480 628 491 640 491 C652 491 661 480 666 458"/>
+      <path id="left_sleeve_hem" d="M455 558 L490 586"/>
+      <path id="right_sleeve_hem" d="M825 558 L790 586"/>
+      <path id="bottom_hem" d="M504 744 C542 763 588 772 640 772 C692 772 738 763 776 744"/>
+    </g>
+  </g>
+</svg>
