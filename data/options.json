@@ -1,0 +1,1144 @@
+{
+  "meta": {
+    "brand": "Pubbets Workshop",
+    "version": "0.3.0",
+    "currency": "USD",
+    "basePrice": 199.95,
+    "note": "v0.3 — tabbed builder with step wizards, ported from the old Pubbets Lab structure. Two UI types: 'grid' (simple list of options) and 'steps' (a wizard over 'dimensions', e.g. nose = shape -> size -> colour). Step options are GENERATED from the dimensions, so you don't hand-write hundreds of rows: the app builds the id and model filename from modelPattern. Upload a .glb matching that name and it appears automatically; until then a placeholder shows. 'view' controls the camera: face = close-up, full = whole body."
+  },
+  "categories": [
+    {
+      "id": "body",
+      "label": "Puppet",
+      "emoji": "🎭",
+      "view": "full",
+      "ui": "grid",
+      "required": true,
+      "hint": "Pick your puppet to start building!",
+      "options": [
+        {
+          "id": "classic",
+          "name": "Classic Pubbet",
+          "model": "",
+          "shape": "classic",
+          "color": "#7bc47f",
+          "price": 0
+        }
+      ],
+      "hidden": true,
+      "hiddenNote": "Only one puppet type, so this gets no tab. It still builds the base and its .glb/colour still apply. Set hidden=false if you ever add a second puppet type."
+    },
+    {
+      "id": "bodyColor",
+      "label": "Colour",
+      "emoji": "🎨",
+      "view": "full",
+      "ui": "grid",
+      "required": true,
+      "affects": "body",
+      "hint": "Choose a body colour",
+      "options": [
+        {
+          "id": "dark-green",
+          "name": "Dark Green",
+          "color": "#2f6b3f",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_dark-green.webp"
+        },
+        {
+          "id": "caramel",
+          "name": "Caramel Brown",
+          "color": "#a9713f",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_caramel.webp"
+        },
+        {
+          "id": "light-purple",
+          "name": "Light Purple",
+          "color": "#b79ede",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_light-purple.webp"
+        },
+        {
+          "id": "blue",
+          "name": "Blue",
+          "color": "#5b8fd6",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_blue.webp"
+        },
+        {
+          "id": "green",
+          "name": "Green",
+          "color": "#7bc47f",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_green.webp"
+        },
+        {
+          "id": "yellow",
+          "name": "Yellow",
+          "color": "#f2d24e",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_yellow.webp"
+        },
+        {
+          "id": "light-orange",
+          "name": "Light Orange",
+          "color": "#f0a860",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_light-orange.webp"
+        },
+        {
+          "id": "pink",
+          "name": "Pink",
+          "color": "#ec9cc0",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_pink.webp"
+        },
+        {
+          "id": "beige",
+          "name": "Beige",
+          "color": "#e6cfa8",
+          "price": 0,
+          "thumb": "assets/thumbnails/body_beige.webp"
+        }
+      ]
+    },
+    {
+      "id": "eyes",
+      "label": "Eyes",
+      "emoji": "👀",
+      "view": "face",
+      "ui": "steps",
+      "required": true,
+      "hint": "Choose an eye style",
+      "modelPattern": "eyes_{family}-{style}.glb",
+      "dimensions": [
+        {
+          "key": "family",
+          "label": "Eye style",
+          "values": [
+            {
+              "id": "round-flat",
+              "name": "Round Flat"
+            },
+            {
+              "id": "dome",
+              "name": "Dome"
+            },
+            {
+              "id": "oval",
+              "name": "Oval"
+            },
+            {
+              "id": "beady",
+              "name": "Beady"
+            }
+          ]
+        },
+        {
+          "key": "style",
+          "label": "Detail",
+          "values": [
+            {
+              "id": "plain",
+              "name": "Plain",
+              "when": {
+                "family": "round-flat"
+              },
+              "color": "#ffffff",
+              "thumb": "assets/thumbnails/eyes_round-flat-plain.webp"
+            },
+            {
+              "id": "blue-lids",
+              "name": "Blue Eyelids",
+              "when": {
+                "family": "round-flat"
+              },
+              "color": "#9fc6e8",
+              "thumb": "assets/thumbnails/eyes_round-flat-blue-lids.webp"
+            },
+            {
+              "id": "green-lids",
+              "name": "Green Eyelids",
+              "when": {
+                "family": "round-flat"
+              },
+              "color": "#a5d6a7",
+              "thumb": "assets/thumbnails/eyes_round-flat-green-lids.webp"
+            },
+            {
+              "id": "orange-lashes",
+              "name": "Orange + Lashes",
+              "when": {
+                "family": "round-flat"
+              },
+              "color": "#f0b070",
+              "thumb": "assets/thumbnails/eyes_round-flat-orange-lashes.webp"
+            },
+            {
+              "id": "pink-lashes",
+              "name": "Pink + Lashes",
+              "when": {
+                "family": "round-flat"
+              },
+              "color": "#f0a0c0",
+              "thumb": "assets/thumbnails/eyes_round-flat-pink-lashes.webp"
+            },
+            {
+              "id": "plain",
+              "name": "Plain",
+              "when": {
+                "family": "dome"
+              },
+              "color": "#ffffff"
+            },
+            {
+              "id": "plain",
+              "name": "Plain",
+              "when": {
+                "family": "oval"
+              },
+              "color": "#ffffff"
+            },
+            {
+              "id": "yellow-lids",
+              "name": "Yellow Eyelids",
+              "when": {
+                "family": "oval"
+              },
+              "color": "#f2d24e"
+            },
+            {
+              "id": "red-lids",
+              "name": "Red Eyelids",
+              "when": {
+                "family": "oval"
+              },
+              "color": "#e08080"
+            },
+            {
+              "id": "blue-lashes",
+              "name": "Blue + Lashes",
+              "when": {
+                "family": "oval"
+              },
+              "color": "#9fc6e8"
+            },
+            {
+              "id": "pink-lashes",
+              "name": "Pink + Lashes",
+              "when": {
+                "family": "oval"
+              },
+              "color": "#f0a0c0"
+            },
+            {
+              "id": "small",
+              "name": "Small",
+              "when": {
+                "family": "beady"
+              },
+              "color": "#ffffff"
+            },
+            {
+              "id": "large",
+              "name": "Large",
+              "when": {
+                "family": "beady"
+              },
+              "color": "#ffffff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nose",
+      "label": "Nose",
+      "emoji": "👃",
+      "view": "face",
+      "ui": "steps",
+      "required": false,
+      "optional": true,
+      "hint": "Pick a nose shape, size and colour",
+      "modelPattern": "nose_{shape}.glb",
+      "dimensions": [
+        {
+          "key": "shape",
+          "label": "Shape",
+          "values": [
+            {
+              "id": "round",
+              "name": "Round",
+              "thumb": "assets/thumbnails/nose_round.webp"
+            },
+            {
+              "id": "oblong",
+              "name": "Oblong",
+              "thumb": "assets/thumbnails/nose_oblong.webp"
+            },
+            {
+              "id": "tear-drop",
+              "name": "Tear Drop",
+              "thumb": "assets/thumbnails/nose_tear-drop.webp"
+            },
+            {
+              "id": "human",
+              "name": "Human",
+              "thumb": "assets/thumbnails/nose_human.webp"
+            },
+            {
+              "id": "triangle",
+              "name": "Triangle",
+              "thumb": "assets/thumbnails/nose_triangle.webp"
+            }
+          ]
+        },
+        {
+          "key": "size",
+          "label": "Size",
+          "values": [
+            {
+              "id": "small",
+              "name": "Small",
+              "scale": 0.75
+            },
+            {
+              "id": "medium",
+              "name": "Medium",
+              "scale": 1.0
+            },
+            {
+              "id": "large",
+              "name": "Large",
+              "scale": 1.35
+            }
+          ]
+        },
+        {
+          "key": "colour",
+          "label": "Colour",
+          "values": [
+            {
+              "id": "beige",
+              "name": "Beige",
+              "color": "#e6cfa8"
+            },
+            {
+              "id": "caramel",
+              "name": "Caramel",
+              "color": "#a9713f"
+            },
+            {
+              "id": "dark-brown",
+              "name": "Dark Brown",
+              "color": "#6b4423"
+            },
+            {
+              "id": "dark-blue",
+              "name": "Dark Blue",
+              "color": "#3f5f9e"
+            },
+            {
+              "id": "light-blue",
+              "name": "Light Blue",
+              "color": "#7fb8e0"
+            },
+            {
+              "id": "dark-green",
+              "name": "Dark Green",
+              "color": "#2f6b3f"
+            },
+            {
+              "id": "light-green",
+              "name": "Light Green",
+              "color": "#9ccc9c"
+            },
+            {
+              "id": "dark-orange",
+              "name": "Dark Orange",
+              "color": "#d2803c"
+            },
+            {
+              "id": "dark-pink",
+              "name": "Dark Pink",
+              "color": "#d06090"
+            },
+            {
+              "id": "dark-purple",
+              "name": "Dark Purple",
+              "color": "#6f4a9e"
+            }
+          ]
+        }
+      ],
+      "tintable": true,
+      "modelNote": "Make ONE model per shape (nose_round.glb, nose_oblong.glb, nose_tear-drop.glb, nose_human.glb, nose_triangle.glb). The Size step scales it and the Colour step tints it — so 5 models cover all 150 combinations."
+    },
+    {
+      "id": "hair",
+      "label": "Hair",
+      "emoji": "💇",
+      "view": "face",
+      "ui": "steps",
+      "required": false,
+      "optional": true,
+      "hint": "Choose a length, style and colour",
+      "modelPattern": "hair_{style}.glb",
+      "dimensions": [
+        {
+          "key": "length",
+          "label": "Length",
+          "values": [
+            {
+              "id": "short",
+              "name": "Short"
+            },
+            {
+              "id": "long",
+              "name": "Long"
+            }
+          ]
+        },
+        {
+          "key": "style",
+          "label": "Style",
+          "values": [
+            {
+              "id": "round-base",
+              "name": "Fur Round Base",
+              "when": {
+                "length": "short"
+              }
+            },
+            {
+              "id": "v-hairline",
+              "name": "V Hairline",
+              "when": {
+                "length": "short"
+              }
+            },
+            {
+              "id": "side-part",
+              "name": "Side Part",
+              "when": {
+                "length": "short"
+              }
+            },
+            {
+              "id": "messy",
+              "name": "Messy",
+              "when": {
+                "length": "short"
+              }
+            },
+            {
+              "id": "afro",
+              "name": "Afro",
+              "when": {
+                "length": "short"
+              },
+              "price": 5
+            },
+            {
+              "id": "dreadlocks-short",
+              "name": "Dreadlocks",
+              "when": {
+                "length": "short"
+              },
+              "price": 5
+            },
+            {
+              "id": "wavy",
+              "name": "Wavy",
+              "when": {
+                "length": "long"
+              }
+            },
+            {
+              "id": "straight",
+              "name": "Straight",
+              "when": {
+                "length": "long"
+              }
+            },
+            {
+              "id": "dreadlocks-long",
+              "name": "Dreadlocks",
+              "when": {
+                "length": "long"
+              },
+              "price": 5
+            }
+          ]
+        },
+        {
+          "key": "colour",
+          "label": "Colour",
+          "values": [
+            {
+              "id": "black",
+              "name": "Black",
+              "color": "#1c1c1c"
+            },
+            {
+              "id": "brown",
+              "name": "Brown",
+              "color": "#5a3a22"
+            },
+            {
+              "id": "grey",
+              "name": "Grey",
+              "color": "#9a9a9a"
+            },
+            {
+              "id": "yellow",
+              "name": "Yellow",
+              "color": "#e8c74e"
+            },
+            {
+              "id": "pink",
+              "name": "Pink",
+              "color": "#ec7fb0"
+            },
+            {
+              "id": "lilac",
+              "name": "Lilac",
+              "color": "#c3a5e8"
+            },
+            {
+              "id": "red",
+              "name": "Red",
+              "color": "#c94f4f"
+            },
+            {
+              "id": "orange",
+              "name": "Orange",
+              "color": "#e8944e"
+            },
+            {
+              "id": "light-blue",
+              "name": "Light Blue",
+              "color": "#7fb8e0"
+            },
+            {
+              "id": "dark-blue",
+              "name": "Dark Blue",
+              "color": "#3f5f9e"
+            },
+            {
+              "id": "dark-green",
+              "name": "Dark Green",
+              "color": "#2f6b3f"
+            },
+            {
+              "id": "purple",
+              "name": "Purple",
+              "color": "#8a5cc0"
+            }
+          ]
+        }
+      ],
+      "tintable": true,
+      "modelNote": "One model per style (hair_messy.glb, hair_afro.glb...). The Colour step tints it."
+    },
+    {
+      "id": "glasses",
+      "label": "Glasses",
+      "emoji": "👓",
+      "view": "face",
+      "ui": "steps",
+      "required": false,
+      "optional": true,
+      "hint": "Choose a glasses style",
+      "surcharge": 14.95,
+      "surchargeNote": "Any glasses selection adds $14.95 (matches the old Glasses Add-on product).",
+      "modelPattern": "glasses_{group}-{style}.glb",
+      "hideWhen": {
+        "eyes.family": "oval"
+      },
+      "hideWhenNote": "The old builder hid glasses when Oval eyes were chosen — they clash.",
+      "dimensions": [
+        {
+          "key": "group",
+          "label": "Type",
+          "values": [
+            {
+              "id": "classic",
+              "name": "Classic"
+            },
+            {
+              "id": "xl",
+              "name": "XL"
+            },
+            {
+              "id": "buggy",
+              "name": "Buggy"
+            }
+          ]
+        },
+        {
+          "key": "style",
+          "label": "Frame",
+          "values": [
+            {
+              "id": "round-thin-black",
+              "name": "Round Thin Black",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_round-thin-black.webp"
+            },
+            {
+              "id": "round-thin-red",
+              "name": "Round Thin Red",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#c23b3b",
+              "thumb": "assets/thumbnails/glasses_round-thin-red.webp"
+            },
+            {
+              "id": "retro-black",
+              "name": "Retro Black",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#222222",
+              "thumb": "assets/thumbnails/glasses_retro-black.webp"
+            },
+            {
+              "id": "square-thin-black",
+              "name": "Square Thin Black",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_square-thin-black.webp"
+            },
+            {
+              "id": "square-thin-white",
+              "name": "Square Thin White",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#f2f2f2",
+              "thumb": "assets/thumbnails/glasses_square-thin-white.webp"
+            },
+            {
+              "id": "square-thin-tortoiseshell",
+              "name": "Tortoiseshell",
+              "when": {
+                "group": "classic"
+              },
+              "color": "#8a5a2b",
+              "thumb": "assets/thumbnails/glasses_square-thin-tortoiseshell.webp"
+            },
+            {
+              "id": "square-thick-black",
+              "name": "Square Thick Black",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_square-thick-black.webp"
+            },
+            {
+              "id": "square-thick-white",
+              "name": "Square Thick White",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#f2f2f2",
+              "thumb": "assets/thumbnails/glasses_square-thick-white.webp"
+            },
+            {
+              "id": "square-thick-red",
+              "name": "Square Thick Red",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#c23b3b",
+              "thumb": "assets/thumbnails/glasses_square-thick-red.webp"
+            },
+            {
+              "id": "square-thick-bling",
+              "name": "NEW! Bling",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#d4af37"
+            },
+            {
+              "id": "round-thick-black",
+              "name": "Round Thick Black",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_round-thick-black.webp"
+            },
+            {
+              "id": "round-thick-clear-pink",
+              "name": "Clear Pink",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#f0a0c0",
+              "thumb": "assets/thumbnails/glasses_round-thick-clear-pink.webp"
+            },
+            {
+              "id": "round-thick-clear-blue",
+              "name": "Clear Blue",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#9fc6e8",
+              "thumb": "assets/thumbnails/glasses_round-thick-clear-blue.webp"
+            },
+            {
+              "id": "hexagonal-thick-black",
+              "name": "Hexagonal Black",
+              "when": {
+                "group": "xl"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_hexagonal-thick-black.webp"
+            },
+            {
+              "id": "buggy-yellow",
+              "name": "Buggy Yellow",
+              "when": {
+                "group": "buggy"
+              },
+              "color": "#f2d24e",
+              "thumb": "assets/thumbnails/glasses_buggy-yellow.webp"
+            },
+            {
+              "id": "buggy-purple",
+              "name": "Buggy Purple",
+              "when": {
+                "group": "buggy"
+              },
+              "color": "#8a5cc0",
+              "thumb": "assets/thumbnails/glasses_buggy-purple.webp"
+            },
+            {
+              "id": "buggy-red",
+              "name": "Buggy Red",
+              "when": {
+                "group": "buggy"
+              },
+              "color": "#c23b3b",
+              "thumb": "assets/thumbnails/glasses_buggy-red.webp"
+            },
+            {
+              "id": "buggy-green",
+              "name": "Buggy Green",
+              "when": {
+                "group": "buggy"
+              },
+              "color": "#4caf50",
+              "thumb": "assets/thumbnails/glasses_buggy-green.webp"
+            },
+            {
+              "id": "buggy-black",
+              "name": "Buggy Black",
+              "when": {
+                "group": "buggy"
+              },
+              "color": "#1c1c1c",
+              "thumb": "assets/thumbnails/glasses_buggy-black.webp"
+            }
+          ]
+        }
+      ],
+      "tintable": true,
+      "modelNote": "One model per frame (glasses_xl-square-thick-black.glb...). Frame colour tints the model."
+    },
+    {
+      "id": "outfit",
+      "label": "Outfit",
+      "emoji": "👕",
+      "view": "full",
+      "ui": "steps",
+      "required": false,
+      "optional": true,
+      "hint": "Mix & match, or pick a complete look",
+      "modelPattern": "outfit_{item}.glb",
+      "dimensions": [
+        {
+          "key": "group",
+          "label": "Type",
+          "values": [
+            {
+              "id": "looks",
+              "name": "Complete Looks"
+            },
+            {
+              "id": "top",
+              "name": "Tops"
+            },
+            {
+              "id": "bottom",
+              "name": "Bottoms"
+            },
+            {
+              "id": "over",
+              "name": "Overalls & Overshirts"
+            },
+            {
+              "id": "premium",
+              "name": "Premium"
+            }
+          ]
+        },
+        {
+          "key": "item",
+          "label": "Choose",
+          "values": [
+            {
+              "id": "blue-gingham-dress",
+              "name": "Blue Gingham Dress",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "dress",
+              "color": "#6fa8dc",
+              "thumb": "assets/thumbnails/outfit_blue-gingham-dress.webp"
+            },
+            {
+              "id": "apple-gingham-dress",
+              "name": "Apple Gingham Dress",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "dress",
+              "color": "#8bc34a",
+              "thumb": "assets/thumbnails/outfit_apple-gingham-dress.webp"
+            },
+            {
+              "id": "pink-floral-dress",
+              "name": "Pink Floral Dress",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "dress",
+              "color": "#ec9cc0",
+              "thumb": "assets/thumbnails/outfit_pink-floral-dress.webp"
+            },
+            {
+              "id": "sunflower-dress",
+              "name": "Sunflower Dress",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "dress",
+              "color": "#f2c14e"
+            },
+            {
+              "id": "red-teddy-dress",
+              "name": "Red Teddy Dress",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "dress",
+              "color": "#c23b3b",
+              "thumb": "assets/thumbnails/outfit_red-teddy-dress.webp"
+            },
+            {
+              "id": "pink-pajamas",
+              "name": "Pink Pajamas",
+              "when": {
+                "group": "looks"
+              },
+              "shape": "tshirt",
+              "color": "#f0a0c0",
+              "thumb": "assets/thumbnails/outfit_pink-pajamas.webp"
+            },
+            {
+              "id": "black-t",
+              "name": "Black T-Shirt",
+              "when": {
+                "group": "top"
+              },
+              "shape": "tshirt",
+              "color": "#222222",
+              "thumb": "assets/thumbnails/outfit_black-t.webp"
+            },
+            {
+              "id": "white-t",
+              "name": "White T-Shirt",
+              "when": {
+                "group": "top"
+              },
+              "shape": "tshirt",
+              "color": "#f2f2f2",
+              "thumb": "assets/thumbnails/outfit_white-t.webp"
+            },
+            {
+              "id": "blue-t",
+              "name": "Blue T-Shirt",
+              "when": {
+                "group": "top"
+              },
+              "shape": "tshirt",
+              "color": "#5b8fd6",
+              "thumb": "assets/thumbnails/outfit_blue-t.webp"
+            },
+            {
+              "id": "blue-stripe-t",
+              "name": "Blue Stripe T-Shirt",
+              "when": {
+                "group": "top"
+              },
+              "shape": "tshirt",
+              "color": "#6fa8dc"
+            },
+            {
+              "id": "bw-striped-blouse",
+              "name": "B&W Striped Blouse",
+              "when": {
+                "group": "top"
+              },
+              "shape": "tshirt",
+              "color": "#e8e8e8"
+            },
+            {
+              "id": "blue-jeans",
+              "name": "Blue Jeans",
+              "when": {
+                "group": "bottom"
+              },
+              "shape": "bottom",
+              "color": "#3f6fb0",
+              "thumb": "assets/thumbnails/outfit_blue-jeans.webp"
+            },
+            {
+              "id": "black-shorts",
+              "name": "Black Shorts",
+              "when": {
+                "group": "bottom"
+              },
+              "shape": "bottom",
+              "color": "#2a2a2a"
+            },
+            {
+              "id": "denim-skirt",
+              "name": "Denim Skirt",
+              "when": {
+                "group": "bottom"
+              },
+              "shape": "bottom",
+              "color": "#5b8fd6"
+            },
+            {
+              "id": "overalls-blue-teddy",
+              "name": "Blue Teddy Overalls",
+              "when": {
+                "group": "over"
+              },
+              "shape": "overalls",
+              "color": "#3f6fb0",
+              "price": 5
+            },
+            {
+              "id": "overalls-girls-black",
+              "name": "Black Girls Overalls",
+              "when": {
+                "group": "over"
+              },
+              "shape": "overalls",
+              "color": "#2a2a2a",
+              "price": 5
+            },
+            {
+              "id": "overshirt-blue-plaid",
+              "name": "Blue Plaid Overshirt",
+              "when": {
+                "group": "over"
+              },
+              "shape": "overalls",
+              "color": "#4a6fa5",
+              "price": 5
+            },
+            {
+              "id": "overshirt-red-plaid",
+              "name": "Red Plaid Overshirt",
+              "when": {
+                "group": "over"
+              },
+              "shape": "overalls",
+              "color": "#b04a4a",
+              "price": 5
+            },
+            {
+              "id": "premium-tuxedo",
+              "name": "PREMIUM Tuxedo",
+              "when": {
+                "group": "premium"
+              },
+              "shape": "tuxedo",
+              "color": "#1e1e2a",
+              "price": 12.95,
+              "thumb": "assets/thumbnails/outfit_premium-tuxedo.webp"
+            },
+            {
+              "id": "premium-suit-tie",
+              "name": "PREMIUM Suit & Tie",
+              "when": {
+                "group": "premium"
+              },
+              "shape": "tuxedo",
+              "color": "#3a3a5a",
+              "price": 12.95
+            },
+            {
+              "id": "premium-boy-elf",
+              "name": "PREMIUM Boy Elf",
+              "when": {
+                "group": "premium"
+              },
+              "shape": "tshirt",
+              "color": "#3fa35f",
+              "price": 12.95,
+              "thumb": "assets/thumbnails/outfit_premium-boy-elf.webp"
+            },
+            {
+              "id": "premium-girl-elf",
+              "name": "PREMIUM Girl Elf",
+              "when": {
+                "group": "premium"
+              },
+              "shape": "dress",
+              "color": "#3fa35f",
+              "price": 12.95,
+              "thumb": "assets/thumbnails/outfit_premium-girl-elf.webp"
+            },
+            {
+              "id": "premium-bw-fashionista",
+              "name": "PREMIUM B&W Fashionista",
+              "when": {
+                "group": "premium"
+              },
+              "shape": "dress",
+              "color": "#e8e8e8",
+              "price": 12.95,
+              "thumb": "assets/thumbnails/outfit_premium-bw-fashionista.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoes",
+      "label": "Shoes",
+      "emoji": "👟",
+      "view": "full",
+      "ui": "grid",
+      "required": false,
+      "optional": true,
+      "hint": "Choose some shoes",
+      "options": [
+        {
+          "id": "white-sneakers",
+          "name": "White Sneakers",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#f2f2f2",
+          "price": 0
+        },
+        {
+          "id": "black-sneakers",
+          "name": "Black Sneakers",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#2a2a2a",
+          "price": 0
+        },
+        {
+          "id": "red-sneakers",
+          "name": "Red Sneakers",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#c23b3b",
+          "price": 0
+        },
+        {
+          "id": "blue-sneakers",
+          "name": "Blue Sneakers",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#5b8fd6",
+          "price": 0
+        },
+        {
+          "id": "premium-gold",
+          "name": "Gold (Premium)",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#d4af37",
+          "price": 5
+        },
+        {
+          "id": "premium-silver",
+          "name": "Silver (Premium)",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#c0c0c0",
+          "price": 5
+        },
+        {
+          "id": "premium-denim",
+          "name": "Denim (Premium)",
+          "model": "",
+          "shape": "sneaker",
+          "color": "#4a6fa5",
+          "price": 5
+        }
+      ]
+    },
+    {
+      "id": "accessory",
+      "label": "Extras",
+      "emoji": "✨",
+      "view": "full",
+      "ui": "grid",
+      "required": false,
+      "optional": true,
+      "hint": "Add a fun accessory (optional)",
+      "options": [
+        {
+          "id": "bowtie",
+          "name": "Bow Tie",
+          "model": "",
+          "shape": "bowtie",
+          "color": "#d84a4a",
+          "price": 0
+        },
+        {
+          "id": "scarf",
+          "name": "Scarf",
+          "model": "",
+          "shape": "bowtie",
+          "color": "#c94f8f",
+          "price": 0
+        },
+        {
+          "id": "armrods",
+          "name": "Arm Rods",
+          "model": "",
+          "shape": "armrods",
+          "color": "#8a8f98",
+          "price": 10
+        }
+      ]
+    }
+  ],
+  "shopify": {
+    "storeDomain": "YOUR-STORE.myshopify.com",
+    "customPuppetVariantId": "REPLACE_WITH_VARIANT_ID",
+    "note": "Set storeDomain and the Custom Puppet variant ID. The builder sends the full design as line-item properties. For per-item pricing you can later map each add-on to its own Shopify product/variant, as in the old SHOPIFY-SETUP.md."
+  }
+}

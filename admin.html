@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pubbets Workshop — Admin</title>
+  <style>
+    :root { --accent:#ff5da2; --accent2:#7c5cff; --ink:#2a2340; --soft:#6b6486; --line:#e8e4f2; --good:#2fbf71; }
+    * { box-sizing:border-box; }
+    body { font-family:"Segoe UI",system-ui,sans-serif; color:var(--ink); margin:0; background:#f6f4fc; }
+    header { background:linear-gradient(90deg,#241d40,#1b1730); color:#fff; padding:16px 24px; display:flex; align-items:center; gap:10px; }
+    header .mark { color:var(--accent); font-size:22px; }
+    header h1 { font-size:18px; margin:0; font-weight:700; }
+    header em { color:var(--accent); font-style:normal; }
+    main { max-width:1060px; margin:0 auto; padding:24px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:20px; box-shadow:0 4px 14px rgba(30,20,60,.05); }
+    .card h2 { font-size:15px; margin:0 0 4px; }
+    .card p.hint { color:var(--soft); font-size:13px; margin:0 0 16px; }
+    .cat-block { border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:14px; }
+    .cat-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; gap:10px; flex-wrap:wrap; }
+    .cat-head strong { font-size:14px; }
+    .badge { font-size:10px; text-transform:uppercase; letter-spacing:.5px; padding:3px 8px; border-radius:10px; font-weight:700; }
+    .badge.grid { background:#eef6ff; color:#2d6ca8; }
+    .badge.steps { background:#f6eeff; color:#6b3fa8; }
+    .badge.view { background:#fdf0f6; color:#b03a72; }
+    .dim { margin:12px 0 4px; }
+    .dim-title { font-size:12px; font-weight:700; color:var(--soft); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { text-align:left; color:var(--soft); font-weight:600; padding:6px 8px; border-bottom:1px solid var(--line); font-size:11px; text-transform:uppercase; letter-spacing:.4px; }
+    td { padding:5px 8px; border-bottom:1px solid #f2eff9; }
+    td input { width:100%; border:1px solid var(--line); border-radius:8px; padding:6px 8px; font-size:13px; }
+    td input[type=color] { padding:2px; height:32px; }
+    td.num input { width:70px; }
+    .row-actions button { background:none; border:none; color:#c04a6a; cursor:pointer; font-size:16px; }
+    .btn { border:none; border-radius:10px; padding:9px 16px; font-size:14px; font-weight:600; cursor:pointer; }
+    .btn.primary { background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; }
+    .btn.ghost { background:#fff; border:1px solid var(--line); color:var(--ink); }
+    .btn.small { padding:5px 11px; font-size:12px; }
+    .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .steps-help { font-size:13px; color:var(--soft); line-height:1.6; }
+    .steps-help code { background:#f0edf9; padding:1px 6px; border-radius:5px; color:var(--ink); }
+    .ok { color:var(--good); font-weight:600; }
+    label.field { display:block; font-size:12px; color:var(--soft); margin:10px 0 4px; }
+    input.wide { width:100%; border:1px solid var(--line); border-radius:8px; padding:9px; font-size:14px; }
+    .pattern { font-size:12px; color:var(--soft); }
+    .pattern code { background:#f0edf9; padding:2px 6px; border-radius:5px; color:var(--ink); }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="mark">◉</span>
+    <h1>Pubbets <em>Workshop</em> · Admin</h1>
+  </header>
+  <main>
+    <div class="card">
+      <h2>How this works</h2>
+      <p class="hint">Edit your puppet options and settings here — no coding needed.</p>
+      <div class="steps-help">
+        <strong>Two kinds of category.</strong><br />
+        <span class="badge grid">grid</span> — a simple list of choices (Shoes, Extras, Colour).<br />
+        <span class="badge steps">steps</span> — a step-by-step wizard (Nose = Shape → Size → Colour). You edit the
+        <em>dimensions</em>; the app builds every combination for you, so you never hand-write hundreds of rows.<br /><br />
+        <strong>Adding a 3D model.</strong> Put your <code>.glb</code> in <code>assets/models/</code> (or upload it to
+        Shopify Files and copy the URL). For <span class="badge grid">grid</span> options, type the filename or URL in the
+        <strong>Model</strong> box. For <span class="badge steps">steps</span> categories, name your file to match the
+        pattern shown on that category and it will be picked up automatically.<br /><br />
+        <strong>Saving.</strong> Click <strong>Save options.json</strong>, then replace <code>data/options.json</code> with
+        the downloaded file and reload the builder.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Store &amp; pricing</h2>
+      <p class="hint">Base price is the starting price of the puppet, before any add-ons.</p>
+      <label class="field">Base price (USD)</label>
+      <input id="basePrice" class="wide" type="number" step="0.01" />
+      <label class="field">Shopify store domain</label>
+      <input id="storeDomain" class="wide" placeholder="your-store.myshopify.com" />
+      <label class="field">Custom Puppet variant ID</label>
+      <input id="variantId" class="wide" placeholder="e.g. 45678901234567" />
+    </div>
+
+    <div class="card">
+      <h2>Puppet options</h2>
+      <p class="hint">Prices are surcharges added on top of the base price.</p>
+      <div id="cats"></div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <button class="btn primary" id="saveBtn">⬇ Save options.json</button>
+        <button class="btn ghost" id="reloadBtn">Reload from file</button>
+        <span id="status"></span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let data = null;
+
+    async function load() {
+      const res = await fetch('data/options.json?t=' + Date.now());
+      data = await res.json();
+      document.getElementById('basePrice').value = data.meta.basePrice ?? 0;
+      document.getElementById('storeDomain').value = data.shopify?.storeDomain ?? '';
+      document.getElementById('variantId').value = data.shopify?.customPuppetVariantId ?? '';
+      render();
+      setStatus('Loaded.', true);
+    }
+
+    function render() {
+      const wrap = document.getElementById('cats');
+      wrap.innerHTML = '';
+      data.categories.forEach((cat, ci) => {
+        const block = document.createElement('div');
+        block.className = 'cat-block';
+        const isSteps = cat.ui === 'steps';
+        block.innerHTML = `
+          <div class="cat-head">
+            <strong>${cat.emoji || ''} ${cat.label}</strong>
+            <span class="badge ${isSteps ? 'steps' : 'grid'}">${cat.ui || 'grid'}</span>
+            <span class="badge view">${cat.view === 'face' ? 'close-up' : 'full body'}</span>
+            ${cat.surcharge ? `<span class="badge view">+$${cat.surcharge}</span>` : ''}
+          </div>
+          ${isSteps ? `<div class="pattern">Model file pattern: <code>${cat.modelPattern || '(none)'}</code></div>` : ''}`;
+
+        if (isSteps) {
+          cat.dimensions.forEach((dim, di) => {
+            const d = document.createElement('div');
+            d.className = 'dim';
+            d.innerHTML = `<div class="dim-title">Step ${di + 1}: ${dim.label}
+              <button class="btn ghost small" data-adddim="${ci}:${di}">+ Add</button></div>`;
+            const table = document.createElement('table');
+            table.innerHTML = `<tr><th>Name</th><th>ID (used in filename)</th><th>Colour</th><th>Only shows when</th><th>Price +$</th><th></th></tr>`;
+            dim.values.forEach((v, vi) => {
+              const when = v.when ? Object.entries(v.when).map(([k, val]) => `${k}=${val}`).join(', ') : '';
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td><input value="${v.name ?? ''}" data-p="dim" data-f="name" data-c="${ci}" data-d="${di}" data-v="${vi}"></td>
+                <td><input value="${v.id ?? ''}" data-p="dim" data-f="id" data-c="${ci}" data-d="${di}" data-v="${vi}"></td>
+                <td><input type="color" value="${v.color ?? '#cccccc'}" data-p="dim" data-f="color" data-c="${ci}" data-d="${di}" data-v="${vi}"></td>
+                <td><input value="${when}" placeholder="(always)" disabled></td>
+                <td class="num"><input type="number" step="0.01" value="${v.price ?? 0}" data-p="dim" data-f="price" data-c="${ci}" data-d="${di}" data-v="${vi}"></td>
+                <td class="row-actions"><button title="Delete" data-deldim="${ci}:${di}:${vi}">✕</button></td>`;
+              table.appendChild(tr);
+            });
+            d.appendChild(table);
+            block.appendChild(d);
+          });
+        } else {
+          const head = document.createElement('div');
+          head.className = 'dim-title';
+          head.innerHTML = `Options <button class="btn ghost small" data-add="${ci}">+ Add option</button>`;
+          block.appendChild(head);
+          const table = document.createElement('table');
+          table.innerHTML = `<tr><th>Name</th><th>Colour</th><th>Shape</th><th>Model file (.glb) or URL</th><th>Price +$</th><th></th></tr>`;
+          (cat.options || []).forEach((opt, oi) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td><input value="${opt.name ?? ''}" data-p="opt" data-f="name" data-c="${ci}" data-o="${oi}"></td>
+              <td><input type="color" value="${opt.color ?? '#cccccc'}" data-p="opt" data-f="color" data-c="${ci}" data-o="${oi}"></td>
+              <td><input value="${opt.shape ?? ''}" data-p="opt" data-f="shape" data-c="${ci}" data-o="${oi}"></td>
+              <td><input value="${opt.model ?? ''}" placeholder="(placeholder shape)" data-p="opt" data-f="model" data-c="${ci}" data-o="${oi}"></td>
+              <td class="num"><input type="number" step="0.01" value="${opt.price ?? 0}" data-p="opt" data-f="price" data-c="${ci}" data-o="${oi}"></td>
+              <td class="row-actions"><button title="Delete" data-del="${ci}:${oi}">✕</button></td>`;
+            table.appendChild(tr);
+          });
+          block.appendChild(table);
+        }
+        wrap.appendChild(block);
+      });
+
+      wrap.querySelectorAll('input:not([disabled])').forEach(i => i.addEventListener('input', onEdit));
+      wrap.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => addOption(+b.dataset.add)));
+      wrap.querySelectorAll('[data-adddim]').forEach(b => b.addEventListener('click', () => {
+        const [ci, di] = b.dataset.adddim.split(':').map(Number);
+        data.categories[ci].dimensions[di].values.push({ id: 'new-' + Date.now().toString().slice(-4), name: 'New', color: '#cccccc', price: 0 });
+        render();
+      }));
+      wrap.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => {
+        const [ci, oi] = b.dataset.del.split(':').map(Number);
+        data.categories[ci].options.splice(oi, 1); render();
+      }));
+      wrap.querySelectorAll('[data-deldim]').forEach(b => b.addEventListener('click', () => {
+        const [ci, di, vi] = b.dataset.deldim.split(':').map(Number);
+        data.categories[ci].dimensions[di].values.splice(vi, 1); render();
+      }));
+    }
+
+    function onEdit(e) {
+      const d = e.target.dataset;
+      let val = e.target.value;
+      if (d.f === 'price') val = parseFloat(val) || 0;
+      if (d.p === 'dim') data.categories[+d.c].dimensions[+d.d].values[+d.v][d.f] = val;
+      else data.categories[+d.c].options[+d.o][d.f] = val;
+    }
+
+    function addOption(ci) {
+      const cat = data.categories[ci];
+      cat.options = cat.options || [];
+      cat.options.push({ id: 'new-' + Date.now().toString().slice(-4), name: 'New', model: '', shape: '', color: '#cccccc', price: 0 });
+      render();
+    }
+
+    function save() {
+      data.meta.basePrice = parseFloat(document.getElementById('basePrice').value) || 0;
+      data.shopify = data.shopify || {};
+      data.shopify.storeDomain = document.getElementById('storeDomain').value.trim();
+      data.shopify.customPuppetVariantId = document.getElementById('variantId').value.trim();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'options.json';
+      a.click();
+      setStatus('Downloaded — replace data/options.json with it, then reload the builder.', true);
+    }
+
+    function setStatus(msg, ok) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = ok ? 'ok' : '';
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', save);
+    document.getElementById('reloadBtn').addEventListener('click', load);
+    load();
+  </script>
+</body>
+</html>
