@@ -2,7 +2,9 @@
 
 `pubbet-base-purple.svg` is a clean vector reconstruction of the supplied purple base-layer reference. It has a transparent canvas and simple fills and strokes that import cleanly into Rive.
 
-The major riggable parts have stable IDs: head and ears, torso, separate arms and hands, separate legs and feet, mouth cavity, mouth shadow, and tongue. Suggested pivot positions are recorded in `pubbet-base-purple.rig.json`.
+The riggable parts have stable IDs: head and ears, torso, separate arms and hands, and separate legs and feet. Suggested pivot positions are recorded in `pubbet-base-purple.rig.json`.
+
+The mouth cavity, mouth shadow, and tongue remain editable vector paths, but they live inside the `static_mouth` group and do not need bones or animation controls.
 
 Recommended import order:
 

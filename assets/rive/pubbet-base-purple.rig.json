@@ -19,9 +19,11 @@
     { "id": "left_leg", "pivot": [576, 795], "role": "limb" },
     { "id": "right_leg", "pivot": [704, 795], "role": "limb" },
     { "id": "left_foot", "pivot": [572, 1092], "role": "limb-end" },
-    { "id": "right_foot", "pivot": [708, 1092], "role": "limb-end" },
-    { "id": "mouth_cavity", "pivot": [640, 323], "role": "face-detail" },
-    { "id": "mouth_shadow", "pivot": [640, 323], "role": "face-detail" },
-    { "id": "tongue", "pivot": [640, 365], "role": "face-detail" }
+    { "id": "right_foot", "pivot": [708, 1092], "role": "limb-end" }
+  ],
+  "staticParts": [
+    "mouth_cavity",
+    "mouth_shadow",
+    "tongue"
   ]
 }

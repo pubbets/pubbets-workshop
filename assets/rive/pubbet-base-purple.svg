@@ -42,7 +42,7 @@
       <ellipse id="face" cx="640" cy="267" rx="174" ry="181"/>
     </g>
 
-    <g id="mouth">
+    <g id="static_mouth">
       <path id="mouth_cavity" fill="#F20B2F" d="M505 323 H775 C758 383 709 423 640 423 C571 423 522 383 505 323 Z"/>
       <path id="mouth_shadow" fill="#160E18" stroke="none" d="M610 323 H670 C667 344 657 357 640 358 C623 357 613 344 610 323 Z"/>
       <path id="tongue" fill="#FF9CA3" d="M640 392 C625 393 607 379 607 363 C607 352 616 346 627 347 C634 348 638 352 640 357 C643 352 648 348 656 347 C668 347 675 355 674 365 C673 379 656 392 640 392 Z"/>
