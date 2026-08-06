@@ -22,7 +22,8 @@ describe('approved body colours', () => {
   it('uses the supplied body palette exactly', () => {
     expect(optionColour(option('body', 'dark-green'))).toBe('#006553');
     expect(optionColour(option('body', 'green'))).toBe('#A1FF44');
-    expect(optionColour(option('body', 'light-purple'))).toBe('#C5A0D3');
+    expect(optionColour(option('body', 'blue'))).toBe('#58AAD6');
+    expect(optionColour(option('body', 'light-purple'))).toBe('#BCAFD2');
   });
 
   it('does not replace the shared hair and nose colour palette', () => {

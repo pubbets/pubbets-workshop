@@ -22,8 +22,8 @@ The approved customer palette is recorded in `pubbet-base.rig.json` under `bodyC
 - Caramel Brown — `#E39519`
 - Yellow — `#FBEE01`
 - Light Orange — `#FFBA4A`
-- Blue — `#4ABAEC`
-- Light Purple — `#C5A0D3`
+- Blue — `#58AAD6`
+- Light Purple — `#BCAFD2`
 - Pink — `#EF9DC3`
 - Beige — `#F3DABB`
 - Green — `#A1FF44`
