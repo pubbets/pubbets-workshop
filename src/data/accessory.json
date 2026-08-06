@@ -1,0 +1,20 @@
+[
+  {
+    "id": "arm-rods-2pcs",
+    "label": "Arm Rods 2Pcs",
+    "price": 10,
+    "category": "accessory",
+    "riveArtboardRef": "Puppet/Accessory",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/accessories_arm-rods-2pcs-tn.png"
+  },
+  {
+    "id": "extendable-arm-rods-2pcs",
+    "label": "Extendable Arm Rods 2Pcs",
+    "price": 10,
+    "category": "accessory",
+    "riveArtboardRef": "Puppet/Accessory",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/accessories_extendable-arm-rods-2pcs-tn.png"
+  }
+]

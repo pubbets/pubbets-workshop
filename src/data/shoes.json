@@ -1,0 +1,263 @@
+[
+  {
+    "id": "black",
+    "label": "Black",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_black-tn.png"
+  },
+  {
+    "id": "green",
+    "label": "Green",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_green-tn.png"
+  },
+  {
+    "id": "light-blue",
+    "label": "Light Blue",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_light-blue-tn.png"
+  },
+  {
+    "id": "red",
+    "label": "Red",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_red-tn.png"
+  },
+  {
+    "id": "yellow",
+    "label": "Yellow",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_yellow-tn.png"
+  },
+  {
+    "id": "pink",
+    "label": "Pink",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_pink-tn.png"
+  },
+  {
+    "id": "beige",
+    "label": "Beige",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_beige-tn.png"
+  },
+  {
+    "id": "white",
+    "label": "White",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_white-tn.png"
+  },
+  {
+    "id": "brown",
+    "label": "Brown",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_brown-tn.png"
+  },
+  {
+    "id": "premium-blue-denim",
+    "label": "Premium Blue Denim",
+    "category": "shoes",
+    "price": 5,
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_premium-blue-denim-tn.png"
+  },
+  {
+    "id": "premium-silver",
+    "label": "Premium Silver",
+    "category": "shoes",
+    "price": 5,
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_premium-silver-tn.png"
+  },
+  {
+    "id": "premium-gold",
+    "label": "Premium Gold",
+    "category": "shoes",
+    "price": 5,
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_premium-gold-tn.png"
+  },
+  {
+    "id": "premium-blue-space-print",
+    "label": "Premium Blue Space Print",
+    "category": "shoes",
+    "price": 5,
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_premium-blue-space-print-tn.png"
+  },
+  {
+    "id": "premium-green-garden-print",
+    "label": "Premium Green Garden Print",
+    "category": "shoes",
+    "price": 5,
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_premium-green-garden-print-tn.png"
+  },
+  {
+    "id": "blue-flower",
+    "label": "Blue Flower",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_blue-flower-tn.png"
+  },
+  {
+    "id": "white-flower",
+    "label": "White Flower",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_white-flower-tn.png"
+  },
+  {
+    "id": "black-loafers",
+    "label": "Black Loafers",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_black-loafers-tn.png"
+  },
+  {
+    "id": "black-loafers-2",
+    "label": "Black Loafers 2",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_black-loafers-2-tn.png"
+  },
+  {
+    "id": "brown-loafers",
+    "label": "Brown Loafers",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_brown-loafers-tn.png"
+  },
+  {
+    "id": "black-slip-ons",
+    "label": "Black Slip Ons",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_black-slip-ons-tn.png"
+  },
+  {
+    "id": "brown-slip-ons",
+    "label": "Brown Slip Ons",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_brown-slip-ons-tn.png"
+  },
+  {
+    "id": "crochet-pink-flowers",
+    "label": "Crochet Pink Flowers",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_crochet-pink-flowers-tn.png"
+  },
+  {
+    "id": "crochet-white-flowers",
+    "label": "Crochet White Flowers",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_crochet-white-flowers-tn.png"
+  },
+  {
+    "id": "crochet-yellow-flowers",
+    "label": "Crochet Yellow Flowers",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_crochet-yellow-flowers-tn.png"
+  },
+  {
+    "id": "shiny-black-bows",
+    "label": "Shiny Black Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_shiny-black-bows-tn.png"
+  },
+  {
+    "id": "shiny-pink-bows",
+    "label": "Shiny Pink Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_shiny-pink-bows-tn.png"
+  },
+  {
+    "id": "shiny-red-bows",
+    "label": "Shiny Red Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_shiny-red-bows-tn.png"
+  },
+  {
+    "id": "shiny-white-bows",
+    "label": "Shiny White Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_shiny-white-bows-tn.png"
+  },
+  {
+    "id": "lace-white-bows",
+    "label": "Lace White Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_lace-white-bows-tn.png"
+  },
+  {
+    "id": "lace-black-bows",
+    "label": "Lace Black Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_lace-black-bows-tn.png"
+  },
+  {
+    "id": "lace-red-bows",
+    "label": "Lace Red Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_lace-red-bows-tn.png"
+  },
+  {
+    "id": "lace-pink-bows",
+    "label": "Lace Pink Bows",
+    "category": "shoes",
+    "riveArtboardRef": "Puppet/Shoes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/shoes_lace-pink-bows-tn.png"
+  }
+]

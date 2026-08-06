@@ -1,0 +1,192 @@
+[
+  {
+    "id": "round-thin-black",
+    "label": "Round Thin Black",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_round-thin-black-tn.png"
+  },
+  {
+    "id": "round-thin-red",
+    "label": "Round Thin Red",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_round-thin-red-tn.png"
+  },
+  {
+    "id": "retro-black",
+    "label": "Retro Black",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_retro-black-tn.png"
+  },
+  {
+    "id": "retro-red",
+    "label": "Retro Red",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_retro-red-tn.png"
+  },
+  {
+    "id": "square-thin-black",
+    "label": "Square Thin Black",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thin-black-tn.png"
+  },
+  {
+    "id": "square-thin-white",
+    "label": "Square Thin White",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thin-white-tn.png"
+  },
+  {
+    "id": "square-thin-tortoiseshell",
+    "label": "Square Thin Tortoiseshell",
+    "category": "glasses",
+    "group": "classic",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thin-tortoiseshell-tn.png"
+  },
+  {
+    "id": "square-thick-black-xl",
+    "label": "Square Thick Black",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thick-black-xl-tn.png"
+  },
+  {
+    "id": "square-thick-white-xl",
+    "label": "Square Thick White",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thick-white-xl-tn.png"
+  },
+  {
+    "id": "square-thick-red-xl",
+    "label": "Square Thick Red",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_square-thick-red-xl-tn.png"
+  },
+  {
+    "id": "round-thick-black-xl",
+    "label": "Round Thick Black",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_round-thick-black-xl-tn.png"
+  },
+  {
+    "id": "round-thick-white-xl",
+    "label": "Round Thick White",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_round-thick-white-xl-tn.png"
+  },
+  {
+    "id": "hexagonal-thick-black-xl",
+    "label": "Hexagonal Thick Black",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_hexagonal-thick-black-xl-tn.png"
+  },
+  {
+    "id": "hexagonal-thick-white-xl",
+    "label": "Hexagonal Thick White",
+    "category": "glasses",
+    "group": "xl",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_hexagonal-thick-white-xl-tn.png"
+  },
+  {
+    "id": "buggy-yellow",
+    "label": "Buggy Yellow",
+    "category": "glasses",
+    "group": "buggy",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_buggy-yellow-tn.png"
+  },
+  {
+    "id": "buggy-purple",
+    "label": "Buggy Purple",
+    "category": "glasses",
+    "group": "buggy",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_buggy-purple-tn.png"
+  },
+  {
+    "id": "buggy-red",
+    "label": "Buggy Red",
+    "category": "glasses",
+    "group": "buggy",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_buggy-red-tn.png"
+  },
+  {
+    "id": "buggy-green",
+    "label": "Buggy Green",
+    "category": "glasses",
+    "group": "buggy",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_buggy-green-tn.png"
+  },
+  {
+    "id": "buggy-black",
+    "label": "Buggy Black",
+    "category": "glasses",
+    "group": "buggy",
+    "price": 14.95,
+    "riveArtboardRef": "Puppet/Glasses",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/glasses_buggy-black-tn.png"
+  }
+]

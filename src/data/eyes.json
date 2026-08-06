@@ -1,0 +1,120 @@
+[
+  {
+    "id": "round-flat",
+    "label": "Plain",
+    "group": "round-flat",
+    "riveArtboardRef": "Puppet/Eyes/RoundFlat",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-flat-tn.png"
+  },
+  {
+    "id": "round-blue",
+    "label": "Blue Eyelids",
+    "group": "round-flat",
+    "riveArtboardRef": "Puppet/Eyes/RoundFlat",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-blue-tn.png"
+  },
+  {
+    "id": "round-green",
+    "label": "Green Eyelids",
+    "group": "round-flat",
+    "riveArtboardRef": "Puppet/Eyes/RoundFlat",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-green-tn.png"
+  },
+  {
+    "id": "round-orange-lashes",
+    "label": "Orange + Lashes",
+    "group": "round-flat",
+    "riveArtboardRef": "Puppet/Eyes/RoundFlat",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-orange-lashes-tn.png"
+  },
+  {
+    "id": "round-pink-lashes",
+    "label": "Pink + Lashes",
+    "group": "round-flat",
+    "riveArtboardRef": "Puppet/Eyes/RoundFlat",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-pink-lashes-tn.png"
+  },
+  {
+    "id": "round-half-dome",
+    "label": "Dome",
+    "group": "round-half-dome",
+    "riveArtboardRef": "Puppet/Eyes/Dome",
+    "autoSelect": true,
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_round-half-dome-tn.png"
+  },
+  {
+    "id": "flat-oval",
+    "label": "Plain",
+    "group": "oval",
+    "riveArtboardRef": "Puppet/Eyes/Oval",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_flat-oval-tn.png"
+  },
+  {
+    "id": "oval-yellow",
+    "label": "Yellow Eyelids",
+    "group": "oval",
+    "riveArtboardRef": "Puppet/Eyes/Oval",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_oval-yellow-tn.png"
+  },
+  {
+    "id": "oval-red",
+    "label": "Red Eyelids",
+    "group": "oval",
+    "riveArtboardRef": "Puppet/Eyes/Oval",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_oval-red-tn.png"
+  },
+  {
+    "id": "oval-blue-lashes",
+    "label": "Blue + Lashes",
+    "group": "oval",
+    "riveArtboardRef": "Puppet/Eyes/Oval",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_oval-blue-lashes-tn.png"
+  },
+  {
+    "id": "oval-pink-lashes",
+    "label": "Pink + Lashes",
+    "group": "oval",
+    "riveArtboardRef": "Puppet/Eyes/Oval",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_oval-pink-lashes-tn.png"
+  },
+  {
+    "id": "small-beady",
+    "label": "Small Beady",
+    "group": "beady",
+    "riveArtboardRef": "Puppet/Eyes/Beady",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_small-beady-tn.png"
+  },
+  {
+    "id": "large-beady",
+    "label": "Large Beady",
+    "group": "beady",
+    "riveArtboardRef": "Puppet/Eyes/Beady",
+    "category": "eyes",
+    "colourBindable": false,
+    "thumbnailPath": "thumbnails/eyes_large-beady-tn.png"
+  }
+]

@@ -1,60 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Pubbets Workshop — Custom Puppet Builder</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <!-- Three.js + loaders/controls via import map (loaded from CDN) -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
-</head>
-<body>
-  <div id="app">
-    <header id="topbar">
-      <div class="brand">
-        <span class="brand-mark">◉</span>
-        <span class="brand-name">Pubbets <em>Workshop</em></span>
-      </div>
-      <div class="topbar-actions">
-        <button id="recenterBtn" class="icon-btn" title="Recenter view" aria-label="Recenter view">⛶</button>
-        <button id="soundToggle" class="icon-btn" title="Toggle sound" aria-label="Toggle sound">🔊</button>
-        <button id="resetBtn" class="ghost-btn">Reset</button>
-      </div>
-    </header>
-
-    <main id="stage-wrap">
-      <div id="stage"></div>
-      <div id="loading" class="loading">Warming up the workshop…</div>
-      <div class="view-switch">
-        <button class="view-btn is-active" data-view="full">Full body</button>
-        <button class="view-btn" data-view="face">Close-up</button>
-      </div>
-      <div id="stage-hint" class="stage-hint">Drag to turn your puppet</div>
-    </main>
-
-    <aside id="panel">
-      <nav id="tabs" class="tabs"><!-- category tabs injected by JS --></nav>
-      <div id="panel-scroll">
-        <div id="panel-body"><!-- active category panel injected by JS --></div>
-      </div>
-      <div id="panel-footer">
-        <div class="price-row">
-          <span class="price-label">Total</span>
-          <span id="price" class="price-value">$0</span>
-        </div>
-        <button id="orderBtn" class="primary-btn">Add to cart</button>
-        <p class="footer-note">Ships to Pubbets Workshop · handmade to order</p>
-      </div>
-    </aside>
-  </div>
-
-  <script type="module" src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#075c58" />
+    <meta name="description" content="Design your own handmade Pubbet in the Pubbets Workshop." />
+    <title>Pubbets Workshop</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

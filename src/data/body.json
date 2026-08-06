@@ -1,0 +1,74 @@
+[
+  {
+    "id": "dark-green",
+    "label": "Dark Green",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_dark-green-tn.webp"
+  },
+  {
+    "id": "caramel-brown",
+    "label": "Caramel Brown",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_caramel-brown-tn.webp"
+  },
+  {
+    "id": "light-purple",
+    "label": "Light Purple",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_light-purple-tn.webp"
+  },
+  {
+    "id": "blue",
+    "label": "Blue",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_blue-tn.webp"
+  },
+  {
+    "id": "green",
+    "label": "Green",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_green-tn.webp"
+  },
+  {
+    "id": "yellow",
+    "label": "Yellow",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_yellow-tn.webp"
+  },
+  {
+    "id": "light-orange",
+    "label": "Light Orange",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_light-orange-tn.webp"
+  },
+  {
+    "id": "pink",
+    "label": "Pink",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_pink-tn.webp"
+  },
+  {
+    "id": "beige",
+    "label": "Beige",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_beige-tn.webp"
+  }
+]
