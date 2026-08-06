@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" role="img" aria-labelledby="title description">
-  <title id="title">Purple Pubbet base</title>
+  <title id="title">Pubbet base</title>
   <desc id="description">Layered front-facing vector puppet base prepared for Rive rigging.</desc>
 
-  <g id="pubbet_base" fill="#BF98D1" stroke="#2C2030" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <g id="pubbet_base" fill="#FFFFFF" stroke="#2C2030" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
     <g id="legs">
       <path id="left_leg" d="M537 782 C559 790 586 794 614 796 L603 1088 C602 1110 591 1122 573 1122 C553 1122 541 1110 540 1089 Z"/>
       <path id="right_leg" d="M666 796 C694 794 721 790 743 782 L740 1089 C739 1110 727 1122 707 1122 C689 1122 678 1110 677 1088 Z"/>

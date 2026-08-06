@@ -1,8 +1,8 @@
 {
-  "source": "pubbet-base-purple.svg",
+  "source": "pubbet-base.svg",
   "canvas": { "width": 1280, "height": 1280 },
   "palette": {
-    "body": "#BF98D1",
+    "body": "#FFFFFF",
     "outline": "#2C2030",
     "mouth": "#F20B2F",
     "tongue": "#FF9CA3"
