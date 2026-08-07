@@ -1,0 +1,40 @@
+{
+  "source": "t-shirt-pink-bunny-repeat.svg",
+  "baseGarment": "t-shirt-base.svg",
+  "canvas": { "width": 1280, "height": 1280 },
+  "reference": {
+    "canvaDesignId": "DAHOoWyTCkE",
+    "referencePage": 63,
+    "referenceVariant": "pink repeating bunny-character T-shirt"
+  },
+  "palette": {
+    "garment": "#FFC8D0",
+    "printFill": "#FFE7EB",
+    "printLine": "#ED7F8E",
+    "printAccent": "#79B9E8",
+    "outline": "#2C2030"
+  },
+  "parts": [
+    { "id": "shirt_body", "pivot": [640, 482], "role": "torso-garment" },
+    { "id": "left_sleeve", "pivot": [548, 493], "role": "left-arm-garment" },
+    { "id": "right_sleeve", "pivot": [732, 493], "role": "right-arm-garment" },
+    { "id": "body_print", "pivot": [640, 640], "role": "static-torso-print", "parent": "shirt_body" },
+    { "id": "left_sleeve_print", "pivot": [500, 555], "role": "static-sleeve-print", "parent": "left_sleeve" },
+    { "id": "right_sleeve_print", "pivot": [780, 555], "role": "static-sleeve-print", "parent": "right_sleeve" },
+    { "id": "seams", "pivot": [640, 482], "role": "static-detail" }
+  ],
+  "layerOrder": [
+    "left_sleeve",
+    "left_sleeve_print",
+    "right_sleeve",
+    "right_sleeve_print",
+    "shirt_body",
+    "body_print",
+    "seams"
+  ],
+  "riveNotes": [
+    "All bunny graphics are direct vector paths and shapes; there are no raster images, masks, patterns, filters, or external references.",
+    "Attach each print group to the garment panel named by its parent field so the artwork follows the arm and torso bones.",
+    "Keep the print colours static for this garment; change only after a deliberate approved colourway variant."
+  ]
+}

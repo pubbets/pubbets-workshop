@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pubbet pink bunny-repeat T-shirt preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f6f1f5; color: #2c2030; font-family: Arial, sans-serif; }
+      main { width: 680px; margin: 0 auto; padding: 24px; }
+      .card { padding: 16px; background: #fff; border: 2px solid #ead6de; border-radius: 24px; box-shadow: 0 8px 24px #2c203018; }
+      h1 { margin: 0; text-align: center; font-size: 22px; }
+      p { margin: 10px 0 0; text-align: center; color: #65576b; font-size: 14px; }
+      .stage { width: 616px; height: 616px; margin-top: 12px; overflow: hidden; border-radius: 16px; background: linear-gradient(#fff, #fcf9fb); }
+      .stage svg { display: block; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <h1>Pink bunny-repeat T-shirt</h1>
+        <div class="stage"></div>
+        <p>Rive-ready vector reconstruction of Canva outfit page 63</p>
+      </section>
+    </main>
+    <script type="module">
+      const [baseSource, shirtSource] = await Promise.all([
+        fetch('../pubbet-base.svg').then((response) => response.text()),
+        fetch('./t-shirt-pink-bunny-repeat.svg').then((response) => response.text()),
+      ]);
+      const base = baseSource.replace('fill="#FFFFFF"', 'fill="#BCAFD2"');
+      const baseInner = base.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1] ?? '';
+      const shirtInner = shirtSource.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1] ?? '';
+      document.querySelector('.stage').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280">' + baseInner + shirtInner + '</svg>';
+    </script>
+  </body>
+</html>

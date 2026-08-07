@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" role="img" aria-labelledby="title description">
+  <title id="title">Pubbet pink bunny repeat T-shirt</title>
+  <desc id="description">A layered Rive-ready pink crew-neck T-shirt with a hand-drawn repeating bunny graphic reconstructed as direct vector paths.</desc>
+
+  <g id="tshirt_pink_bunny_repeat" stroke="#2C2030" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="sleeves" fill="#FFC8D0">
+      <path id="left_sleeve" d="M552 481 C526 482 501 493 482 510 L449 545 C440 555 442 566 452 574 L483 599 C493 607 505 603 512 592 L540 551 C550 536 554 511 552 481 Z"/>
+      <path id="right_sleeve" d="M728 481 C754 482 779 493 798 510 L831 545 C840 555 838 566 828 574 L797 599 C787 607 775 603 768 592 L740 551 C730 536 726 511 728 481 Z"/>
+    </g>
+
+    <g id="left_sleeve_print" fill="#FFE7EB" stroke="#ED7F8E" stroke-width="5">
+      <g id="left_bunny_01" transform="translate(463 531) scale(.43)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="left_bunny_02" transform="translate(470 579) scale(.35) rotate(-12 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+    </g>
+
+    <g id="right_sleeve_print" fill="#FFE7EB" stroke="#ED7F8E" stroke-width="5">
+      <g id="right_bunny_01" transform="translate(770 531) scale(.43)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="right_bunny_02" transform="translate(778 579) scale(.35) rotate(12 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+    </g>
+
+    <path id="shirt_body" fill="#FFC8D0" d="M548 482 C568 471 589 463 610 458 C615 482 626 496 640 496 C654 496 665 482 670 458 C691 463 712 471 732 482 C756 511 775 554 787 607 C798 660 796 715 780 758 C743 779 695 790 640 790 C585 790 537 779 500 758 C484 715 482 660 493 607 C505 554 524 511 548 482 Z"/>
+
+    <g id="body_print" fill="#FFE7EB" stroke="#ED7F8E" stroke-width="5">
+      <g id="body_bunny_01" transform="translate(519 515) scale(.42) rotate(-8 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_02" transform="translate(586 513) scale(.34) rotate(7 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_03" transform="translate(649 512) scale(.43) rotate(-4 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_04" transform="translate(718 520) scale(.34) rotate(10 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_05" transform="translate(540 585) scale(.48) rotate(4 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_06" transform="translate(618 579) scale(.36) rotate(-8 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_07" transform="translate(678 575) scale(.51) rotate(8 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_08" transform="translate(510 656) scale(.38) rotate(-10 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_09" transform="translate(575 654) scale(.49) rotate(4 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_10" transform="translate(659 654) scale(.38) rotate(-6 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_11" transform="translate(718 652) scale(.45) rotate(10 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_12" transform="translate(548 722) scale(.34) rotate(-8 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_13" transform="translate(616 714) scale(.47) rotate(6 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="body_bunny_14" transform="translate(690 718) scale(.34) rotate(-9 50 50)">
+        <path d="M29 42 C18 29 16 12 23 5 C28 0 35 4 39 10 C44 18 44 30 43 37 C48 35 53 35 58 37 C57 28 58 17 63 10 C68 3 75 0 80 5 C87 12 85 29 74 42 C83 49 87 60 84 72 C80 84 69 90 51 90 C32 90 21 84 17 72 C14 60 18 49 29 42 Z"/>
+        <path d="M27 12 C30 18 31 25 30 31 M73 12 C70 18 69 25 70 31" fill="none" stroke-width="4"/>
+        <circle cx="38" cy="57" r="4" fill="#2C2030" stroke="none"/><circle cx="64" cy="57" r="4" fill="#2C2030" stroke="none"/>
+        <path d="M49 65 Q51 68 53 65 M51 68 Q51 74 44 74 M51 68 Q51 74 58 74" fill="none" stroke-width="3"/>
+        <circle cx="31" cy="68" r="4" fill="#F4A1AD" stroke="none"/><circle cx="71" cy="68" r="4" fill="#F4A1AD" stroke="none"/>
+        <path d="M45 43 C48 37 53 37 56 43 C53 47 48 47 45 43 Z" fill="#79B9E8" stroke-width="3"/>
+      </g>
+      <g id="print_sparkles" fill="#79B9E8" stroke="none">
+        <circle cx="575" cy="556" r="5"/><circle cx="707" cy="560" r="4"/><circle cx="597" cy="640" r="4"/><circle cx="752" cy="632" r="5"/><circle cx="640" cy="745" r="4"/>
+        <path d="M552 569 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4 Z"/><path d="M744 701 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z"/>
+      </g>
+    </g>
+
+    <g id="seams" fill="none" stroke="#2C2030" stroke-width="4">
+      <path id="collar_outer" d="M604 460 C610 489 623 506 640 506 C657 506 670 489 676 460"/>
+      <path id="collar_inner" d="M614 458 C619 480 628 491 640 491 C652 491 661 480 666 458"/>
+      <path id="left_sleeve_hem" d="M455 558 L490 586"/>
+      <path id="right_sleeve_hem" d="M825 558 L790 586"/>
+      <path id="bottom_hem" d="M504 744 C542 763 588 772 640 772 C692 772 738 763 776 744"/>
+    </g>
+  </g>
+</svg>

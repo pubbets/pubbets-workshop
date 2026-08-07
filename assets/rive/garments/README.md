@@ -13,3 +13,7 @@ Recommended Rive layer order:
 5. Optional vector garment graphic, clipped or manually contained within the print area in `t-shirt-base.rig.json`.
 
 The SVG avoids gradients, masks, filters, raster images, and fonts. Garment graphics from Canva must be rebuilt as vector paths before adding them to this master.
+
+## First printed garment
+
+`t-shirt-pink-bunny-repeat.svg` is the first completed graphic garment. It reconstructs the repeated bunny-character motif from page 63 of the supplied Canva outfit design as direct vector shapes. The torso and sleeve print groups have their own stable IDs so they can follow the corresponding Rive garment panels.
