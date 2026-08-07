@@ -1,6 +1,9 @@
-type Props = { onStart: () => void };
+type Props = {
+  onStart: () => void;
+  onRandomize: () => void;
+};
 
-export function WelcomeScreen({ onStart }: Props) {
+export function WelcomeScreen({ onStart, onRandomize }: Props) {
   return (
     <main className="welcome-screen">
       <button className="utility-button welcome-settings" aria-label="Workshop settings">⚙</button>
@@ -17,7 +20,10 @@ export function WelcomeScreen({ onStart }: Props) {
         <div className="welcome-puppet"><span className="welcome-puppet__eye" /><span className="welcome-puppet__eye" /><span className="welcome-puppet__smile" /></div>
         <div className="thread-spool thread-spool--right" />
       </div>
-      <button className="start-button" onClick={onStart}>Start building <span aria-hidden="true">→</span></button>
+      <div className="welcome-actions">
+        <button className="start-button" onClick={onStart}>Start building <span aria-hidden="true">→</span></button>
+        <button className="randomize-start-button" onClick={onRandomize}><span aria-hidden="true">⚂</span> In a hurry? Randomise!</button>
+      </div>
       <p className="welcome-footnote">Nine playful steps · your choices are saved as you go</p>
     </main>
   );

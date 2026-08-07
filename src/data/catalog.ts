@@ -40,7 +40,7 @@ const find = (category: Category, id: string) =>
 
 export const defaultSelections = (): SelectionState => ({
   body: find('body', 'blue'),
-  eyes: find('eyes', 'round-flat'),
+  eyes: find('eyes', 'round-45-flat-plain'),
   nose: find('nose', 'round-medium-beige'),
   glasses: null,
   hair: find('hair', 'round-base-brown'),
@@ -60,11 +60,18 @@ export function resolveThumbnail(option: AssetOption): string | null {
     }
     case 'eyes': {
       const eyeMap: Record<string, string> = {
-        'round-flat': 'eyes_round-flat-plain.webp',
-        'round-blue': 'eyes_round-flat-blue-lids.webp',
-        'round-green': 'eyes_round-flat-green-lids.webp',
-        'round-orange-lashes': 'eyes_round-flat-orange-lashes.webp',
-        'round-pink-lashes': 'eyes_round-flat-pink-lashes.webp'
+        'round-30-dome-plain': 'eyes_round-flat-plain.webp',
+        'round-45-dome-plain': 'eyes_round-flat-plain.webp',
+        'round-45-flat-plain': 'eyes_round-flat-plain.webp',
+        'round-45-flat-blue-eyelids': 'eyes_round-flat-blue-lids.webp',
+        'round-45-flat-green-eyelids': 'eyes_round-flat-green-lids.webp',
+        'round-45-flat-orange-lashes': 'eyes_round-flat-orange-lashes.webp',
+        'round-45-flat-pink-lashes': 'eyes_round-flat-pink-lashes.webp',
+        'oval-65x40-flat-plain': 'eyes_round-flat-plain.webp',
+        'oval-65x40-flat-yellow-eyelids': 'eyes_round-flat-plain.webp',
+        'oval-65x40-flat-red-eyelids': 'eyes_round-flat-plain.webp',
+        'oval-65x40-flat-blue-lashes': 'eyes_round-flat-plain.webp',
+        'oval-65x40-flat-pink-lashes': 'eyes_round-flat-plain.webp'
       };
       return eyeMap[id] ? `/thumbnails/${eyeMap[id]}` : null;
     }

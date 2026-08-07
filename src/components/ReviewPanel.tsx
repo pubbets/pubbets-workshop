@@ -11,7 +11,7 @@ export function ReviewPanel({ selections, total, onSave }: Props) {
       <div className="review-list">
         {steps.slice(0, 8).map((step) => {
           const option = selections[step.id as Category];
-          return <div className="review-row" key={step.id}><span>{step.icon}</span><div><small>{step.shortLabel}</small><strong>{option?.label ?? 'None'}</strong></div><b>{option?.price ? `+$${option.price.toFixed(2)}` : 'Included'}</b></div>;
+          return <div className="review-row" key={step.id}><span>{step.icon}</span><div><small>{step.shortLabel}</small><strong>{option?.label ?? 'No thanks'}</strong></div><b>{option?.price ? `+$${option.price.toFixed(2)}` : 'Included'}</b></div>;
         })}
       </div>
       <div className="review-total"><span>Workshop total</span><strong>{formatMoney(total)}</strong></div>

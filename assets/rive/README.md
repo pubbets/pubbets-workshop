@@ -2,6 +2,8 @@
 
 `pubbet-base.svg` is a clean vector reconstruction of the supplied purple base-layer reference. Its body shapes use a neutral white fill so Rive can apply the customer-selected colour at runtime. It has a transparent canvas and simple fills and strokes that import cleanly into Rive.
 
+For the upcoming final blank puppet replacement, follow `base-workflow.md` before updating the SVG or rig manifest.
+
 The riggable parts have stable IDs: head and ears, torso, separate arms and hands, and separate legs and feet. Suggested pivot positions are recorded in `pubbet-base.rig.json`.
 
 The mouth cavity, mouth shadow, and tongue remain editable vector paths, but they live inside the `static_mouth` group and do not need bones or animation controls.

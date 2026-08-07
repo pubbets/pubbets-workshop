@@ -17,6 +17,21 @@ function write(name, data) {
 }
 
 const titleCase = (s) => s.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+const labelOverrides = {
+  'square-thick-black-xl': 'Square Thick Black XL',
+  'square-thick-white-xl': 'Square Thick White XL',
+  'square-thick-red-xl': 'Square Thick Red XL',
+  'new-square-thick-bling-xl': 'NEW! Square Thick Bling',
+  'square-thin-black-xl': 'Square Thin Black XL',
+  'round-thick-black-xl': 'Round Thick Black XL',
+  'round-thick-white-xl': 'Round Thick White XL',
+  'round-thick-clear-pink-xl': 'Round Thick Clear Pink XL',
+  'round-thick-clear-blue-xl': 'Round Thick Clear Blue XL',
+  'round-thick-clear-green-xl': 'Round Thick Clear Green XL',
+  'hexagonal-thick-black-xl': 'Hexagonal Thick Black XL',
+  'hexagonal-thick-white-xl': 'Hexagonal Thick White XL',
+  'squre-thin-white-2': 'Square Thin White 2',
+};
 
 // ── BODY ─────────────────────────────────────────────────────────────
 const bodyColours = ['dark-green','caramel-brown','light-purple','blue','green','yellow','light-orange','pink','beige'];
@@ -29,19 +44,20 @@ write('body', body);
 
 // ── EYES (nested: shape family -> style -> colour variant) ────────────
 const eyes = [
-  { id: 'round-flat',          label: 'Plain',            group: 'round-flat',      riveArtboardRef: 'Puppet/Eyes/RoundFlat' },
-  { id: 'round-blue',          label: 'Blue Eyelids',     group: 'round-flat',      riveArtboardRef: 'Puppet/Eyes/RoundFlat' },
-  { id: 'round-green',         label: 'Green Eyelids',    group: 'round-flat',      riveArtboardRef: 'Puppet/Eyes/RoundFlat' },
-  { id: 'round-orange-lashes', label: 'Orange + Lashes',  group: 'round-flat',      riveArtboardRef: 'Puppet/Eyes/RoundFlat' },
-  { id: 'round-pink-lashes',   label: 'Pink + Lashes',    group: 'round-flat',      riveArtboardRef: 'Puppet/Eyes/RoundFlat' },
-  { id: 'round-half-dome',     label: 'Dome',             group: 'round-half-dome', riveArtboardRef: 'Puppet/Eyes/Dome', autoSelect: true },
-  { id: 'flat-oval',           label: 'Plain',            group: 'oval',            riveArtboardRef: 'Puppet/Eyes/Oval' },
-  { id: 'oval-yellow',         label: 'Yellow Eyelids',   group: 'oval',            riveArtboardRef: 'Puppet/Eyes/Oval' },
-  { id: 'oval-red',            label: 'Red Eyelids',      group: 'oval',            riveArtboardRef: 'Puppet/Eyes/Oval' },
-  { id: 'oval-blue-lashes',    label: 'Blue + Lashes',    group: 'oval',            riveArtboardRef: 'Puppet/Eyes/Oval' },
-  { id: 'oval-pink-lashes',    label: 'Pink + Lashes',    group: 'oval',            riveArtboardRef: 'Puppet/Eyes/Oval' },
-  { id: 'small-beady',         label: 'Small Beady',      group: 'beady',           riveArtboardRef: 'Puppet/Eyes/Beady' },
-  { id: 'large-beady',         label: 'Large Beady',      group: 'beady',           riveArtboardRef: 'Puppet/Eyes/Beady' },
+  { id: 'round-30-dome-plain', label: 'Plain', group: 'round', shape: 'round', sizeMm: 30, style: 'dome', finish: 'plain', riveArtboardRef: 'Puppet/Eyes/Round/30mm/Dome/Plain' },
+  { id: 'round-45-dome-plain', label: 'Plain', group: 'round', shape: 'round', sizeMm: 45, style: 'dome', finish: 'plain', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Dome/Plain' },
+  { id: 'round-45-flat-plain', label: 'Plain', group: 'round', shape: 'round', sizeMm: 45, style: 'flat', finish: 'plain', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Flat/Plain' },
+  { id: 'round-45-flat-blue-eyelids', label: 'Blue Eyelids', group: 'round', shape: 'round', sizeMm: 45, style: 'flat', finish: 'blue-eyelids', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Flat/BlueEyelids' },
+  { id: 'round-45-flat-green-eyelids', label: 'Green Eyelids', group: 'round', shape: 'round', sizeMm: 45, style: 'flat', finish: 'green-eyelids', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Flat/GreenEyelids' },
+  { id: 'round-45-flat-orange-lashes', label: 'Orange + Lashes', group: 'round', shape: 'round', sizeMm: 45, style: 'flat', finish: 'orange-lashes', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Flat/OrangeLashes' },
+  { id: 'round-45-flat-pink-lashes', label: 'Pink + Lashes', group: 'round', shape: 'round', sizeMm: 45, style: 'flat', finish: 'pink-lashes', riveArtboardRef: 'Puppet/Eyes/Round/45mm/Flat/PinkLashes' },
+  { id: 'oval-65x40-flat-plain', label: 'Plain', group: 'oval', shape: 'oval', widthMm: 65, heightMm: 40, style: 'flat', finish: 'plain', riveArtboardRef: 'Puppet/Eyes/Oval/65x40mm/Flat/Plain' },
+  { id: 'oval-65x40-flat-yellow-eyelids', label: 'Yellow Eyelids', group: 'oval', shape: 'oval', widthMm: 65, heightMm: 40, style: 'flat', finish: 'yellow-eyelids', riveArtboardRef: 'Puppet/Eyes/Oval/65x40mm/Flat/YellowEyelids' },
+  { id: 'oval-65x40-flat-red-eyelids', label: 'Red Eyelids', group: 'oval', shape: 'oval', widthMm: 65, heightMm: 40, style: 'flat', finish: 'red-eyelids', riveArtboardRef: 'Puppet/Eyes/Oval/65x40mm/Flat/RedEyelids' },
+  { id: 'oval-65x40-flat-blue-lashes', label: 'Blue + Lashes', group: 'oval', shape: 'oval', widthMm: 65, heightMm: 40, style: 'flat', finish: 'blue-lashes', riveArtboardRef: 'Puppet/Eyes/Oval/65x40mm/Flat/BlueLashes' },
+  { id: 'oval-65x40-flat-pink-lashes', label: 'Pink + Lashes', group: 'oval', shape: 'oval', widthMm: 65, heightMm: 40, style: 'flat', finish: 'pink-lashes', riveArtboardRef: 'Puppet/Eyes/Oval/65x40mm/Flat/PinkLashes' },
+  { id: 'beady-small-black', label: 'Small Beady', group: 'beady', shape: 'beady', size: 'small', style: 'beady', finish: 'black', riveArtboardRef: 'Puppet/Eyes/Beady/SmallBlack' },
+  { id: 'beady-big-black', label: 'Big Beady', group: 'beady', shape: 'beady', size: 'big', style: 'beady', finish: 'black', riveArtboardRef: 'Puppet/Eyes/Beady/BigBlack' },
 ].map(o => ({ ...o, category: 'eyes', colourBindable: false, thumbnailPath: `thumbnails/eyes_${o.id}-tn.png` }));
 write('eyes', eyes);
 
@@ -70,12 +86,13 @@ write('nose', nose);
 
 // ── GLASSES ─────────────────────────────────────────────────────────
 const glasses = [
-  ...['round-thin-black','round-thin-red','retro-black','retro-red','square-thin-black','square-thin-white','square-thin-tortoiseshell'].map(id => ({ id, group: 'classic' })),
-  ...['square-thick-black-xl','square-thick-white-xl','square-thick-red-xl','round-thick-black-xl','round-thick-white-xl','hexagonal-thick-black-xl','hexagonal-thick-white-xl'].map(id => ({ id, group: 'xl' })),
+  ...['round-thin-black','round-thin-red','retro-black','retro-red','square-thin-black','square-thin-white','square-thin-tortoiseshell','squre-thin-white-2'].map(id => ({ id, group: 'classic' })),
+  ...['square-thick-black-xl','square-thick-white-xl','square-thick-red-xl','new-square-thick-bling-xl','square-thin-black-xl','round-thick-black-xl','round-thick-white-xl','round-thick-clear-pink-xl','round-thick-clear-blue-xl','round-thick-clear-green-xl','hexagonal-thick-black-xl','hexagonal-thick-white-xl'].map(id => ({ id, group: 'xl' })),
   ...['buggy-yellow','buggy-purple','buggy-red','buggy-green','buggy-black'].map(id => ({ id, group: 'buggy' })),
 ].map(o => ({
-  id: o.id, label: titleCase(o.id.replace(/-xl$/, '')), category: 'glasses', group: o.group,
+  id: o.id, label: labelOverrides[o.id] ?? titleCase(o.id.replace(/-xl$/, '')), category: 'glasses', group: o.group,
   price: 14.95, riveArtboardRef: 'Puppet/Glasses', colourBindable: false,
+  vectorAssetPath: `rive/glasses/${o.id}.svg`,
   thumbnailPath: `thumbnails/glasses_${o.id}-tn.png`,
 }));
 write('glasses', glasses);

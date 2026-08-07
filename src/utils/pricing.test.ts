@@ -3,8 +3,8 @@ import { defaultSelections, categoryCount } from '../data/catalog';
 import { calculateTotal } from './pricing';
 
 describe('v1 catalog and pricing', () => {
-  it('contains the 402 generated launch records', () => {
-    expect(categoryCount).toBe(402);
+  it('contains the generated launch records', () => {
+    expect(categoryCount).toBe(409);
   });
 
   it('starts at the base price with free defaults', () => {

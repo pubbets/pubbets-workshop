@@ -16,6 +16,11 @@ export type AssetOption = {
   price?: number;
   shape?: string;
   size?: string;
+  sizeMm?: number;
+  widthMm?: number;
+  heightMm?: number;
+  style?: string;
+  finish?: string;
   colour?: string;
   riveArtboardRef: string;
   colourBindable: boolean;

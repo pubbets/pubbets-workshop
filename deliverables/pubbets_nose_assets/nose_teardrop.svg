@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+  <title id="title">Pubbets teardrop nose master asset</title>
+  <desc id="desc">Rive-ready matte fleece rounded-top teardrop nose with recolourable base and subtle lower shadow.</desc>
+  <g id="nose_teardrop">
+    <path id="nose_base" fill="#808080" d="M50 10 C61.5 10 68.2 22.2 72 36.5 C76.7 54 82 62.5 82 75 C82 88 69 94 50 94 C31 94 18 88 18 75 C18 62.5 23.3 54 28 36.5 C31.8 22.2 38.5 10 50 10 Z"/>
+    <path id="nose_shadow" fill="#000000" opacity="0.08" d="M21.5 73 C28.5 85.4 39 90.5 52.2 90.5 C66.5 90.5 77.1 84.2 81 72 C81.7 86.1 68.8 94 50 94 C31 94 18 88 18 75 C18 72.5 18.5 70.2 19.3 67.8 C19.8 69.7 20.5 71.5 21.5 73 Z"/>
+  </g>
+</svg>

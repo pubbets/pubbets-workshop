@@ -9,23 +9,29 @@ type Props = {
 
 function Eyes({ selections }: Pick<Props, 'selections'>) {
   const eye = selections.eyes;
-  const group = eye?.group ?? 'round-flat';
-  const lidColour = eye?.id.includes('blue') ? '#4fb6e7'
-    : eye?.id.includes('green') ? '#73a94b'
-    : eye?.id.includes('pink') ? '#eb6da5'
-    : eye?.id.includes('orange') ? '#ef8725'
+  if (!eye) return null;
+  const shape = eye?.shape ?? 'round';
+  const finish = eye?.finish ?? 'plain';
+  const lidColour = finish.includes('blue') ? '#4fb6e7'
+    : finish.includes('green') ? '#73a94b'
+    : finish.includes('pink') ? '#eb6da5'
+    : finish.includes('orange') ? '#ef8725'
+    : finish.includes('yellow') ? '#f2c72f'
+    : finish.includes('red') ? '#db3b32'
     : '#f9f4e7';
 
-  if (group === 'beady') {
-    const radius = eye?.id.includes('large') ? 18 : 12;
+  if (shape === 'beady') {
+    const radius = eye?.size === 'big' ? 18 : 12;
     return <g className="puppet-eyes"><circle cx="166" cy="194" r={radius} /><circle cx="234" cy="194" r={radius} /></g>;
   }
 
-  const oval = group === 'oval';
+  const oval = shape === 'oval';
+  const lashes = finish.includes('lashes');
   return (
-    <g className="puppet-eyes">
+    <g className="puppet-eyes" strokeLinecap="round">
       <ellipse cx="165" cy="194" rx={oval ? 31 : 26} ry={oval ? 17 : 30} fill={lidColour} />
       <ellipse cx="235" cy="194" rx={oval ? 31 : 26} ry={oval ? 17 : 30} fill={lidColour} />
+      {lashes && <g stroke="#191512" strokeWidth="5" fill="none"><path d="M138 176 L128 166" /><path d="M262 176 L272 166" /></g>}
       <circle cx="171" cy="198" r="10" fill="#191512" />
       <circle cx="229" cy="198" r="10" fill="#191512" />
       <circle cx="175" cy="193" r="3" fill="#fff" />
@@ -36,6 +42,7 @@ function Eyes({ selections }: Pick<Props, 'selections'>) {
 
 function Nose({ selections }: Pick<Props, 'selections'>) {
   const nose = selections.nose;
+  if (!nose) return null;
   const size = nose?.size === 'small' ? 0.72 : nose?.size === 'large' ? 1.25 : 1;
   const fill = optionColour(nose, '#e7b37f');
   const transform = `translate(200 244) scale(${size})`;

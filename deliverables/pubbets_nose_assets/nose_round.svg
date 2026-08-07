@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+  <title id="title">Pubbets round nose master asset</title>
+  <desc id="desc">Rive-ready matte fleece round nose with recolourable base and subtle lower shadow.</desc>
+  <g id="nose_round">
+    <path id="nose_base" fill="#808080" d="M50 14 C69.9 14 86 30.1 86 50 C86 69.9 69.9 86 50 86 C30.1 86 14 69.9 14 50 C14 30.1 30.1 14 50 14 Z"/>
+    <path id="nose_shadow" fill="#000000" opacity="0.08" d="M16.5 56 C23 73.5 35.8 83.5 51.5 83.5 C67.2 83.5 80.2 72.8 84 54.5 C82.1 73.3 67.5 86 50 86 C31.5 86 16.4 72 14.3 53.8 C14.9 54.8 15.6 55.5 16.5 56 Z"/>
+  </g>
+</svg>
