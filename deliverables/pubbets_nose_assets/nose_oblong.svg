@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
+  <title id="title">Pubbets oblong nose master asset</title>
+  <desc id="desc">Rive-ready matte fleece oblong nose with rounded dome top, fuller lower body, recolourable base, and subtle lower shadow.</desc>
+  <g id="nose_oblong">
+    <path id="nose_base" fill="#808080" d="M50 12 C64.8 12 75 25.8 75 47 C75 71 64.2 88 50 88 C35.8 88 25 71 25 47 C25 25.8 35.2 12 50 12 Z"/>
+    <path id="nose_shadow" fill="#000000" opacity="0.08" d="M27.5 58 C32.5 76 41.2 84.8 51.5 85.5 C63.8 84.5 72.4 71.2 74.6 52 C74.1 73.4 63.7 88 50 88 C35.8 88 25 71 25 47 C25.2 51.2 26 55 27.5 58 Z"/>
+  </g>
+</svg>
