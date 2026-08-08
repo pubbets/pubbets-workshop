@@ -73,7 +73,7 @@
   },
   {
     "id": "premium-blue-denim",
-    "label": "Premium Blue Denim",
+    "label": "Premium Blue Denim Shoes",
     "category": "shoes",
     "price": 5,
     "riveArtboardRef": "Puppet/Shoes",
@@ -100,7 +100,7 @@
   },
   {
     "id": "premium-blue-space-print",
-    "label": "Premium Blue Space Print",
+    "label": "Premium Blue Space Print Shoes",
     "category": "shoes",
     "price": 5,
     "riveArtboardRef": "Puppet/Shoes",
@@ -109,7 +109,7 @@
   },
   {
     "id": "premium-green-garden-print",
-    "label": "Premium Green Garden Print",
+    "label": "Premium Green Garden Print Shoes",
     "category": "shoes",
     "price": 5,
     "riveArtboardRef": "Puppet/Shoes",
@@ -118,7 +118,7 @@
   },
   {
     "id": "blue-flower",
-    "label": "Blue Flower",
+    "label": "Blue Flower Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -126,7 +126,7 @@
   },
   {
     "id": "white-flower",
-    "label": "White Flower",
+    "label": "White Flower Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -158,7 +158,7 @@
   },
   {
     "id": "black-slip-ons",
-    "label": "Black Slip Ons",
+    "label": "Black Slip-Ons",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -166,7 +166,7 @@
   },
   {
     "id": "brown-slip-ons",
-    "label": "Brown Slip Ons",
+    "label": "Brown Slip-Ons",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -174,7 +174,7 @@
   },
   {
     "id": "crochet-pink-flowers",
-    "label": "Crochet Pink Flowers",
+    "label": "Pink Flower Crochet Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -182,7 +182,7 @@
   },
   {
     "id": "crochet-white-flowers",
-    "label": "Crochet White Flowers",
+    "label": "White Flower Crochet Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -190,7 +190,7 @@
   },
   {
     "id": "crochet-yellow-flowers",
-    "label": "Crochet Yellow Flowers",
+    "label": "Yellow Flower Crochet Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -198,7 +198,7 @@
   },
   {
     "id": "shiny-black-bows",
-    "label": "Shiny Black Bows",
+    "label": "Shiny Black Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -206,7 +206,7 @@
   },
   {
     "id": "shiny-pink-bows",
-    "label": "Shiny Pink Bows",
+    "label": "Shiny Pink Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -214,7 +214,7 @@
   },
   {
     "id": "shiny-red-bows",
-    "label": "Shiny Red Bows",
+    "label": "Shiny Red Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -222,7 +222,7 @@
   },
   {
     "id": "shiny-white-bows",
-    "label": "Shiny White Bows",
+    "label": "Shiny White Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -230,7 +230,7 @@
   },
   {
     "id": "lace-white-bows",
-    "label": "Lace White Bows",
+    "label": "White Lace Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -238,7 +238,7 @@
   },
   {
     "id": "lace-black-bows",
-    "label": "Lace Black Bows",
+    "label": "Black Lace Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -246,7 +246,7 @@
   },
   {
     "id": "lace-red-bows",
-    "label": "Lace Red Bows",
+    "label": "Red Lace Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,
@@ -254,7 +254,7 @@
   },
   {
     "id": "lace-pink-bows",
-    "label": "Lace Pink Bows",
+    "label": "Pink Lace Bow Shoes",
     "category": "shoes",
     "riveArtboardRef": "Puppet/Shoes",
     "colourBindable": false,

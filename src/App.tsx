@@ -4,10 +4,12 @@ import { OptionPanel } from './components/OptionPanel';
 import { PuppetPreview } from './components/PuppetPreview';
 import { ReviewPanel } from './components/ReviewPanel';
 import { StepRail } from './components/StepRail';
+import { UiArtButton } from './components/UiArtButton';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { useWorkshopSound } from './hooks/useWorkshopSound';
 import type { AssetOption, Category, SelectionState } from './types';
 import { calculateTotal, formatMoney } from './utils/pricing';
+import pubbetsWorkshopLogo from '../assets/ui/logo/pubbets-workshop-logo.png';
 
 const storageKey = 'pubbets-workshop-v1-selection';
 const optionalCategories = new Set<Category>(['eyes', 'nose', 'glasses', 'hair', 'outfit', 'shoes', 'accessory']);
@@ -32,11 +34,15 @@ export function App() {
   const [completedThrough, setCompletedThrough] = useState(-1);
   const [selections, setSelections] = useState<SelectionState>(restoreSelections);
   const [undoSnapshot, setUndoSnapshot] = useState<SelectionState | null>(null);
+  const [bodyChoiceTouched, setBodyChoiceTouched] = useState(false);
   const [motionKey, setMotionKey] = useState(0);
   const { enabled: soundEnabled, setEnabled: setSoundEnabled, play } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
+  const canContinue = !category || optionalCategories.has(category) || Boolean(selections[category]);
+  const stepHeading = category === 'body' ? step.title : step.prompt;
+  const shouldShowBodyOk = category === 'body' && bodyChoiceTouched && Boolean(selections.body);
 
   useEffect(() => {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));
@@ -45,6 +51,7 @@ export function App() {
 
   const select = (category: Category, option: AssetOption | null) => {
     setSelections((current) => ({ ...current, [category]: option }));
+    if (category === 'body') setBodyChoiceTouched(true);
     setMotionKey((key) => key + 1);
     play(560, 0.09);
   };
@@ -90,6 +97,7 @@ export function App() {
     }
     setUndoSnapshot(selections);
     setSelections((current) => ({ ...current, [category]: randomOption(category) }));
+    if (category === 'body') setBodyChoiceTouched(true);
     setMotionKey((key) => key + 1);
     play(680, 0.16);
   };
@@ -107,6 +115,7 @@ export function App() {
     setSelections(defaultSelections());
     setActiveStep(0);
     setCompletedThrough(-1);
+    setBodyChoiceTouched(false);
     setMotionKey((key) => key + 1);
     play(300, 0.14);
   };
@@ -140,32 +149,40 @@ export function App() {
   }
 
   return (
-    <main className="workshop-app">
+    <main className="workshop-app" data-step-id={step.id}>
       <header className="app-header">
-        <button className="mini-brand" onClick={() => setStarted(false)} aria-label="Return to Pubbets Workshop home"><span>Pubbets</span><small>Workshop</small></button>
-        <div className="step-badge">Step {activeStep + 1} <span>of {steps.length}</span></div>
+        <button className="app-logo-button" onClick={() => setStarted(false)} aria-label="Return to Pubbets Workshop home">
+          <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
+        </button>
         <div className="header-actions">
-          <button className="utility-button" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} aria-label="Previous step" title="Back">←</button>
-          <button className="utility-button" onClick={reset} aria-label="Reset build" title="Reset">↻</button>
-          <button className="utility-button" onClick={() => moveTo(activeStep + 1)} disabled={activeStep === steps.length - 1} aria-label="Next step" title="Forward">→</button>
-          <button className="utility-button" onClick={randomizeCurrent} aria-label={category ? `Randomize ${category}` : 'Randomize build'} title="Randomize">⚂</button>
-          <button className="utility-button" onClick={() => setSoundEnabled(!soundEnabled)} aria-label={`${soundEnabled ? 'Mute' : 'Enable'} sound`} title="Sound">{soundEnabled ? '♪' : '×'}</button>
+          <UiArtButton asset="randomiseSquare" label={category ? `Randomise ${category}` : 'Randomise build'} size="square" onClick={randomizeCurrent} title="Randomise" />
+          <UiArtButton asset={soundEnabled ? 'soundOn' : 'soundOff'} label={soundEnabled ? 'Mute sound' : 'Enable sound'} size="square" onClick={() => setSoundEnabled(!soundEnabled)} title="Sound" />
         </div>
       </header>
       <div className="builder-layout">
         <StepRail steps={steps} activeStep={activeStep} completedThrough={completedThrough} onStepChange={moveTo} />
         <section className="preview-column">
-          <div className="mobile-step-heading"><small>{step.title}</small><strong>{step.prompt}</strong></div>
-          <PuppetPreview selections={selections} closeUp={['eyes', 'nose', 'glasses', 'hair'].includes(step.id)} motionKey={motionKey} />
+          <div className="mobile-step-heading"><strong>{stepHeading}</strong></div>
+          <PuppetPreview selections={selections} closeUp={['eyes', 'nose', 'glasses', 'hair'].includes(step.id)} bodyOnly={step.id === 'body'} motionKey={motionKey} />
           {undoSnapshot && <button className="restore-randomize" onClick={restorePrevious}>Restore previous</button>}
-          <div className="price-ticket"><span>Build total</span><strong>{formatMoney(total)}</strong></div>
+          {step.id !== 'body' && <div className="price-ticket"><span>Build total</span><strong>{formatMoney(total)}</strong></div>}
         </section>
         <section className="controls-column">
-          <header className="controls-heading"><span className="eyebrow">{step.title}</span><h1>{step.prompt}</h1><p>{category ? 'Tap a choice to see it on your Pubbet.' : 'Everything look just right?'}</p></header>
+          <header className="controls-heading">
+            {category !== 'body' && <span className="eyebrow">{step.title}</span>}
+            <h1>{stepHeading}</h1>
+            <p>{category === 'body' ? 'Body colour is required. Tap a colour to preview it live.' : category ? 'Tap a choice to see it on your Pubbet.' : 'Everything look just right?'}</p>
+          </header>
           {category ? <OptionPanel category={category} options={catalog[category]} selected={selections[category]} onSelect={(option) => select(category, option)} onComplete={['eyes', 'nose'].includes(category) ? completeFeature : undefined} onBack={() => moveTo(activeStep - 1)} /> : <ReviewPanel selections={selections} total={total} onSave={saveBuild} />}
-          <footer className={`navigation-bar ${['eyes', 'nose'].includes(category ?? '') ? 'navigation-bar--hidden' : ''}`}>
-            <button className="secondary-action" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0}>← Back</button>
-            {activeStep < steps.length - 1 ? <button className="primary-action" onClick={next}>{activeStep === 7 ? 'Review build' : 'Looks good'} <span aria-hidden="true">→</span></button> : <button className="primary-action" onClick={() => { setStarted(false); reset(); }}>Build another</button>}
+          {shouldShowBodyOk && (
+            <div className="body-ok-row">
+              <UiArtButton asset="ok" label="OK, lock in body colour" size="wide" onClick={completeFeature} />
+            </div>
+          )}
+          <footer className="navigation-bar">
+            <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
+            <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
+            {activeStep < steps.length - 1 ? <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} disabled={!canContinue} /> : <UiArtButton asset="saveBuildSheet" label="Save build sheet" size="wide" onClick={saveBuild} />}
           </footer>
         </section>
       </div>

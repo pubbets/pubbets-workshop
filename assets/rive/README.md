@@ -1,8 +1,8 @@
 # Pubbet Rive source art
 
-`pubbet-base.svg` is a clean vector reconstruction of the supplied purple base-layer reference. Its body shapes use a neutral white fill so Rive can apply the customer-selected colour at runtime. It has a transparent canvas and simple fills and strokes that import cleanly into Rive.
+`pubbet-base.svg` is the locked 2026 blank puppet base for the new app. Its approved visual source is page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`). Its body shapes use a neutral white fill so Rive can apply the customer-selected colour at runtime. It has a transparent canvas and simple fills and strokes that import cleanly into Rive.
 
-For the upcoming final blank puppet replacement, follow `base-workflow.md` before updating the SVG or rig manifest.
+This base replaces the older CPB-copy body proportions. Future clothing, hair, glasses, shoes, and accessories should be fitted to this 2026 base, even if their thumbnails still show human-style garments or older source shapes.
 
 The riggable parts have stable IDs: head and ears, torso, separate arms and hands, and separate legs and feet. Suggested pivot positions are recorded in `pubbet-base.rig.json`.
 
@@ -33,6 +33,12 @@ The approved customer palette is recorded in `pubbet-base.rig.json` under `bodyC
 White (`#FFFFFF`) is the neutral authoring fill and is not a customer colour option.
 
 The SVG deliberately avoids gradients, masks, filters, raster images, and embedded fonts.
+
+## Colour choice buttons
+
+The body colour choice buttons/swatches should be Rive/vector assets, not separate raster images for each colour. Create one neutral colourable fleece swatch/button and bind its fill to the selected body colour value.
+
+Normal app interface buttons, such as OK?, Next, Back, Randomise, Reset, Sound, and Save, are UI artwork and can stay as transparent raster PNGs. They do not need to be rebuilt in Rive unless we later decide they need animation or runtime recolouring.
 
 ## Garments
 

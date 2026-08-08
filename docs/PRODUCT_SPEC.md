@@ -34,6 +34,11 @@ screens reviewed on 2026-08-06.
   without a network connection after the app has loaded.
 - Selections persist in the browser.
 - The review step exports a production build sheet as JSON.
+- Future build-sheet v2 should generate a customer/admin visual build sheet in
+  the handmade Pubbets tracking-sheet style: customer details, order number,
+  start date, final puppet preview, selected features/garments, production notes,
+  and Pubbets branding. The customer version can support welcome emails; the
+  admin version can support order tracking and fulfilment.
 - Checkout must not claim an estimated price is chargeable. Real Shopify checkout
   is enabled only after base and add-on variant IDs are mapped and tested.
 

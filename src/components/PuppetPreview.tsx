@@ -4,6 +4,7 @@ import { optionColour } from '../data/catalog';
 type Props = {
   selections: SelectionState;
   closeUp?: boolean;
+  bodyOnly?: boolean;
   motionKey: number;
 };
 
@@ -108,14 +109,13 @@ function outfitFill(id = '') {
   return '#784a9e';
 }
 
-export function PuppetPreview({ selections, closeUp = false, motionKey }: Props) {
+export function PuppetPreview({ selections, closeUp = false, bodyOnly = false, motionKey }: Props) {
   const body = optionColour(selections.body, '#36a9e0');
-  const outfit = selections.outfit;
-  const shoes = selections.shoes;
-  const hasRods = Boolean(selections.accessory?.id.includes('rod'));
+  const outfit = bodyOnly ? null : selections.outfit;
+  const shoes = bodyOnly ? null : selections.shoes;
+  const hasRods = !bodyOnly && Boolean(selections.accessory?.id.includes('rod'));
   return (
-    <div className={`puppet-stage ${closeUp ? 'is-close' : ''}`} data-preview-engine="svg-fallback">
-      <div className="preview-note"><span className="status-dot" /> Live preview</div>
+    <div className={`puppet-stage ${closeUp && !bodyOnly ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="svg-fallback">
       <svg key={motionKey} className="puppet-svg" viewBox="0 0 400 610" role="img" aria-label="Your customized Pubbet preview">
         <ellipse cx="200" cy="570" rx="150" ry="30" fill="#8d572f" opacity=".32" />
         {hasRods && <g stroke="#5b4031" strokeWidth="8" strokeLinecap="round"><path d="M73 364L25 545" /><path d="M327 364L375 545" /></g>}
@@ -125,16 +125,17 @@ export function PuppetPreview({ selections, closeUp = false, motionKey }: Props)
           <path d="M144 470 L140 550 Q139 575 165 578 Q190 579 193 553 L197 474Z" />
           <path d="M256 470 L260 550 Q261 575 235 578 Q210 579 207 553 L203 474Z" />
           <ellipse cx="200" cy="397" rx="91" ry="116" />
+          <path d="M174 290 Q200 305 226 290 L226 353 Q200 368 174 353Z" />
           <circle cx="200" cy="202" r="123" />
           <circle cx="79" cy="205" r="30" />
           <circle cx="321" cy="205" r="30" />
         </g>
         {outfit && <path d="M128 345 Q200 317 272 345 L283 444 Q245 485 200 486 Q155 485 117 444Z" fill={outfitFill(outfit.id)} stroke="#3b261e" strokeWidth="5" />}
         {outfit?.id.includes('gingham') && <g opacity=".45" stroke="#fff" strokeWidth="8"><path d="M145 350V468 M180 336V482 M220 336V482 M255 350V468" /><path d="M123 380H277 M119 420H281 M125 458H275" /></g>}
-        <Hair selections={selections} />
-        <Eyes selections={selections} />
-        <Nose selections={selections} />
-        <Glasses selections={selections} />
+        {!bodyOnly && <Hair selections={selections} />}
+        {!bodyOnly && <Eyes selections={selections} />}
+        {!bodyOnly && <Nose selections={selections} />}
+        {!bodyOnly && <Glasses selections={selections} />}
         <path d="M147 282 Q200 331 253 282 Q245 347 200 350 Q155 347 147 282Z" fill="#b7192e" stroke="#3b261e" strokeWidth="5" />
         <path d="M181 321 Q200 300 219 321 Q216 342 200 345 Q184 342 181 321Z" fill="#f4859d" />
         {shoes && <g fill={outfitFill(shoes.id)} stroke="#3b261e" strokeWidth="5"><path d="M126 548 Q159 536 194 556 L192 585 Q152 602 112 581Z" /><path d="M274 548 Q241 536 206 556 L208 585 Q248 602 288 581Z" /></g>}

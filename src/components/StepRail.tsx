@@ -1,4 +1,5 @@
 import type { StepDefinition } from '../types';
+import { UiArtImage } from './UiArtButton';
 
 type Props = {
   steps: StepDefinition[];
@@ -22,7 +23,7 @@ export function StepRail({ steps, activeStep, completedThrough, onStepChange }: 
           >
             <span className="step-token__icon" aria-hidden="true">{step.icon}</span>
             <span className="step-token__label">{step.shortLabel}</span>
-            {complete && <span className="step-token__check" aria-hidden="true">✓</span>}
+            {complete && <span className="step-token__check" aria-hidden="true"><UiArtImage asset="completeTick" label="Complete" size="badge" /></span>}
           </button>
         );
       })}

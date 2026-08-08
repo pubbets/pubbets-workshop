@@ -91,7 +91,7 @@
   },
   {
     "id": "premium-bw-fashionista",
-    "label": "Premium Bw Fashionista",
+    "label": "Premium Black & White Fashionista",
     "category": "outfit",
     "group": "premium",
     "price": 12.95,
@@ -146,7 +146,7 @@
   },
   {
     "id": "premium-lil-red",
-    "label": "Premium Lil Red",
+    "label": "Premium Little Red",
     "category": "outfit",
     "group": "premium",
     "price": 12.95,
@@ -157,7 +157,7 @@
   },
   {
     "id": "blouse-black-white-striped",
-    "label": "Blouse Black White Striped",
+    "label": "Black & White Striped Blouse",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -167,7 +167,7 @@
   },
   {
     "id": "tshirt-blue-yellow-collar",
-    "label": "Tshirt Blue Yellow Collar",
+    "label": "Blue T-Shirt with Yellow Collar",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -177,7 +177,7 @@
   },
   {
     "id": "tshirt-yellow-green-collar",
-    "label": "Tshirt Yellow Green Collar",
+    "label": "Yellow T-Shirt with Green Collar",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -187,7 +187,7 @@
   },
   {
     "id": "black-t",
-    "label": "Black T",
+    "label": "Black T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -197,7 +197,7 @@
   },
   {
     "id": "white-t",
-    "label": "White T",
+    "label": "White T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -207,7 +207,7 @@
   },
   {
     "id": "blue-t",
-    "label": "Blue T",
+    "label": "Blue T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -217,7 +217,7 @@
   },
   {
     "id": "yellow-t",
-    "label": "Yellow T",
+    "label": "Yellow T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -227,7 +227,7 @@
   },
   {
     "id": "red-t",
-    "label": "Red T",
+    "label": "Red T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -237,7 +237,7 @@
   },
   {
     "id": "green-t",
-    "label": "Green T",
+    "label": "Green T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -247,7 +247,7 @@
   },
   {
     "id": "rainbow-t",
-    "label": "Rainbow T",
+    "label": "Rainbow T-Shirt",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -257,7 +257,7 @@
   },
   {
     "id": "retro-t-1",
-    "label": "Retro T 1",
+    "label": "Retro T-Shirt 1",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -267,7 +267,7 @@
   },
   {
     "id": "retro-t-2",
-    "label": "Retro T 2",
+    "label": "Retro T-Shirt 2",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -277,7 +277,7 @@
   },
   {
     "id": "retro-t-3",
-    "label": "Retro T 3",
+    "label": "Retro T-Shirt 3",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -287,7 +287,7 @@
   },
   {
     "id": "polo-white-crowns",
-    "label": "Polo White Crowns",
+    "label": "White Crown Polo",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -297,7 +297,7 @@
   },
   {
     "id": "polo-dark-blue-crowns",
-    "label": "Polo Dark Blue Crowns",
+    "label": "Dark Blue Crown Polo",
     "category": "outfit",
     "group": "top",
     "riveArtboardRef": "Puppet/Outfit/Top",
@@ -377,7 +377,7 @@
   },
   {
     "id": "blue-3-4-pants",
-    "label": "Blue 3 4 Pants",
+    "label": "Blue 3/4 Pants",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -397,7 +397,7 @@
   },
   {
     "id": "athletic-shorts-red",
-    "label": "Athletic Shorts Red",
+    "label": "Red Athletic Shorts",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -407,7 +407,7 @@
   },
   {
     "id": "athletic-shorts-blue",
-    "label": "Athletic Shorts Blue",
+    "label": "Blue Athletic Shorts",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -417,7 +417,7 @@
   },
   {
     "id": "athletic-shorts-black",
-    "label": "Athletic Shorts Black",
+    "label": "Black Athletic Shorts",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -427,7 +427,7 @@
   },
   {
     "id": "athletic-shorts-green",
-    "label": "Athletic Shorts Green",
+    "label": "Green Athletic Shorts",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -437,7 +437,7 @@
   },
   {
     "id": "athletic-shorts-yellow",
-    "label": "Athletic Shorts Yellow",
+    "label": "Yellow Athletic Shorts",
     "category": "outfit",
     "group": "bottom",
     "riveArtboardRef": "Puppet/Outfit/Bottom",
@@ -447,7 +447,7 @@
   },
   {
     "id": "overalls-blue-teddy",
-    "label": "Overalls Blue Teddy",
+    "label": "Blue Teddy Overalls",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -458,7 +458,7 @@
   },
   {
     "id": "overalls-girls-black",
-    "label": "Overalls Girls Black",
+    "label": "Black Girls Overalls",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -502,7 +502,7 @@
   },
   {
     "id": "overshirt-blue-plaid",
-    "label": "Overshirt Blue Plaid",
+    "label": "Blue Plaid Overshirt",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -513,7 +513,7 @@
   },
   {
     "id": "overshirt-orange-plaid",
-    "label": "Overshirt Orange Plaid",
+    "label": "Orange Plaid Overshirt",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -524,7 +524,7 @@
   },
   {
     "id": "overshirt-red-plaid",
-    "label": "Overshirt Red Plaid",
+    "label": "Red Plaid Overshirt",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -557,7 +557,7 @@
   },
   {
     "id": "black-white-hoodie",
-    "label": "Black White Hoodie",
+    "label": "Black & White Hoodie",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -601,7 +601,7 @@
   },
   {
     "id": "black-white-button-up",
-    "label": "Black White Button Up",
+    "label": "Black & White Button-Up",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -612,7 +612,7 @@
   },
   {
     "id": "brown-blue-button-up",
-    "label": "Brown Blue Button Up",
+    "label": "Brown & Blue Button-Up",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -623,7 +623,7 @@
   },
   {
     "id": "pink-plaid-button-up",
-    "label": "Pink Plaid Button Up",
+    "label": "Pink Plaid Button-Up",
     "category": "outfit",
     "group": "over",
     "price": 5,
@@ -634,7 +634,7 @@
   },
   {
     "id": "blue-plaid-button-up",
-    "label": "Blue Plaid Button Up",
+    "label": "Blue Plaid Button-Up",
     "category": "outfit",
     "group": "over",
     "price": 5,

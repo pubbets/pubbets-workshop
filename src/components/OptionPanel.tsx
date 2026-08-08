@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
+import { optionColour } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
+import { UiArtButton } from './UiArtButton';
 
 type Props = {
   category: Category;
@@ -53,8 +55,12 @@ const eyeSizeKey = (option: AssetOption) => {
 const eyeSizeLabel = (value: string) => value.replace('x', ' x ');
 
 function OptionCard({ option, selected, onSelect }: { option: AssetOption; selected: boolean; onSelect: () => void }) {
+  const isBodyColour = option.category === 'body';
+  const swatchStyle = isBodyColour ? ({ '--swatch-colour': optionColour(option) } as React.CSSProperties) : undefined;
+
   return (
     <button className={`option-card ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
+      {isBodyColour && <span className="option-card__swatch" style={swatchStyle} aria-hidden="true" />}
       <span className="option-card__label">{option.label}</span>
       {option.group && <span className="option-card__meta">{title(option.group)}</span>}
       {Boolean(option.price) && <span className="option-card__price">+${option.price!.toFixed(2)}</span>}
@@ -66,7 +72,7 @@ function OptionCard({ option, selected, onSelect }: { option: AssetOption; selec
 function NoThanksCard({ selected, onSelect }: { selected: boolean; onSelect: () => void }) {
   return (
     <button className={`option-card option-card--none ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
-      <span className="option-card__label">No thanks</span>
+      <span className="option-card__label">Skip this step</span>
       <span className="option-card__meta">Skip this step</span>
       {selected && <span className="option-card__check" aria-hidden="true">✓</span>}
     </button>
@@ -181,10 +187,10 @@ function EyeWizard({ options, selected, onSelect, onComplete, onBack }: Props) {
           </div>
         </>
       )}
-      <p className="catalog-note">{selected === null ? 'No eye feature selected' : stage === 'shape' ? 'Choose the eye family first' : `Choosing ${title(eyeShape)} eyes`}</p>
+      <p className="catalog-note">{selected === null ? 'Eye step skipped' : stage === 'shape' ? 'Choose the eye family first' : `Choosing ${title(eyeShape)} eyes`}</p>
       <div className="eye-wizard__nav">
-        <button className="secondary-action" onClick={goBack}>Back</button>
-        {stage === 'finish' && <button className="primary-action" onClick={onComplete}>OK? <span aria-hidden="true">→</span></button>}
+        <UiArtButton asset="back" label="Back" size="wide" onClick={goBack} />
+        {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
       </div>
     </section>
   );
@@ -269,10 +275,10 @@ function NoseWizard({ options, selected, onSelect, onComplete, onBack }: Props) 
           </div>
         </>
       )}
-      <p className="catalog-note">{selected === null ? 'No nose selected' : stage === 'shape' ? 'Choose the nose shape first' : `Choosing ${title(noseShape)} nose`}</p>
+      <p className="catalog-note">{selected === null ? 'Nose step skipped' : stage === 'shape' ? 'Choose the nose shape first' : `Choosing ${title(noseShape)} nose`}</p>
       <div className="eye-wizard__nav">
-        <button className="secondary-action" onClick={goBack}>Back</button>
-        {stage === 'finish' && <button className="primary-action" onClick={onComplete}>OK? <span aria-hidden="true">→</span></button>}
+        <UiArtButton asset="back" label="Back" size="wide" onClick={goBack} />
+        {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
       </div>
     </section>
   );

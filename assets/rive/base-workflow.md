@@ -1,6 +1,8 @@
-# Incoming base puppet workflow
+# Base puppet workflow
 
-Use this workflow when replacing the current placeholder Pubbet base with the final blank puppet graphic.
+The current locked base is `pubbet-base.svg`, approved from page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`) on 2026-08-07.
+
+Use this workflow if replacing the locked Pubbet base with a newer blank puppet graphic.
 
 ## Source image requirements
 
@@ -12,7 +14,7 @@ Use this workflow when replacing the current placeholder Pubbet base with the fi
 
 ## Output files
 
-The approved final base should replace the current placeholder files:
+An approved replacement base should update these files together:
 
 - `pubbet-base.svg` - clean vector source art for Rive.
 - `pubbet-base.rig.json` - pivots, layer metadata, and colour palette values.
@@ -27,6 +29,7 @@ The Rive import should keep these editable groups separate:
 - `head`
 - `left_ear`
 - `right_ear`
+- `neck`
 - `torso`
 - `left_arm`
 - `right_arm`
@@ -51,3 +54,7 @@ Before treating the new base as approved:
 - All body parts have stable IDs for Rive import.
 - Rig manifest JSON parses correctly.
 - Garment safe areas are not updated until the new base proportions are approved.
+
+## Asset fitting rule
+
+All new garment and feature SVGs should be fitted to the locked 2026 base. Older CPB/source graphics may be stretched, squashed, repositioned, or path-edited in Rive so they become puppet-fit versions. Thumbnails may remain human-style references; the Rive vector module is the production puppet-fit asset.

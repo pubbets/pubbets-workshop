@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" role="img" aria-labelledby="title description">
-  <title id="title">Pubbet base</title>
-  <desc id="description">Layered front-facing vector puppet base prepared for Rive rigging.</desc>
+  <title id="title">2026 Pubbet blank base</title>
+  <desc id="description">Rive-ready vector reconstruction of page 3 from the Canva 2026 ASSETS OUTFITS &amp; SHOES blank puppet base.</desc>
 
   <g id="pubbet_base" fill="#FFFFFF" stroke="#2C2030" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
     <g id="legs">
@@ -35,6 +35,8 @@
     </g>
 
     <path id="torso" d="M610 430 C536 449 480 510 452 593 C431 656 433 730 461 773 C489 816 558 831 640 831 C722 831 791 816 819 773 C847 730 849 656 828 593 C800 510 744 449 670 430 C651 425 629 425 610 430 Z"/>
+
+    <path id="neck" d="M584 410 C604 421 622 427 640 427 C658 427 676 421 696 410 L696 497 C681 508 661 514 640 514 C619 514 599 508 584 497 Z"/>
 
     <g id="head">
       <ellipse id="left_ear" cx="455" cy="260" rx="25" ry="34"/>
