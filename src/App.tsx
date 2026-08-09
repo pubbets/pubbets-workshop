@@ -40,7 +40,9 @@ export function App() {
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
-  const canContinue = !category || optionalCategories.has(category) || Boolean(selections[category]);
+  const canContinue = category === 'body'
+    ? bodyChoiceTouched && Boolean(selections.body)
+    : !category || optionalCategories.has(category) || Boolean(selections[category]);
   const stepHeading = category === 'body' ? step.title : step.prompt;
   const shouldShowBodyOk = category === 'body' && bodyChoiceTouched && Boolean(selections.body);
 
@@ -159,8 +161,8 @@ export function App() {
           <UiArtButton asset={soundEnabled ? 'soundOn' : 'soundOff'} label={soundEnabled ? 'Mute sound' : 'Enable sound'} size="square" onClick={() => setSoundEnabled(!soundEnabled)} title="Sound" />
         </div>
       </header>
+      <StepRail steps={steps} activeStep={activeStep} completedThrough={completedThrough} onStepChange={moveTo} />
       <div className="builder-layout">
-        <StepRail steps={steps} activeStep={activeStep} completedThrough={completedThrough} onStepChange={moveTo} />
         <section className="preview-column">
           <div className="mobile-step-heading"><strong>{stepHeading}</strong></div>
           <PuppetPreview selections={selections} closeUp={['eyes', 'nose', 'glasses', 'hair'].includes(step.id)} bodyOnly={step.id === 'body'} motionKey={motionKey} />

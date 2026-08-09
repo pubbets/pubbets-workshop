@@ -326,6 +326,11 @@ button:focus-visible { outline: 4px solid #2ca7d8; outline-offset: 3px; }
 .option-card__price { margin-top: 3px; color: #146b4e; font-size: .66rem; font-weight: 900; }
 .option-card__check { position: absolute; top: -8px; right: -8px; display: grid; place-items: center; width: 30px; height: 30px; border: 3px solid #ffe4b1; border-radius: 50%; background: var(--orange); color: white; box-shadow: 0 3px 0 #9d440d; font-weight: 900; }
 .option-card--none { border-style: dashed; background: linear-gradient(145deg, #ffeccb, #d8b781); }
+.option-card--none .skip-card-art {
+  width: 100%;
+  height: 54px;
+  filter: drop-shadow(0 4px 4px rgb(57 29 12 / 18%));
+}
 .catalog-note { margin: 16px 0 0; color: #7f5430; font-size: .7rem; font-weight: 800; text-align: center; }
 
 .navigation-bar { position: relative; z-index: 1; display: flex; gap: 12px; padding: 18px 4px 2px; border-top: 2px dashed #b5793b; }
@@ -509,6 +514,9 @@ button:focus-visible { outline: 4px solid #2ca7d8; outline-offset: 3px; }
 }
 
 .puppet-stage.is-body-only .puppet-svg {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
   transform: none;
 }
 
@@ -721,5 +729,602 @@ button:focus-visible { outline: 4px solid #2ca7d8; outline-offset: 3px; }
 
   .navigation-bar .ui-art-button--wide {
     height: 40px;
+  }
+}
+
+/* Rescue layout pass: clean responsive shell for v1 testing */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.welcome-screen {
+  display: flex;
+  min-height: 100dvh;
+  height: 100dvh;
+  padding: clamp(14px, 3vh, 34px) clamp(14px, 4vw, 52px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3.5vh, 28px);
+  overflow: hidden;
+}
+
+.welcome-brand {
+  width: min(680px, 88vw);
+  flex: 0 1 auto;
+}
+
+.welcome-logo {
+  width: min(560px, 70vw);
+  max-height: 42dvh;
+  object-fit: contain;
+}
+
+.welcome-actions {
+  width: min(350px, 76vw);
+  gap: clamp(8px, 1.4vh, 14px);
+  flex: 0 0 auto;
+}
+
+.welcome-actions .ui-art-button--long {
+  width: 100%;
+  height: auto;
+}
+
+.welcome-actions .ui-art-button--long img {
+  width: 100%;
+  height: auto;
+}
+
+.workshop-app {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  height: 100dvh;
+  min-height: 100dvh;
+  padding: clamp(8px, 1.25vw, 16px);
+  overflow: hidden;
+}
+
+.app-header {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 58px;
+  margin: 0 auto;
+  padding: 6px 14px;
+  border-width: 4px;
+  border-radius: 22px 22px 6px 6px;
+}
+
+.app-logo-button {
+  width: clamp(120px, 18vw, 210px);
+}
+
+.header-actions {
+  gap: 6px;
+}
+
+.app-header .ui-art-button--square {
+  width: clamp(38px, 4.4vw, 48px);
+  height: clamp(38px, 4.4vw, 48px);
+}
+
+.step-rail {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 12px);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 14px 10px;
+  border: 4px solid #03423f;
+  border-top: 0;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(90deg, #07504d, #08746d 60%, #064d49);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  box-shadow: 0 7px 0 #4f2c17;
+}
+
+.step-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.step-rail::after {
+  inset: 6px;
+  border-radius: 12px;
+}
+
+.step-token {
+  width: clamp(54px, 6.4vw, 72px);
+  min-height: clamp(52px, 6.1vw, 68px);
+  padding: 5px 3px 3px;
+  border-width: 3px;
+}
+
+.step-token::after {
+  display: none;
+}
+
+.step-token__icon {
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.step-token__label {
+  font-size: clamp(.43rem, .72vw, .6rem);
+}
+
+.builder-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(350px, 460px);
+  width: 100%;
+  max-width: 1400px;
+  min-height: 0;
+  height: 100%;
+  margin: 0 auto;
+  border: 4px solid #03423f;
+  border-top: 0;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  box-shadow: 0 10px 0 #4f2c17, 0 18px 34px rgb(52 27 10 / 28%);
+}
+
+.preview-column,
+.controls-column {
+  min-height: 0;
+}
+
+.preview-column {
+  align-content: center;
+  padding: 12px 20px 78px;
+}
+
+.puppet-stage {
+  width: min(100%, 540px);
+  height: min(100%, 620px);
+  max-height: calc(100dvh - 250px);
+}
+
+.controls-column {
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  padding: 18px 22px 16px;
+  overflow: hidden;
+}
+
+.controls-heading {
+  padding-bottom: 10px;
+}
+
+.controls-heading h1 {
+  font-size: clamp(1.45rem, 2.2vw, 2.15rem);
+  white-space: normal;
+}
+
+.controls-heading p {
+  margin-top: 5px;
+}
+
+.option-panel,
+.review-panel {
+  min-height: 0;
+  overflow: auto;
+}
+
+.navigation-bar {
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.navigation-bar .ui-art-button--wide {
+  height: clamp(44px, 5vw, 56px);
+}
+
+.body-ok-row {
+  padding-top: 8px;
+}
+
+.body-ok-row .ui-art-button {
+  width: min(210px, 68%);
+  height: 50px;
+}
+
+.mobile-step-heading strong {
+  white-space: nowrap;
+}
+
+.workshop-app[data-step-id="body"] .controls-heading h1 {
+  white-space: nowrap;
+}
+
+.workshop-app[data-step-id="body"] .controls-heading p {
+  display: none;
+}
+
+.workshop-app[data-step-id="body"] .preview-column {
+  padding-bottom: 16px;
+}
+
+.workshop-app[data-step-id="body"] .puppet-stage {
+  width: min(42vw, 360px);
+  height: min(calc(100dvh - 245px), 510px);
+}
+
+.workshop-app[data-step-id="body"] .option-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.workshop-app[data-step-id="body"] .option-card {
+  min-height: 72px;
+}
+
+@media (min-width: 1200px) {
+  .welcome-logo {
+    width: min(560px, 40vw);
+  }
+
+  .welcome-actions {
+    width: min(350px, 28vw);
+  }
+
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-columns: minmax(560px, 1fr) minmax(390px, 430px);
+  }
+}
+
+@media (max-width: 980px) {
+  .workshop-app {
+    padding: 0;
+  }
+
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    min-height: 52px;
+    border-width: 0 0 4px;
+    border-radius: 0;
+  }
+
+  .app-logo-button {
+    width: clamp(92px, 24vw, 150px);
+  }
+
+  .step-rail {
+    position: sticky;
+    top: 52px;
+    z-index: 29;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 6px 8px 8px;
+    border-width: 0 0 4px;
+    border-radius: 0;
+    box-shadow: 0 5px 0 #4f2c17;
+  }
+
+  .step-token {
+    width: 50px;
+    min-height: 50px;
+  }
+
+  .step-token__label {
+    font-size: .44rem;
+  }
+
+  .step-token__check {
+    width: 24px;
+    height: 24px;
+  }
+
+  .builder-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(220px, 42%) minmax(0, 1fr);
+    height: auto;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .preview-column {
+    padding: 34px 12px 8px;
+  }
+
+  .mobile-step-heading {
+    top: 8px;
+    display: grid;
+  }
+
+  .mobile-step-heading strong {
+    font-size: .96rem;
+    line-height: 1;
+  }
+
+  .controls-column {
+    padding: 7px 10px 62px;
+    overflow: hidden;
+  }
+
+  .controls-heading {
+    display: none;
+  }
+
+  .puppet-stage {
+    width: min(72vw, 300px);
+    height: min(34dvh, 300px);
+    max-height: none;
+  }
+
+  .wooden-plinth {
+    display: none;
+  }
+
+  .catalog-note {
+    display: none;
+  }
+
+  .option-panel {
+    padding: 0 2px 8px;
+  }
+
+  .option-grid {
+    gap: 7px;
+  }
+
+  .option-card {
+    min-height: 58px;
+    padding: 7px 5px 6px;
+    border-width: 2px;
+    border-radius: 14px;
+  }
+
+  .option-card__label {
+    font-size: .58rem;
+  }
+
+  .option-card__meta,
+  .option-card__price {
+    display: none;
+  }
+
+  .option-card--none .skip-card-art {
+    height: 42px;
+  }
+
+  .navigation-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 35;
+    gap: 6px;
+    padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
+    border-top: 3px solid #7c471e;
+    background: linear-gradient(#f1c47f, #d8974c);
+    box-shadow: 0 -7px 16px rgb(57 29 12 / 22%);
+  }
+
+  .navigation-bar .ui-art-button--wide {
+    height: 40px;
+  }
+
+  .body-ok-row {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    z-index: 36;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .body-ok-row .ui-art-button {
+    width: min(190px, 54vw);
+    height: 42px;
+    pointer-events: auto;
+  }
+
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(190px, 37%) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .preview-column {
+    padding-top: 28px;
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage {
+    width: min(56vw, 220px);
+    height: min(29dvh, 220px);
+  }
+
+  .workshop-app[data-step-id="body"] .option-grid {
+    gap: 6px;
+  }
+
+  .workshop-app[data-step-id="body"] .option-card {
+    min-height: 48px;
+  }
+
+  .workshop-app[data-step-id="body"] .option-card__swatch {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 520px) {
+  .welcome-screen {
+    justify-content: center;
+    gap: clamp(12px, 3dvh, 22px);
+    padding: 14px 12px 18px;
+  }
+
+  .welcome-logo {
+    width: min(295px, 77vw);
+    max-height: 38dvh;
+  }
+
+  .welcome-actions {
+    width: min(286px, 76vw);
+  }
+
+  .welcome-actions .ui-art-button--long {
+    height: auto;
+  }
+
+  .welcome-settings {
+    top: 18px;
+    left: 18px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .app-header {
+    min-height: 48px;
+    padding: 4px 7px;
+  }
+
+  .app-logo-button {
+    width: 88px;
+  }
+
+  .app-header .ui-art-button--square {
+    width: 30px;
+    height: 30px;
+  }
+
+  .step-rail {
+    top: 48px;
+    gap: 5px;
+    padding: 5px 7px 7px;
+  }
+
+  .step-token {
+    width: 45px;
+    min-height: 45px;
+    padding: 4px 2px 2px;
+  }
+
+  .step-token__icon {
+    font-size: .98rem;
+  }
+
+  .step-token__label {
+    font-size: .39rem;
+  }
+
+  .builder-layout {
+    grid-template-rows: minmax(205px, 40%) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(178px, 35%) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage {
+    width: min(54vw, 195px);
+    height: min(27dvh, 195px);
+  }
+
+  .workshop-app[data-step-id="body"] .option-card__label {
+    font-size: .49rem;
+  }
+
+  .navigation-bar .ui-art-button--wide {
+    height: 38px;
+  }
+}
+
+@media (max-height: 680px) and (max-width: 980px) {
+  .welcome-logo {
+    max-height: 35dvh;
+  }
+
+  .welcome-actions .ui-art-button--long {
+    height: auto;
+  }
+
+  .step-token {
+    width: 42px;
+    min-height: 42px;
+  }
+
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(150px, 31%) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage {
+    height: min(22dvh, 158px);
+  }
+
+  .workshop-app[data-step-id="body"] .option-card {
+    min-height: 42px;
+    padding: 4px 3px;
+  }
+
+  .workshop-app[data-step-id="body"] .option-card__swatch {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Final Step 1 fit: keep the blank puppet full-body and inside the viewport. */
+.workshop-app[data-step-id="body"] .puppet-stage.is-body-only {
+  aspect-ratio: 400 / 610;
+  width: min(24vw, 288px, calc(58dvh * 400 / 610));
+  height: auto;
+  max-height: none;
+}
+
+.puppet-stage.is-body-only .puppet-svg {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  transform: none !important;
+}
+
+@media (max-width: 980px) {
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(225px, 33dvh) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .preview-column {
+    padding: 25px 10px 4px;
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage.is-body-only {
+    width: min(42vw, 160px);
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(218px, 32dvh) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage.is-body-only {
+    width: min(40vw, 155px);
+  }
+}
+
+@media (max-height: 680px) and (max-width: 980px) {
+  .workshop-app[data-step-id="body"] .builder-layout {
+    grid-template-rows: minmax(205px, 31dvh) minmax(0, 1fr);
+  }
+
+  .workshop-app[data-step-id="body"] .puppet-stage.is-body-only {
+    width: min(37vw, 145px);
   }
 }

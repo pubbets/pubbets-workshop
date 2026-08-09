@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { optionColour } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
-import { UiArtButton } from './UiArtButton';
+import { UiArtButton, UiArtImage } from './UiArtButton';
 
 type Props = {
   category: Category;
@@ -72,8 +72,7 @@ function OptionCard({ option, selected, onSelect }: { option: AssetOption; selec
 function NoThanksCard({ selected, onSelect }: { selected: boolean; onSelect: () => void }) {
   return (
     <button className={`option-card option-card--none ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
-      <span className="option-card__label">Skip this step</span>
-      <span className="option-card__meta">Skip this step</span>
+      <UiArtImage asset="skipThisStep" label="Skip this step" size="wide" className="skip-card-art" />
       {selected && <span className="option-card__check" aria-hidden="true">✓</span>}
     </button>
   );

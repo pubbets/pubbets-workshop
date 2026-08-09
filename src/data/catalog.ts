@@ -40,10 +40,10 @@ const find = (category: Category, id: string) =>
 
 export const defaultSelections = (): SelectionState => ({
   body: find('body', 'blue'),
-  eyes: find('eyes', 'round-45-flat-plain'),
-  nose: find('nose', 'round-medium-beige'),
+  eyes: null,
+  nose: null,
   glasses: null,
-  hair: find('hair', 'round-base-brown'),
+  hair: null,
   outfit: null,
   shoes: null,
   accessory: null
