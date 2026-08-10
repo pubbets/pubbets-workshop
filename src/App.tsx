@@ -92,8 +92,13 @@ export function App() {
   };
 
   const moveTo = (index: number) => {
-    setActiveStep(Math.max(0, Math.min(steps.length - 1, index)));
-    play(420 + index * 24, 0.06);
+    const target = Math.max(0, Math.min(steps.length - 1, index));
+    if (target > completedThrough + 1) {
+      play(220, 0.08);
+      return;
+    }
+    setActiveStep(target);
+    play(420 + target * 24, 0.06);
   };
 
   const next = () => {
@@ -102,7 +107,9 @@ export function App() {
       return;
     }
     setCompletedThrough((current) => Math.max(current, activeStep));
-    moveTo(activeStep + 1);
+    const target = Math.min(steps.length - 1, activeStep + 1);
+    setActiveStep(target);
+    play(420 + target * 24, 0.06);
   };
 
   const completeFeature = () => {

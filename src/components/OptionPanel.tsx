@@ -96,7 +96,7 @@ function OptionCard({ option, selected, onSelect }: { option: AssetOption; selec
 
 function NoThanksCard({ selected, onSelect }: { selected: boolean; onSelect: () => void }) {
   return (
-    <button className={`option-card option-card--none ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
+    <button className={`option-card option-card--none ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected} aria-label="Skip this step">
       <UiArtImage asset="skipThisStep" label="Skip this step" size="wide" className="skip-card-art" />
       {selected && <span className="option-card__check" aria-hidden="true">✓</span>}
     </button>
@@ -121,7 +121,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onComplete, o
     setEyeShape(shape);
     setEyeSize(next ? eyeSizeKey(next) : '');
     setEyeStyle(next?.style ?? '');
-  }, [options, selected]);
+  }, [options]);
 
   const eyeShapes = useMemo(() => [...new Set(options.map((option) => option.shape).filter(Boolean))] as string[], [options]);
   const eyeSizes = useMemo(() => [...new Set(options.filter((option) => option.shape === eyeShape).map(eyeSizeKey).filter(Boolean))], [options, eyeShape]);
@@ -212,10 +212,10 @@ function EyeWizard({ options, selected, touched = false, onSelect, onComplete, o
         </>
       )}
       <p className="catalog-note">{touched && selected === null ? 'Eye step skipped' : stage === 'shape' ? 'Choose the eye family first' : `Choosing ${title(eyeShape)} eyes`}</p>
-      <div className="eye-wizard__nav">
-        <UiArtButton asset="back" label="Back" size="wide" onClick={goBack} />
+      {stage !== 'shape' && <div className="eye-wizard__nav">
+        <UiArtButton asset="back" label="Previous eye choice" size="wide" onClick={goBack} />
         {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
-      </div>
+      </div>}
     </section>
   );
 }
@@ -233,7 +233,7 @@ function NoseWizard({ options, selected, touched = false, onSelect, onComplete, 
     setStage('shape');
     setNoseShape(shape);
     setNoseSize(next?.size ?? '');
-  }, [options, selected]);
+  }, [options]);
 
   const shapes = useMemo(() => [...new Set(options.map((option) => option.shape).filter(Boolean))] as string[], [options]);
   const sizes = useMemo(() => [...new Set(options.filter((option) => option.shape === noseShape).map((option) => option.size).filter(Boolean))] as string[], [options, noseShape]);
@@ -300,10 +300,10 @@ function NoseWizard({ options, selected, touched = false, onSelect, onComplete, 
         </>
       )}
       <p className="catalog-note">{touched && selected === null ? 'Nose step skipped' : stage === 'shape' ? 'Choose the nose shape first' : `Choosing ${title(noseShape)} nose`}</p>
-      <div className="eye-wizard__nav">
-        <UiArtButton asset="back" label="Back" size="wide" onClick={goBack} />
+      {stage !== 'shape' && <div className="eye-wizard__nav">
+        <UiArtButton asset="back" label="Previous nose choice" size="wide" onClick={goBack} />
         {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
-      </div>
+      </div>}
     </section>
   );
 }

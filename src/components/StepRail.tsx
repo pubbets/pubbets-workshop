@@ -13,13 +13,15 @@ export function StepRail({ steps, activeStep, completedThrough, onStepChange }: 
     <nav className="step-rail" aria-label="Builder steps">
       {steps.map((step, index) => {
         const complete = index <= completedThrough;
+        const reachable = index <= completedThrough + 1;
         return (
           <button
             className={`step-token ${activeStep === index ? 'is-active' : ''} ${complete ? 'is-complete' : ''}`}
             key={step.id}
             onClick={() => onStepChange(index)}
+            disabled={!reachable}
             aria-current={activeStep === index ? 'step' : undefined}
-            aria-label={`Step ${index + 1}: ${step.title}`}
+            aria-label={`Step ${index + 1}: ${step.title}${reachable ? '' : ' (locked)'}`}
           >
             <span className="step-token__icon" aria-hidden="true">{index + 1}</span>
             <span className="step-token__label">{step.shortLabel}</span>

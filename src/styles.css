@@ -503,6 +503,21 @@ button:focus-visible {
   scrollbar-width: thin;
 }
 
+.option-grid--body {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px 7px;
+}
+
+.option-grid--body .option-card {
+  min-height: 44px;
+  padding: 2px 7px;
+}
+
+.option-grid--body .option-card__swatch {
+  width: 21px;
+  border-width: 2px;
+}
+
 .filter-row {
   display: flex;
   gap: 8px;
@@ -615,7 +630,11 @@ button:focus-visible {
 }
 
 .workshop-app[data-step-id="body"] .option-card {
-  min-height: 84px;
+  min-height: 44px;
+}
+
+.workshop-app[data-step-id="body"] .catalog-note {
+  display: none;
 }
 
 .skip-card-art {
@@ -642,8 +661,17 @@ button:focus-visible {
 }
 
 .eye-wizard {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  display: block;
+}
+
+.eye-wizard .catalog-note {
+  margin-top: 8px;
+}
+
+.step-token:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.45);
+  opacity: 0.62;
 }
 
 .eye-wizard__stage {
@@ -926,7 +954,8 @@ button:focus-visible {
   }
 
   .controls-heading .eyebrow,
-  .controls-heading p {
+  .controls-heading p,
+  .controls-heading h1 {
     display: none;
   }
 
@@ -954,6 +983,15 @@ button:focus-visible {
   .option-card__price,
   .catalog-note {
     font-size: 0.66rem;
+  }
+
+  .eye-wizard .catalog-note {
+    display: none;
+  }
+
+  .option-grid--eyes .option-card,
+  .option-grid--nose .option-card {
+    min-height: 62px;
   }
 
   .option-card__check {
@@ -1103,11 +1141,7 @@ button:focus-visible {
   }
 
   .workshop-app[data-step-id="body"] .controls-heading {
-    display: block;
-  }
-
-  .workshop-app[data-step-id="body"] .controls-heading h1 {
-    font-size: 1rem;
+    display: none;
   }
 
   .option-card__meta,
