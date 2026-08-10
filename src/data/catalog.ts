@@ -39,7 +39,7 @@ const find = (category: Category, id: string) =>
   catalog[category].find((option) => option.id === id) ?? catalog[category][0] ?? null;
 
 export const defaultSelections = (): SelectionState => ({
-  body: find('body', 'blue'),
+  body: null,
   eyes: null,
   nose: null,
   glasses: null,

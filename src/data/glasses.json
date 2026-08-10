@@ -77,15 +77,15 @@
     "thumbnailPath": "thumbnails/glasses_square-thin-tortoiseshell-tn.png"
   },
   {
-    "id": "squre-thin-white-2",
+    "id": "square-thin-white-2",
     "label": "Square Thin White 2",
     "category": "glasses",
     "group": "classic",
     "price": 14.95,
     "riveArtboardRef": "Puppet/Glasses",
     "colourBindable": false,
-    "vectorAssetPath": "rive/glasses/squre-thin-white-2.svg",
-    "thumbnailPath": "thumbnails/glasses_squre-thin-white-2-tn.png"
+    "vectorAssetPath": "rive/glasses/square-thin-white-2.svg",
+    "thumbnailPath": "thumbnails/glasses_square-thin-white-2-tn.png"
   },
   {
     "id": "square-thick-black-xl",

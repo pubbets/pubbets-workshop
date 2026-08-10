@@ -32,22 +32,22 @@ Current saved source files:
 - `buttons/ui-button-undo-source.png` - supplied Undo / Restore Previous button artwork.
 - `buttons/ui-button-skip-this-step-source.jpg` - supplied Skip This Step button artwork.
 
-These source images are saved for reference. Before wiring them into the app UI, export app-ready raster PNG versions with transparent backgrounds, preferably:
+The React UI currently imports the transparent, trimmed PNG files named `*-clean.png`, for example:
 
-- `buttons/ui-button-back.png`
-- `buttons/ui-button-complete-tick.png`
-- `buttons/ui-button-ok.png`
-- `buttons/ui-button-next.png`
-- `buttons/ui-button-no-thanks.png`
-- `buttons/ui-button-skip-this-step.png`
-- `buttons/ui-button-randomise-square.png`
-- `buttons/ui-button-randomise-wide.png`
-- `buttons/ui-button-reset.png`
-- `buttons/ui-button-save-build-sheet.png`
-- `buttons/ui-button-sound-off.png`
-- `buttons/ui-button-sound-on.png`
-- `buttons/ui-button-start-building.png`
-- `buttons/ui-button-undo.png`
+- `buttons/ui-button-back-clean.png`
+- `buttons/ui-button-complete-tick-clean.png`
+- `buttons/ui-button-ok-clean.png`
+- `buttons/ui-button-next-clean.png`
+- `buttons/ui-button-no-thanks-clean.png`
+- `buttons/ui-button-skip-this-step-clean.png`
+- `buttons/ui-button-randomise-square-clean.png`
+- `buttons/ui-button-randomise-wide-clean.png`
+- `buttons/ui-button-reset-clean.png`
+- `buttons/ui-button-save-build-sheet-clean.png`
+- `buttons/ui-button-sound-off-clean.png`
+- `buttons/ui-button-sound-on-clean.png`
+- `buttons/ui-button-start-building-clean.png`
+- `buttons/ui-button-undo-clean.png`
 
 Temporary renamed exports are also saved as JPGs:
 
@@ -66,7 +66,7 @@ Temporary renamed exports are also saved as JPGs:
 
 These JPG exports are useful for layout testing, but final app art should still be transparent PNG so the buttons sit cleanly over the workshop background.
 
-Canva SVG exports are saved as the current app-ready UI button files:
+Canva SVG exports are kept as reference/archive files only:
 
 - `buttons/ui-button-back.svg`
 - `buttons/ui-button-complete-tick.svg`
@@ -81,17 +81,13 @@ Canva SVG exports are saved as the current app-ready UI button files:
 - `buttons/ui-button-start-building.svg`
 - `buttons/ui-button-undo.svg`
 
-These Canva SVGs contain embedded PNG artwork. That is acceptable for UI buttons because they preserve the removed background and are easy to place in the app. Do not treat them as Rive-ready vector path assets.
-
-Still missing as an app-ready export:
-
-- `buttons/ui-button-skip-this-step.svg` or `buttons/ui-button-skip-this-step.png`
+These Canva SVGs contain embedded PNG artwork. Do not wire them as the production UI controls, and do not treat them as Rive-ready vector path assets.
 
 Only create SVG/Rive versions for UI art if the asset needs runtime recolouring, path editing, or animation. Standard navigation/action buttons should remain transparent PNGs.
 
 ## Button set status
 
-The main raster UI button source set is complete. Next step is to export or create transparent-background app-ready PNGs, then wire those final PNGs into the React UI.
+The main raster UI button set is complete and wired into the React UI through `src/components/UiArtButton.tsx`.
 
 Optional later additions:
 

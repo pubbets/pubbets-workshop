@@ -173,7 +173,7 @@ Current assumptions:
 | glasses | classic | Square Thin Black | `square-thin-black` | Needs vector |
 | glasses | classic | Square Thin White | `square-thin-white` | Needs vector |
 | glasses | classic | Square Thin Tortoiseshell | `square-thin-tortoiseshell` | Needs vector |
-| glasses | classic | Square Thin White 2 | `squre-thin-white-2` | Needs vector |
+| glasses | classic | Square Thin White 2 | `square-thin-white-2` | Needs vector |
 | glasses | xl | Square Thick Black XL | `square-thick-black-xl` | Needs vector |
 | glasses | xl | Square Thick White XL | `square-thick-white-xl` | Needs vector |
 | glasses | xl | Square Thick Red XL | `square-thick-red-xl` | Needs vector |

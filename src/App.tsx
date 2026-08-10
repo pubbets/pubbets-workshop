@@ -11,14 +11,44 @@ import type { AssetOption, Category, SelectionState } from './types';
 import { calculateTotal, formatMoney } from './utils/pricing';
 import pubbetsWorkshopLogo from '../assets/ui/logo/pubbets-workshop-logo.png';
 
-const storageKey = 'pubbets-workshop-v1-selection';
+const storageKey = 'pubbets-workshop-v1.3-selection';
 const optionalCategories = new Set<Category>(['eyes', 'nose', 'glasses', 'hair', 'outfit', 'shoes', 'accessory']);
+const allCategories = Object.keys(catalog) as Category[];
+
+type TouchedState = Record<Category, boolean>;
+type UndoSnapshot = {
+  selections: SelectionState;
+  touched: TouchedState;
+};
+
+function blankTouched(): TouchedState {
+  return {
+    body: false,
+    eyes: false,
+    nose: false,
+    glasses: false,
+    hair: false,
+    outfit: false,
+    shoes: false,
+    accessory: false
+  };
+}
+
+function allTouched(): TouchedState {
+  return Object.fromEntries(allCategories.map((category) => [category, true])) as TouchedState;
+}
+
+function touchedFromSelections(selections: SelectionState): TouchedState {
+  return Object.fromEntries(
+    allCategories.map((category) => [category, selections[category] !== null])
+  ) as TouchedState;
+}
 
 function restoreSelections(): SelectionState {
   const defaults = defaultSelections();
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) ?? '{}') as Partial<Record<Category, string | null>>;
-    for (const category of Object.keys(catalog) as Category[]) {
+    for (const category of allCategories) {
       if (!(category in saved)) continue;
       defaults[category] = saved[category] === null ? null : catalog[category].find((item) => item.id === saved[category]) ?? defaults[category];
     }
@@ -33,18 +63,21 @@ export function App() {
   const [activeStep, setActiveStep] = useState(0);
   const [completedThrough, setCompletedThrough] = useState(-1);
   const [selections, setSelections] = useState<SelectionState>(restoreSelections);
-  const [undoSnapshot, setUndoSnapshot] = useState<SelectionState | null>(null);
-  const [bodyChoiceTouched, setBodyChoiceTouched] = useState(false);
+  const [undoSnapshot, setUndoSnapshot] = useState<UndoSnapshot | null>(null);
+  const [touchedCategories, setTouchedCategories] = useState<TouchedState>(() => touchedFromSelections(restoreSelections()));
   const [motionKey, setMotionKey] = useState(0);
   const { enabled: soundEnabled, setEnabled: setSoundEnabled, play } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
-  const canContinue = category === 'body'
-    ? bodyChoiceTouched && Boolean(selections.body)
-    : !category || optionalCategories.has(category) || Boolean(selections[category]);
+  const currentStepTouched = category ? touchedCategories[category] : true;
+  const canContinue = !category
+    ? true
+    : category === 'body'
+      ? currentStepTouched && Boolean(selections.body)
+      : currentStepTouched || activeStep <= completedThrough;
   const stepHeading = category === 'body' ? step.title : step.prompt;
-  const shouldShowBodyOk = category === 'body' && bodyChoiceTouched && Boolean(selections.body);
+  const shouldShowBodyOk = category === 'body' && touchedCategories.body && Boolean(selections.body);
 
   useEffect(() => {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));
@@ -53,7 +86,7 @@ export function App() {
 
   const select = (category: Category, option: AssetOption | null) => {
     setSelections((current) => ({ ...current, [category]: option }));
-    if (category === 'body') setBodyChoiceTouched(true);
+    setTouchedCategories((current) => ({ ...current, [category]: true }));
     setMotionKey((key) => key + 1);
     play(560, 0.09);
   };
@@ -64,6 +97,10 @@ export function App() {
   };
 
   const next = () => {
+    if (!canContinue) {
+      play(220, 0.08);
+      return;
+    }
     setCompletedThrough((current) => Math.max(current, activeStep));
     moveTo(activeStep + 1);
   };
@@ -83,11 +120,12 @@ export function App() {
 
   const randomizeAll = () => {
     const nextSelections = defaultSelections();
-    for (const category of Object.keys(catalog) as Category[]) {
+    for (const category of allCategories) {
       nextSelections[category] = randomOption(category);
     }
-    setUndoSnapshot(selections);
+    setUndoSnapshot({ selections, touched: touchedCategories });
     setSelections(nextSelections);
+    setTouchedCategories(allTouched());
     setMotionKey((key) => key + 1);
     play(680, 0.16);
   };
@@ -97,27 +135,28 @@ export function App() {
       randomizeAll();
       return;
     }
-    setUndoSnapshot(selections);
+    setUndoSnapshot({ selections, touched: touchedCategories });
     setSelections((current) => ({ ...current, [category]: randomOption(category) }));
-    if (category === 'body') setBodyChoiceTouched(true);
+    setTouchedCategories((current) => ({ ...current, [category]: true }));
     setMotionKey((key) => key + 1);
     play(680, 0.16);
   };
 
   const restorePrevious = () => {
     if (!undoSnapshot) return;
-    setSelections(undoSnapshot);
+    setSelections(undoSnapshot.selections);
+    setTouchedCategories(undoSnapshot.touched);
     setUndoSnapshot(null);
     setMotionKey((key) => key + 1);
     play(360, 0.12);
   };
 
   const reset = () => {
-    setUndoSnapshot(selections);
+    setUndoSnapshot({ selections, touched: touchedCategories });
     setSelections(defaultSelections());
+    setTouchedCategories(blankTouched());
     setActiveStep(0);
     setCompletedThrough(-1);
-    setBodyChoiceTouched(false);
     setMotionKey((key) => key + 1);
     play(300, 0.14);
   };
@@ -175,7 +214,17 @@ export function App() {
             <h1>{stepHeading}</h1>
             <p>{category === 'body' ? 'Body colour is required. Tap a colour to preview it live.' : category ? 'Tap a choice to see it on your Pubbet.' : 'Everything look just right?'}</p>
           </header>
-          {category ? <OptionPanel category={category} options={catalog[category]} selected={selections[category]} onSelect={(option) => select(category, option)} onComplete={['eyes', 'nose'].includes(category) ? completeFeature : undefined} onBack={() => moveTo(activeStep - 1)} /> : <ReviewPanel selections={selections} total={total} onSave={saveBuild} />}
+          {category ? (
+            <OptionPanel
+              category={category}
+              options={catalog[category]}
+              selected={selections[category]}
+              touched={touchedCategories[category]}
+              onSelect={(option) => select(category, option)}
+              onComplete={completeFeature}
+              onBack={() => moveTo(activeStep - 1)}
+            />
+          ) : <ReviewPanel selections={selections} total={total} onSave={saveBuild} />}
           {shouldShowBodyOk && (
             <div className="body-ok-row">
               <UiArtButton asset="ok" label="OK, lock in body colour" size="wide" onClick={completeFeature} />

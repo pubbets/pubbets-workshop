@@ -110,7 +110,7 @@ function outfitFill(id = '') {
 }
 
 export function PuppetPreview({ selections, closeUp = false, bodyOnly = false, motionKey }: Props) {
-  const body = optionColour(selections.body, '#36a9e0');
+  const body = optionColour(selections.body, '#fffaf0');
   const outfit = bodyOnly ? null : selections.outfit;
   const shoes = bodyOnly ? null : selections.shoes;
   const hasRods = !bodyOnly && Boolean(selections.accessory?.id.includes('rod'));

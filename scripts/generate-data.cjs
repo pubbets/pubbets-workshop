@@ -87,7 +87,7 @@ const labelOverrides = {
   'round-thick-clear-green-xl': 'Round Thick Clear Green XL',
   'hexagonal-thick-black-xl': 'Hexagonal Thick Black XL',
   'hexagonal-thick-white-xl': 'Hexagonal Thick White XL',
-  'squre-thin-white-2': 'Square Thin White 2',
+  'square-thin-white-2': 'Square Thin White 2',
 };
 
 // ── BODY ─────────────────────────────────────────────────────────────
@@ -143,7 +143,7 @@ write('nose', nose);
 
 // ── GLASSES ─────────────────────────────────────────────────────────
 const glasses = [
-  ...['round-thin-black','round-thin-red','retro-black','retro-red','square-thin-black','square-thin-white','square-thin-tortoiseshell','squre-thin-white-2'].map(id => ({ id, group: 'classic' })),
+  ...['round-thin-black','round-thin-red','retro-black','retro-red','square-thin-black','square-thin-white','square-thin-tortoiseshell','square-thin-white-2'].map(id => ({ id, group: 'classic' })),
   ...['square-thick-black-xl','square-thick-white-xl','square-thick-red-xl','new-square-thick-bling-xl','square-thin-black-xl','round-thick-black-xl','round-thick-white-xl','round-thick-clear-pink-xl','round-thick-clear-blue-xl','round-thick-clear-green-xl','hexagonal-thick-black-xl','hexagonal-thick-white-xl'].map(id => ({ id, group: 'xl' })),
   ...['buggy-yellow','buggy-purple','buggy-red','buggy-green','buggy-black'].map(id => ({ id, group: 'buggy' })),
 ].map(o => ({
