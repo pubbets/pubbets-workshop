@@ -100,12 +100,18 @@ button:focus-visible {
 
 .ui-art-button--long {
   width: clamp(260px, 34vw, 500px);
-  height: clamp(58px, 7.4vh, 88px);
+  height: auto;
+  aspect-ratio: 2.7 / 1;
+}
+
+.ui-art-button--asset-randomiseWide.ui-art-button--long {
+  aspect-ratio: 3.69 / 1;
 }
 
 .ui-art-button--wide {
   width: clamp(112px, 12vw, 180px);
-  height: clamp(38px, 4.8vw, 58px);
+  height: auto;
+  aspect-ratio: 2.7 / 1;
 }
 
 .ui-art-button--square {
@@ -139,14 +145,14 @@ button:focus-visible {
 .welcome-screen {
   position: relative;
   isolation: isolate;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: clamp(14px, 3.2vh, 34px);
+  gap: clamp(14px, 3.1vh, 30px);
   height: 100vh;
   height: 100dvh;
-  padding: clamp(18px, 5vh, 56px) clamp(16px, 4vw, 48px) clamp(22px, 6vh, 70px);
+  padding: clamp(54px, 7vh, 72px) clamp(16px, 4vw, 48px) clamp(18px, 4vh, 46px);
   overflow: hidden;
   background:
     linear-gradient(rgb(72 33 10 / 8%), rgb(72 33 10 / 12%)),
@@ -162,27 +168,34 @@ button:focus-visible {
 }
 
 .welcome-brand {
+  flex: 0 1 auto;
   z-index: 2;
   display: grid;
   place-items: center;
-  width: min(760px, 92vw);
+  width: min(620px, 86vw);
   min-height: 0;
 }
 
 .welcome-logo {
   display: block;
-  width: clamp(280px, 50vw, 620px);
-  max-height: min(42vh, 360px);
+  width: min(100%, 560px);
+  max-height: min(31vh, 300px);
   object-fit: contain;
   filter: drop-shadow(0 14px 14px rgb(61 31 13 / 24%));
 }
 
 .welcome-actions {
+  flex: 0 0 auto;
   z-index: 2;
   display: grid;
+  width: min(410px, 84vw);
   justify-items: center;
-  gap: clamp(6px, 1.3vh, 12px);
+  gap: clamp(8px, 1.5vh, 14px);
   padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+.welcome-actions .ui-art-button {
+  width: 100%;
 }
 
 .workshop-app {
@@ -793,9 +806,18 @@ button:focus-visible {
 }
 
 @media (max-width: 900px) {
+  .welcome-screen {
+    gap: clamp(12px, 2.6vh, 22px);
+    padding: clamp(52px, 7vh, 66px) 14px clamp(16px, 3vh, 30px);
+  }
+
   .welcome-logo {
-    width: clamp(270px, 76vw, 520px);
-    max-height: 42vh;
+    width: min(76vw, 500px);
+    max-height: min(28vh, 250px);
+  }
+
+  .welcome-actions {
+    width: min(380px, 82vw);
   }
 
   .workshop-app {
@@ -978,16 +1000,21 @@ button:focus-visible {
   }
 
   .welcome-screen {
-    padding: 18px 12px 24px;
+    gap: clamp(10px, 2.1vh, 16px);
+    padding: 54px 12px 18px;
   }
 
   .welcome-logo {
-    width: min(86vw, 370px);
-    max-height: 36vh;
+    width: min(82vw, 330px);
+    max-height: 25vh;
   }
 
   .welcome-actions .ui-art-button--long {
-    width: min(82vw, 330px);
+    width: 100%;
+  }
+
+  .welcome-actions {
+    width: min(300px, 80vw);
   }
 
   .welcome-settings {
@@ -1099,11 +1126,21 @@ button:focus-visible {
 
 @media (max-height: 720px) {
   .welcome-logo {
-    max-height: 34vh;
+    max-height: 24vh;
+  }
+
+  .welcome-screen {
+    gap: 10px;
+    padding-top: 50px;
+    padding-bottom: 16px;
+  }
+
+  .welcome-actions {
+    width: min(360px, 78vw);
   }
 
   .welcome-actions .ui-art-button--long {
-    width: min(78vw, 390px);
+    width: 100%;
   }
 
   .app-header {

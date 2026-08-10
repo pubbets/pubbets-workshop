@@ -27,7 +27,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function UiArtButton({ asset, label, size = 'wide', className = '', ...props }: Props) {
   return (
-    <button className={`ui-art-button ui-art-button--${size} ${className}`.trim()} aria-label={label} {...props}>
+    <button className={`ui-art-button ui-art-button--${size} ui-art-button--asset-${asset} ${className}`.trim()} aria-label={label} {...props}>
       <img src={buttonAssets[asset]} alt="" aria-hidden="true" draggable={false} />
       <span className="sr-only">{label}</span>
     </button>
@@ -36,7 +36,7 @@ export function UiArtButton({ asset, label, size = 'wide', className = '', ...pr
 
 export function UiArtImage({ asset, label, size = 'wide', className = '' }: Pick<Props, 'asset' | 'label' | 'size' | 'className'>) {
   return (
-    <span className={`ui-art-image ui-art-button--${size} ${className}`.trim()} aria-label={label} role="img">
+    <span className={`ui-art-image ui-art-button--${size} ui-art-button--asset-${asset} ${className}`.trim()} aria-label={label} role="img">
       <img src={buttonAssets[asset]} alt="" aria-hidden="true" draggable={false} />
     </span>
   );
