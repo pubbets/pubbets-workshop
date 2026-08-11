@@ -456,7 +456,7 @@ button:focus-visible {
 
 .controls-column {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: clamp(8px, 1vh, 12px);
   padding: clamp(10px, 1.35vw, 16px);
   overflow: hidden;
@@ -1137,7 +1137,7 @@ button:focus-visible {
   }
 
   .workshop-app[data-step-id="body"] .controls-column {
-    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    grid-template-rows: auto minmax(0, 1fr) auto;
   }
 
   .workshop-app[data-step-id="body"] .controls-heading {

@@ -9,7 +9,6 @@ type Props = {
   selected: AssetOption | null;
   touched?: boolean;
   onSelect: (option: AssetOption | null) => void;
-  onComplete?: () => void;
   onBack?: () => void;
 };
 
@@ -107,7 +106,7 @@ function representativeOption(options: AssetOption[], shape: string) {
   return options.find((option) => option.shape === shape) ?? options[0];
 }
 
-function EyeWizard({ options, selected, touched = false, onSelect, onComplete, onBack }: Props) {
+function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
   const initialShape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
   const [stage, setStage] = useState<'shape' | 'size' | 'style' | 'finish'>('shape');
   const [eyeShape, setEyeShape] = useState(initialShape);
@@ -214,13 +213,12 @@ function EyeWizard({ options, selected, touched = false, onSelect, onComplete, o
       <p className="catalog-note">{touched && selected === null ? 'Eye step skipped' : stage === 'shape' ? 'Choose the eye family first' : `Choosing ${title(eyeShape)} eyes`}</p>
       {stage !== 'shape' && <div className="eye-wizard__nav">
         <UiArtButton asset="back" label="Previous eye choice" size="wide" onClick={goBack} />
-        {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
       </div>}
     </section>
   );
 }
 
-function NoseWizard({ options, selected, touched = false, onSelect, onComplete, onBack }: Props) {
+function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
   const initialShape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
   const initialOption = selected ?? representativeOption(options, initialShape);
   const [stage, setStage] = useState<'shape' | 'size' | 'colour' | 'finish'>('shape');
@@ -302,13 +300,12 @@ function NoseWizard({ options, selected, touched = false, onSelect, onComplete, 
       <p className="catalog-note">{touched && selected === null ? 'Nose step skipped' : stage === 'shape' ? 'Choose the nose shape first' : `Choosing ${title(noseShape)} nose`}</p>
       {stage !== 'shape' && <div className="eye-wizard__nav">
         <UiArtButton asset="back" label="Previous nose choice" size="wide" onClick={goBack} />
-        {stage === 'finish' && <UiArtButton asset="ok" label="OK?" size="wide" onClick={onComplete} />}
       </div>}
     </section>
   );
 }
 
-export function OptionPanel({ category, options, selected, touched = false, onSelect, onComplete, onBack }: Props) {
+export function OptionPanel({ category, options, selected, touched = false, onSelect, onBack }: Props) {
   const firstGrouped = options.find((option) => optionGroup(option));
   const initialGroup = selected ? optionGroup(selected) : firstGrouped ? optionGroup(firstGrouped) : '';
   const [group, setGroup] = useState(initialGroup);
@@ -318,8 +315,8 @@ export function OptionPanel({ category, options, selected, touched = false, onSe
     setGroup(selected ? optionGroup(selected) : firstGrouped ? optionGroup(firstGrouped) : '');
   }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (category === 'eyes') return <EyeWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onComplete={onComplete} onBack={onBack} />;
-  if (category === 'nose') return <NoseWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onComplete={onComplete} onBack={onBack} />;
+  if (category === 'eyes') return <EyeWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
+  if (category === 'nose') return <NoseWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
 
   const groups = [...new Set(options.map(optionGroup).filter(Boolean))] as string[];
   const visible = group && groups.length > 1 ? options.filter((option) => optionGroup(option) === group) : options;
@@ -336,11 +333,6 @@ export function OptionPanel({ category, options, selected, touched = false, onSe
         {visible.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => onSelect(option)} />)}
       </div>
       <p className="catalog-note">Showing {visible.length} of {options.length} {category} choices</p>
-      {category !== 'body' && touched && onComplete && (
-        <div className="panel-confirm-row">
-          <UiArtButton asset="ok" label={`OK, lock in ${category}`} size="wide" onClick={onComplete} />
-        </div>
-      )}
     </section>
   );
 }

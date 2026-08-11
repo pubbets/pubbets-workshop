@@ -77,7 +77,6 @@ export function App() {
       ? currentStepTouched && Boolean(selections.body)
       : currentStepTouched || activeStep <= completedThrough;
   const stepHeading = category === 'body' ? step.title : step.prompt;
-  const shouldShowBodyOk = category === 'body' && touchedCategories.body && Boolean(selections.body);
 
   useEffect(() => {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));
@@ -110,13 +109,6 @@ export function App() {
     const target = Math.min(steps.length - 1, activeStep + 1);
     setActiveStep(target);
     play(420 + target * 24, 0.06);
-  };
-
-  const completeFeature = () => {
-    play(640, 0.08);
-    window.setTimeout(() => play(820, 0.09), 90);
-    window.setTimeout(() => play(1040, 0.12), 180);
-    next();
   };
 
   const randomOption = (category: Category): AssetOption | null => {
@@ -228,19 +220,15 @@ export function App() {
               selected={selections[category]}
               touched={touchedCategories[category]}
               onSelect={(option) => select(category, option)}
-              onComplete={completeFeature}
               onBack={() => moveTo(activeStep - 1)}
             />
           ) : <ReviewPanel selections={selections} total={total} onSave={saveBuild} />}
-          {shouldShowBodyOk && (
-            <div className="body-ok-row">
-              <UiArtButton asset="ok" label="OK, lock in body colour" size="wide" onClick={completeFeature} />
-            </div>
-          )}
           <footer className="navigation-bar">
             <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
             <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
-            {activeStep < steps.length - 1 ? <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} disabled={!canContinue} /> : <UiArtButton asset="saveBuildSheet" label="Save build sheet" size="wide" onClick={saveBuild} />}
+            {activeStep < steps.length - 1
+              ? canContinue && <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
+              : <UiArtButton asset="saveBuildSheet" label="Save build sheet" size="wide" onClick={saveBuild} />}
           </footer>
         </section>
       </div>
