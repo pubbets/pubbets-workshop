@@ -9,3 +9,9 @@
 - Confirmed: legacy outfit gender/subgroup tagging dropped for v1, layering
   concept and per-option pricing retained
 
+## 2026-08-13
+- Removed Rive and mandatory vector conversion from the V1 production path.
+- Approved transparent, puppet-aligned PNG layers for body features, garments,
+  shoes, hair, and extras.
+- Whole-puppet animation will move the assembled layer stack together.
+- Retained old Rive material as archive/reference only.

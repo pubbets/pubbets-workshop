@@ -173,7 +173,7 @@ export function App() {
       createdAt: new Date().toISOString(),
       basePrice,
       total,
-      selections: Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option ? { id: option.id, label: option.label, price: option.price ?? 0, riveArtboardRef: option.riveArtboardRef } : null]))
+      selections: Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option ? { id: option.id, label: option.label, price: option.price ?? 0 } : null]))
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
     const anchor = document.createElement('a');

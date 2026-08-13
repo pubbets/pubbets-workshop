@@ -11,9 +11,9 @@ This folder holds custom interface art for the app.
 
 Source artwork lives in `buttons/`.
 
-Final app interface buttons should be transparent raster PNGs, not Rive assets. The button art uses wood grain, fleece texture, stitching, highlights, and soft shadows, so PNG is the preferred production format for normal UI controls.
+Final app interface buttons should be transparent raster PNGs. The button art uses wood grain, fleece texture, stitching, highlights, and soft shadows, so PNG is the production format for V1 controls.
 
-The exception is the body colour choice buttons/swatches. Those should be built as Rive/vector colourable assets so the same swatch can be recoloured for the nine approved body colours.
+Body colour buttons/swatches may be ordinary app-rendered colour controls or transparent PNG art. Rive is not required.
 
 Current saved source files:
 
@@ -81,9 +81,9 @@ Canva SVG exports are kept as reference/archive files only:
 - `buttons/ui-button-start-building.svg`
 - `buttons/ui-button-undo.svg`
 
-These Canva SVGs contain embedded PNG artwork. Do not wire them as the production UI controls, and do not treat them as Rive-ready vector path assets.
+These Canva SVGs contain embedded PNG artwork. Do not wire them as the production UI controls.
 
-Only create SVG/Rive versions for UI art if the asset needs runtime recolouring, path editing, or animation. Standard navigation/action buttons should remain transparent PNGs.
+SVG/Rive conversion is outside the V1 launch path. Standard navigation/action buttons remain transparent PNGs.
 
 ## Button set status
 

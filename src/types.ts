@@ -22,8 +22,12 @@ export type AssetOption = {
   style?: string;
   finish?: string;
   colour?: string;
-  riveArtboardRef: string;
+  /** Legacy metadata retained while the generated catalog is migrated. Ignored by V1. */
+  riveArtboardRef?: string;
   colourBindable: boolean;
+  /** Full-size transparent PNG aligned to the shared puppet canvas. */
+  previewAssetPath?: string;
+  /** Legacy fields retained until generated data and archived sources are cleaned. */
   vectorAssetPath?: string;
   textureAssetPath?: string;
   thumbnailPath: string;

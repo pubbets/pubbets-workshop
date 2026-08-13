@@ -26,7 +26,7 @@ and the production bundle.
 ## Project structure
 
 - `src/App.tsx` — nine-step flow and persistent selection state
-- `src/components/PuppetPreview.tsx` — animated SVG fallback and Rive handoff boundary
+- `src/components/PuppetPreview.tsx` — layered puppet preview and whole-puppet motion
 - `src/data/*.json` — generated launch catalog
 - `scripts/generate-data.cjs` — Drive-sourced catalog generator
 - `docs/PRODUCT_SPEC.md` — implementation source of truth
@@ -34,8 +34,8 @@ and the production bundle.
 
 ## Known production inputs
 
-- Approved `.riv` file and state-machine input names
-- Remaining final thumbnails/textures
+- Transparent, puppet-aligned PNG layers for the final character options
+- Remaining final thumbnails and full-size puppet layers
 - Shopify base and add-on variant mapping
 
 The review screen exports a JSON build sheet until checkout can be connected

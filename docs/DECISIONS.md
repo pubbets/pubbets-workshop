@@ -45,3 +45,32 @@ For v1.0:
 }
 ```
 
+## 2026-08-13 — V1 changed from Rive/vector production to layered PNG artwork
+
+Rive conversion was delaying usable production art. V1 will use transparent PNG
+layers aligned to a shared puppet canvas. This still supports immediate previews,
+layer swaps, fitting adjustments, zooms, slides, transitions, and animation of the
+complete assembled puppet.
+
+- Rive is not the V1 app engine and is not required for launch.
+- SVG/vector conversion is postponed, not required for asset acceptance.
+- UI and navigation remain transparent raster PNG artwork.
+- Puppet features, garments, shoes, hair, and extras use transparent aligned PNG layers.
+- The base/body may use discrete colour PNGs or an app-applied tint where the result is reliable.
+- Old Rive files and metadata remain reference/archive material only.
+
+Current V1 asset fields:
+
+```
+{
+  id: string,
+  label: string,
+  category: 'body'|'eyes'|'nose'|'glasses'|'hair'|'outfit'|'shoes'|'accessory',
+  group?: string,
+  price?: number,
+  previewAssetPath?: string,     // full-size transparent aligned PNG
+  thumbnailPath?: string,        // selection-button image
+  colour?: string,               // body/swatch colour when app tinting is used
+  requiredTier?: 'diy'|'curated'|'masterworks'
+}
+```

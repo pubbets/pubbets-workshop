@@ -8,8 +8,10 @@ screens reviewed on 2026-08-06.
 
 - Replace the legacy Shopify Custom Product Builder and the later Three.js prototype.
 - Build a mobile-first, tactile workshop experience with nine guided steps.
-- Use Rive for the final puppet animation. Until the approved `.riv` file exists,
-  the app uses an animated SVG fallback behind a stable preview component boundary.
+- V1 uses transparent PNG artwork layered over one fixed puppet canvas.
+- Animate the assembled puppet as a single preview for slides, zooms, entrances,
+  exits, selection reactions, and the final celebration.
+- Rive is postponed and is not a V1 dependency or app engine.
 - Keep option metadata flat and prices data-driven.
 - Keep outfit layering: `top`, `bottom`, `over`, `looks`, and `premium`.
 - Do not add gender or subgroup filters in v1.0.
@@ -47,12 +49,19 @@ screens reviewed on 2026-08-06.
 `scripts/generate-data.cjs` is the source for the eight category files under
 `src/data/`. Current generated total: 402 records.
 
-## Rive handoff contract
+## PNG layer contract
 
-The final Rive file should expose the artboard/component references already stored
-in catalog metadata (`riveArtboardRef`). The UI passes selected asset IDs, body and
-bindable colours, preview mode, and a celebration trigger to `PuppetPreview`.
-Replacing the SVG fallback must not alter wizard or pricing state.
+- One transparent PNG per selectable visual option.
+- Use the same master canvas, puppet scale, centre point, and neutral front-facing pose.
+- Export assets already positioned for the base puppet; do not tightly crop individual layers.
+- Preserve transparency and export at 2x display resolution where practical.
+- Layer order is: body, outfit, shoes, hair, eyes, glasses, nose, extras.
+- Thumbnails may be generated from the same master art, but the preview uses the
+  full-size aligned PNG layer.
+- The preview may scale or gently reshape a layer during fitting, without changing
+  the source option ID or pricing data.
+- Whole-puppet motion belongs to the preview container, so all selected layers move together.
+- Existing `riveArtboardRef` fields are legacy compatibility data and are ignored by V1.
 
 ## Drive references
 
@@ -63,7 +72,6 @@ Replacing the SVG fallback must not alter wizard or pricing state.
 
 ## Known inputs still required
 
-- Approved `.riv` puppet file and its state-machine/input names.
-- Final production thumbnails/textures for catalog records that currently use a
+- Final aligned transparent PNG layers for catalog records that currently use a
   generated fallback tile.
 - Shopify store domain plus base/add-on variant mapping.
