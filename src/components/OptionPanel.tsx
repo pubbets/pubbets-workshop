@@ -106,6 +106,18 @@ function representativeOption(options: AssetOption[], shape: string) {
   return options.find((option) => option.shape === shape) ?? options[0];
 }
 
+function WizardProgress({ labels, active }: { labels: string[]; active: number }) {
+  return (
+    <ol className="wizard-progress" aria-label="Choice progress">
+      {labels.map((label, index) => (
+        <li key={label} className={index === active ? 'is-active' : index < active ? 'is-complete' : ''} aria-current={index === active ? 'step' : undefined}>
+          <span>{index < active ? '✓' : index + 1}</span>{label}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
   const initialShape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
   const [stage, setStage] = useState<'shape' | 'size' | 'style' | 'finish'>('shape');
@@ -168,6 +180,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
 
   return (
     <section className="option-panel eye-wizard" aria-label="Eye choices">
+      <WizardProgress labels={['Shape', 'Size', 'Style', 'Finish']} active={stage === 'shape' ? 0 : stage === 'size' ? 1 : stage === 'style' ? 2 : 3} />
       {stage === 'shape' && (
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Eye shape</span></div>
@@ -258,6 +271,7 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
 
   return (
     <section className="option-panel eye-wizard" aria-label="Nose choices">
+      <WizardProgress labels={['Shape', 'Size', 'Colour', 'Finish']} active={stage === 'shape' ? 0 : stage === 'size' ? 1 : stage === 'colour' ? 2 : 3} />
       {stage === 'shape' && (
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Nose shape</span></div>
@@ -305,6 +319,61 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
   );
 }
 
+function HairWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
+  const firstGroup = selected?.group ?? options[0]?.group ?? '';
+  const [stage, setStage] = useState<'style' | 'colour' | 'finish'>('style');
+  const [hairGroup, setHairGroup] = useState(firstGroup);
+  const styles = useMemo(() => [...new Set(options.map((option) => option.group).filter(Boolean))] as string[], [options]);
+  const colours = useMemo(() => options.filter((option) => option.group === hairGroup), [options, hairGroup]);
+
+  const chooseStyle = (nextGroup: string) => {
+    setHairGroup(nextGroup);
+    setStage('colour');
+  };
+  const skip = () => { onSelect(null); setStage('finish'); };
+  const back = () => {
+    if (stage === 'style') return onBack?.();
+    if (stage === 'finish' && selected === null) return setStage('style');
+    setStage(stage === 'finish' ? 'colour' : 'style');
+  };
+
+  return (
+    <section className="option-panel choice-wizard" aria-label="Hair choices">
+      <WizardProgress labels={['Style', 'Colour', 'Finish']} active={stage === 'style' ? 0 : stage === 'colour' ? 1 : 2} />
+      {stage === 'style' && <><div className="eye-wizard__stage"><span className="filter-label">Hair style</span></div><div className="option-grid option-grid--hair"><NoThanksCard selected={touched && selected === null} onSelect={skip} />{styles.map((style) => { const option = options.find((item) => item.group === style) ?? options[0]; return <OptionCard key={style} option={{ ...option, label: title(style) }} selected={selected !== null && hairGroup === style} onSelect={() => chooseStyle(style)} />; })}</div></>}
+      {stage === 'colour' && <><div className="eye-wizard__stage"><span className="filter-label">Hair colour</span></div><div className="option-grid option-grid--hair">{colours.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => { onSelect(option); setStage('finish'); }} />)}</div></>}
+      {stage === 'finish' && <><div className="eye-wizard__stage"><span className="filter-label">Selection ready</span></div><div className="option-grid option-grid--hair">{selected ? <OptionCard option={selected} selected onSelect={() => setStage('colour')} /> : <NoThanksCard selected onSelect={skip} />}</div></>}
+      <p className="catalog-note">{selected ? `${title(selected.group ?? '')} • ${selected.label}` : 'Hair is optional'}</p>
+      {stage !== 'style' && <div className="eye-wizard__nav"><UiArtButton asset="back" label="Previous hair choice" size="wide" onClick={back} /></div>}
+    </section>
+  );
+}
+
+function OutfitWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
+  const firstGroup = selected?.group ?? options[0]?.group ?? '';
+  const [stage, setStage] = useState<'type' | 'item' | 'finish'>('type');
+  const [outfitGroup, setOutfitGroup] = useState(firstGroup);
+  const groups = useMemo(() => [...new Set(options.map((option) => option.group).filter(Boolean))] as string[], [options]);
+  const items = useMemo(() => options.filter((option) => option.group === outfitGroup), [options, outfitGroup]);
+  const skip = () => { onSelect(null); setStage('finish'); };
+  const back = () => {
+    if (stage === 'type') return onBack?.();
+    if (stage === 'finish' && selected === null) return setStage('type');
+    setStage(stage === 'finish' ? 'item' : 'type');
+  };
+
+  return (
+    <section className="option-panel choice-wizard" aria-label="Outfit choices">
+      <WizardProgress labels={['Type', 'Outfit', 'Finish']} active={stage === 'type' ? 0 : stage === 'item' ? 1 : 2} />
+      {stage === 'type' && <><div className="eye-wizard__stage"><span className="filter-label">What are you looking for?</span></div><div className="option-grid option-grid--outfit"><NoThanksCard selected={touched && selected === null} onSelect={skip} />{groups.map((group) => { const option = options.find((item) => item.group === group) ?? options[0]; const count = options.filter((item) => item.group === group).length; return <OptionCard key={group} option={{ ...option, label: title(group), group: `${count} choices` }} selected={selected !== null && outfitGroup === group} onSelect={() => { setOutfitGroup(group); setStage('item'); }} />; })}</div></>}
+      {stage === 'item' && <><div className="eye-wizard__stage"><span className="filter-label">{title(outfitGroup)}</span></div><div className="option-grid option-grid--outfit">{items.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => { onSelect(option); setStage('finish'); }} />)}</div></>}
+      {stage === 'finish' && <><div className="eye-wizard__stage"><span className="filter-label">Selection ready</span></div><div className="option-grid option-grid--outfit">{selected ? <OptionCard option={selected} selected onSelect={() => setStage('item')} /> : <NoThanksCard selected onSelect={skip} />}</div></>}
+      <p className="catalog-note">{selected ? selected.label : 'Outfit is optional'}</p>
+      {stage !== 'type' && <div className="eye-wizard__nav"><UiArtButton asset="back" label="Previous outfit choice" size="wide" onClick={back} /></div>}
+    </section>
+  );
+}
+
 export function OptionPanel({ category, options, selected, touched = false, onSelect, onBack }: Props) {
   const firstGrouped = options.find((option) => optionGroup(option));
   const initialGroup = selected ? optionGroup(selected) : firstGrouped ? optionGroup(firstGrouped) : '';
@@ -317,6 +386,8 @@ export function OptionPanel({ category, options, selected, touched = false, onSe
 
   if (category === 'eyes') return <EyeWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
   if (category === 'nose') return <NoseWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
+  if (category === 'hair') return <HairWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
+  if (category === 'outfit') return <OutfitWizard category={category} options={options} selected={selected} touched={touched} onSelect={onSelect} onBack={onBack} />;
 
   const groups = [...new Set(options.map(optionGroup).filter(Boolean))] as string[];
   const visible = group && groups.length > 1 ? options.filter((option) => optionGroup(option) === group) : options;
