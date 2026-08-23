@@ -87,28 +87,28 @@ export function App() {
     setSelections((current) => ({ ...current, [category]: option }));
     setTouchedCategories((current) => ({ ...current, [category]: true }));
     setMotionKey((key) => key + 1);
-    play(560, 0.09);
+    play('select');
   };
 
   const moveTo = (index: number) => {
     const target = Math.max(0, Math.min(steps.length - 1, index));
     if (target > completedThrough + 1) {
-      play(220, 0.08);
+      play('blocked');
       return;
     }
     setActiveStep(target);
-    play(420 + target * 24, 0.06);
+    play(target < activeStep ? 'back' : target === steps.length - 1 ? 'finish' : 'forward');
   };
 
   const next = () => {
     if (!canContinue) {
-      play(220, 0.08);
+      play('blocked');
       return;
     }
     setCompletedThrough((current) => Math.max(current, activeStep));
     const target = Math.min(steps.length - 1, activeStep + 1);
     setActiveStep(target);
-    play(420 + target * 24, 0.06);
+    play(target === steps.length - 1 ? 'finish' : 'forward');
   };
 
   const randomOption = (category: Category): AssetOption | null => {
@@ -126,7 +126,7 @@ export function App() {
     setSelections(nextSelections);
     setTouchedCategories(allTouched());
     setMotionKey((key) => key + 1);
-    play(680, 0.16);
+    play('randomise');
   };
 
   const randomizeCurrent = () => {
@@ -138,7 +138,7 @@ export function App() {
     setSelections((current) => ({ ...current, [category]: randomOption(category) }));
     setTouchedCategories((current) => ({ ...current, [category]: true }));
     setMotionKey((key) => key + 1);
-    play(680, 0.16);
+    play('randomise');
   };
 
   const restorePrevious = () => {
@@ -147,7 +147,7 @@ export function App() {
     setTouchedCategories(undoSnapshot.touched);
     setUndoSnapshot(null);
     setMotionKey((key) => key + 1);
-    play(360, 0.12);
+    play('restore');
   };
 
   const reset = () => {
@@ -157,7 +157,7 @@ export function App() {
     setActiveStep(0);
     setCompletedThrough(-1);
     setMotionKey((key) => key + 1);
-    play(300, 0.14);
+    play('reset');
   };
 
   const startRandomized = () => {
@@ -181,11 +181,11 @@ export function App() {
     anchor.download = `pubbet-build-${new Date().toISOString().slice(0, 10)}.json`;
     anchor.click();
     URL.revokeObjectURL(url);
-    play(760, 0.22);
+    play('save');
   };
 
   if (!started) {
-    return <WelcomeScreen onStart={() => { setStarted(true); play(640, 0.16); }} onRandomize={startRandomized} />;
+    return <WelcomeScreen onStart={() => { setStarted(true); play('welcome'); }} onRandomize={startRandomized} />;
   }
 
   return (
