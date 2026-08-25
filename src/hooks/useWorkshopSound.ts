@@ -31,16 +31,16 @@ const sources: Record<WorkshopSound, string[]> = {
 };
 
 const volumes: Record<WorkshopSound, number> = {
-  select: 0.32,
-  forward: 0.34,
-  back: 0.3,
+  select: 0.38,
+  forward: 0.42,
+  back: 0.35,
   blocked: 0.28,
-  randomise: 0.38,
-  restore: 0.32,
-  reset: 0.34,
-  welcome: 0.36,
-  finish: 0.4,
-  save: 0.36
+  randomise: 0.46,
+  restore: 0.38,
+  reset: 0.38,
+  welcome: 0.46,
+  finish: 0.5,
+  save: 0.44
 };
 
 function savedPreference() {

@@ -62,6 +62,19 @@ function addToyNote(buffer, start, pitch, strength = 0.55, duration = 0.22) {
   addTone(buffer, start, duration * 0.75, pitch * 3.98, pitch * 4, strength * 0.07, 6.5);
 }
 
+function addBrightNote(buffer, start, pitch, strength = 0.5, duration = 0.28) {
+  addTone(buffer, start, duration, pitch * 1.008, pitch, strength, 3.5);
+  addTone(buffer, start, duration * 0.92, pitch * 2.015, pitch * 2, strength * 0.24, 4.6);
+  addTone(buffer, start, duration * 0.78, pitch * 3.01, pitch * 3, strength * 0.1, 5.4);
+  addTone(buffer, start, duration * 0.68, pitch * 4.02, pitch * 4, strength * 0.055, 6.2);
+}
+
+function addGlitter(buffer, start, strength = 0.18) {
+  addBrightNote(buffer, start, 1318.51, strength, 0.12);
+  addBrightNote(buffer, start + 0.035, 1567.98, strength * 0.82, 0.14);
+  addBrightNote(buffer, start + 0.075, 2093, strength * 0.7, 0.16);
+}
+
 function addEcho(buffer, delaySeconds = 0.045, amount = 0.13) {
   const delay = Math.floor(delaySeconds * SAMPLE_RATE);
   for (let index = delay; index < buffer.length; index += 1) {
@@ -105,25 +118,34 @@ function writeWav(name, buffer) {
 
 const sounds = {
   'select-wood-01': () => {
-    const sound = createBuffer(0.12);
-    addWood(sound, 0.004, 520, 0.7);
+    const sound = createBuffer(0.22);
+    addBrightNote(sound, 0.004, 783.99, 0.42, 0.16);
+    addBrightNote(sound, 0.048, 1174.66, 0.28, 0.16);
+    addGlitter(sound, 0.025, 0.045);
+    addEcho(sound, 0.038, 0.08);
     return sound;
   },
   'select-wood-02': () => {
-    const sound = createBuffer(0.12);
-    addWood(sound, 0.004, 470, 0.68);
+    const sound = createBuffer(0.22);
+    addBrightNote(sound, 0.004, 880, 0.4, 0.16);
+    addBrightNote(sound, 0.048, 1318.51, 0.27, 0.16);
+    addGlitter(sound, 0.028, 0.04);
+    addEcho(sound, 0.038, 0.08);
     return sound;
   },
   'wizard-forward': () => {
-    const sound = createBuffer(0.25);
-    addWood(sound, 0.005, 430, 0.48);
-    addToyNote(sound, 0.065, 620, 0.42, 0.17);
+    const sound = createBuffer(0.38);
+    addBrightNote(sound, 0.005, 659.25, 0.38, 0.22);
+    addBrightNote(sound, 0.085, 830.61, 0.46, 0.25);
+    addGlitter(sound, 0.13, 0.055);
+    addEcho(sound, 0.055, 0.1);
     return sound;
   },
   'wizard-back': () => {
-    const sound = createBuffer(0.23);
-    addToyNote(sound, 0.005, 520, 0.36, 0.16);
-    addWood(sound, 0.075, 350, 0.45);
+    const sound = createBuffer(0.34);
+    addBrightNote(sound, 0.005, 698.46, 0.3, 0.21);
+    addBrightNote(sound, 0.075, 523.25, 0.35, 0.24);
+    addEcho(sound, 0.055, 0.08);
     return sound;
   },
   'blocked-soft': () => {
@@ -134,60 +156,66 @@ const sounds = {
     return sound;
   },
   'randomise-costume-box': () => {
-    const sound = createBuffer(0.72);
-    addNoise(sound, 0.015, 0.36, 0.62, 0.86);
-    addNoise(sound, 0.18, 0.31, 0.52, 0.78, true);
-    addWood(sound, 0.08, 390, 0.45);
-    addWood(sound, 0.21, 475, 0.4);
-    addWood(sound, 0.34, 430, 0.38);
-    addToyNote(sound, 0.47, 660, 0.36, 0.2);
-    addToyNote(sound, 0.55, 830, 0.38, 0.16);
-    addEcho(sound, 0.052, 0.08);
+    const sound = createBuffer(0.82);
+    addNoise(sound, 0.015, 0.2, 0.28, 0.88);
+    addBrightNote(sound, 0.035, 523.25, 0.32, 0.24);
+    addBrightNote(sound, 0.14, 659.25, 0.36, 0.26);
+    addBrightNote(sound, 0.25, 783.99, 0.4, 0.28);
+    addBrightNote(sound, 0.37, 1046.5, 0.46, 0.34);
+    addGlitter(sound, 0.47, 0.16);
+    addEcho(sound, 0.06, 0.13);
     return sound;
   },
   'restore-rustle': () => {
-    const sound = createBuffer(0.3);
-    addNoise(sound, 0.01, 0.2, 0.55, 0.8, true);
-    addToyNote(sound, 0.08, 410, 0.28, 0.14);
-    addToyNote(sound, 0.14, 520, 0.3, 0.14);
+    const sound = createBuffer(0.42);
+    addNoise(sound, 0.01, 0.14, 0.2, 0.84, true);
+    addBrightNote(sound, 0.055, 659.25, 0.26, 0.2);
+    addBrightNote(sound, 0.125, 523.25, 0.25, 0.2);
+    addBrightNote(sound, 0.19, 783.99, 0.34, 0.22);
+    addEcho(sound, 0.05, 0.09);
     return sound;
   },
   'reset-tidy': () => {
-    const sound = createBuffer(0.46);
-    addNoise(sound, 0.01, 0.31, 0.58, 0.9);
-    addWood(sound, 0.08, 430, 0.32);
-    addWood(sound, 0.17, 350, 0.34);
-    addWood(sound, 0.29, 280, 0.52);
+    const sound = createBuffer(0.56);
+    addNoise(sound, 0.01, 0.18, 0.24, 0.9);
+    addBrightNote(sound, 0.035, 659.25, 0.25, 0.2);
+    addBrightNote(sound, 0.12, 523.25, 0.27, 0.22);
+    addBrightNote(sound, 0.21, 392, 0.28, 0.24);
+    addBrightNote(sound, 0.31, 523.25, 0.36, 0.25);
+    addEcho(sound, 0.06, 0.08);
     return sound;
   },
   'welcome-workshop': () => {
-    const sound = createBuffer(0.6);
-    addToyNote(sound, 0.01, 440, 0.34, 0.25);
-    addToyNote(sound, 0.11, 554, 0.38, 0.25);
-    addToyNote(sound, 0.22, 659, 0.43, 0.3);
-    addWood(sound, 0.34, 520, 0.24);
-    addEcho(sound, 0.07, 0.11);
+    const sound = createBuffer(0.84);
+    addBrightNote(sound, 0.01, 523.25, 0.32, 0.3);
+    addBrightNote(sound, 0.12, 659.25, 0.38, 0.32);
+    addBrightNote(sound, 0.24, 783.99, 0.43, 0.36);
+    addBrightNote(sound, 0.38, 1046.5, 0.48, 0.4);
+    addGlitter(sound, 0.46, 0.12);
+    addEcho(sound, 0.075, 0.15);
     return sound;
   },
   'review-celebration': () => {
-    const sound = createBuffer(1.08);
-    addNoise(sound, 0.01, 0.18, 0.22, 0.7, true);
-    addToyNote(sound, 0.04, 392, 0.34, 0.32);
-    addToyNote(sound, 0.18, 494, 0.39, 0.34);
-    addToyNote(sound, 0.34, 587, 0.44, 0.38);
-    addToyNote(sound, 0.5, 784, 0.5, 0.46);
-    addWood(sound, 0.68, 520, 0.28);
-    addNoise(sound, 0.72, 0.22, 0.2, 0.55);
-    addEcho(sound, 0.075, 0.14);
+    const sound = createBuffer(1.22);
+    addGlitter(sound, 0.01, 0.1);
+    addBrightNote(sound, 0.045, 523.25, 0.34, 0.38);
+    addBrightNote(sound, 0.18, 659.25, 0.39, 0.4);
+    addBrightNote(sound, 0.33, 783.99, 0.44, 0.44);
+    addBrightNote(sound, 0.5, 1046.5, 0.52, 0.52);
+    addBrightNote(sound, 0.68, 1318.51, 0.38, 0.48);
+    addGlitter(sound, 0.74, 0.14);
+    addEcho(sound, 0.08, 0.17);
     return sound;
   },
   'save-stamp': () => {
-    const sound = createBuffer(0.52);
-    addNoise(sound, 0.015, 0.035, 0.6, 0.48);
-    addTone(sound, 0.015, 0.16, 145, 105, 0.5, 7);
-    addToyNote(sound, 0.12, 523, 0.25, 0.22);
-    addToyNote(sound, 0.15, 659, 0.26, 0.22);
-    addToyNote(sound, 0.18, 784, 0.28, 0.22);
+    const sound = createBuffer(0.72);
+    addNoise(sound, 0.015, 0.028, 0.25, 0.5);
+    addTone(sound, 0.015, 0.12, 185, 145, 0.25, 7);
+    addBrightNote(sound, 0.09, 523.25, 0.29, 0.32);
+    addBrightNote(sound, 0.12, 659.25, 0.31, 0.34);
+    addBrightNote(sound, 0.15, 783.99, 0.34, 0.38);
+    addGlitter(sound, 0.22, 0.08);
+    addEcho(sound, 0.065, 0.12);
     return sound;
   }
 };
