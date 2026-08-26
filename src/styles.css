@@ -198,6 +198,44 @@ button:focus-visible {
   width: 100%;
 }
 
+.welcome-screen.is-tune-playing .welcome-logo {
+  transform-origin: 50% 82%;
+  animation: welcome-logo-sway 482ms ease-in-out infinite alternate both;
+}
+
+.welcome-screen.is-tune-playing .welcome-actions .ui-art-button img {
+  animation: welcome-button-sway 482ms ease-in-out infinite alternate both;
+}
+
+.welcome-screen.is-tune-playing .welcome-actions .ui-art-button:nth-child(2) img {
+  animation-delay: -482ms;
+}
+
+@keyframes welcome-logo-sway {
+  from {
+    transform: translateX(-8px) rotate(-0.9deg);
+  }
+  to {
+    transform: translateX(8px) rotate(0.9deg);
+  }
+}
+
+@keyframes welcome-button-sway {
+  from {
+    transform: translateX(-10px) rotate(-0.35deg);
+  }
+  to {
+    transform: translateX(10px) rotate(0.35deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-screen.is-tune-playing .welcome-logo,
+  .welcome-screen.is-tune-playing .welcome-actions .ui-art-button img {
+    animation: none;
+  }
+}
+
 .workshop-app {
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr);
