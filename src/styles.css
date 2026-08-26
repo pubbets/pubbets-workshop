@@ -302,6 +302,31 @@ button:focus-visible {
   }
 }
 
+@media (orientation: portrait) and (min-aspect-ratio: 3 / 5) {
+  .workshop-entrance {
+    height: 100vh;
+  }
+
+  .entrance-brand {
+    top: max(44px, env(safe-area-inset-top));
+    width: min(440px, 54vw);
+  }
+
+  .entrance-door {
+    top: 45%;
+    width: min(43vw, 430px);
+    height: 45%;
+  }
+
+  .entrance-door span {
+    bottom: 11%;
+  }
+
+  .entrance-light {
+    top: 66%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .entrance-scene,
   .entrance-brand,
@@ -318,14 +343,14 @@ button:focus-visible {
 .welcome-screen {
   position: relative;
   isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  justify-items: center;
   align-items: center;
-  gap: clamp(14px, 3.1vh, 30px);
+  gap: clamp(8px, 1.5vh, 16px);
   height: 100vh;
   height: 100dvh;
-  padding: clamp(54px, 7vh, 72px) clamp(16px, 4vw, 48px) clamp(18px, 4vh, 46px);
+  padding: clamp(54px, 6vh, 72px) clamp(16px, 4vw, 48px) clamp(24px, 4vh, 48px);
   overflow: hidden;
   background:
     linear-gradient(rgb(72 33 10 / 8%), rgb(72 33 10 / 12%)),
@@ -341,12 +366,12 @@ button:focus-visible {
 }
 
 .welcome-brand {
-  flex: 0 1 auto;
   z-index: 2;
   display: grid;
   place-items: center;
   width: min(620px, 86vw);
   min-height: 0;
+  align-self: start;
 }
 
 .welcome-logo {
@@ -357,14 +382,22 @@ button:focus-visible {
   filter: drop-shadow(0 14px 14px rgb(61 31 13 / 24%));
 }
 
+.welcome-puppet-stage {
+  z-index: 1;
+  width: min(520px, 70vw);
+  height: 100%;
+  min-height: 0;
+  pointer-events: none;
+}
+
 .welcome-actions {
-  flex: 0 0 auto;
   z-index: 2;
   display: grid;
   width: min(410px, 84vw);
   justify-items: center;
   gap: clamp(8px, 1.5vh, 14px);
   padding-bottom: max(0px, env(safe-area-inset-bottom));
+  align-self: end;
 }
 
 .welcome-actions .ui-art-button {
@@ -1046,8 +1079,8 @@ button:focus-visible {
 
 @media (max-width: 900px) {
   .welcome-screen {
-    gap: clamp(12px, 2.6vh, 22px);
-    padding: clamp(52px, 7vh, 66px) 14px clamp(16px, 3vh, 30px);
+    gap: clamp(8px, 1.3vh, 14px);
+    padding: clamp(52px, 6vh, 66px) 14px clamp(22px, 3vh, 34px);
   }
 
   .welcome-logo {
@@ -1249,8 +1282,8 @@ button:focus-visible {
   }
 
   .welcome-screen {
-    gap: clamp(10px, 2.1vh, 16px);
-    padding: 54px 12px 18px;
+    gap: clamp(7px, 1.2vh, 12px);
+    padding: 54px 12px 20px;
   }
 
   .welcome-logo {
@@ -1375,7 +1408,7 @@ button:focus-visible {
   }
 
   .welcome-screen {
-    gap: 10px;
+    gap: 7px;
     padding-top: 50px;
     padding-bottom: 16px;
   }
