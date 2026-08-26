@@ -142,6 +142,179 @@ button:focus-visible {
   font-weight: 900;
 }
 
+.workshop-entrance {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: #d7a05c;
+}
+
+.entrance-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  transition: transform 900ms cubic-bezier(0.2, 0.72, 0.25, 1), filter 900ms ease;
+  will-change: transform, filter;
+}
+
+.entrance-scene img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.entrance-brand {
+  position: absolute;
+  z-index: 3;
+  top: max(12px, env(safe-area-inset-top));
+  left: 50%;
+  width: min(390px, 42vw);
+  transform: translateX(-50%);
+  transition: opacity 260ms ease, transform 450ms ease;
+  filter: drop-shadow(0 12px 12px rgb(48 25 10 / 34%));
+}
+
+.entrance-brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.entrance-door {
+  position: absolute;
+  z-index: 4;
+  top: 34%;
+  left: 50%;
+  width: clamp(210px, 30vw, 500px);
+  height: 62%;
+  border: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  background: transparent;
+  touch-action: manipulation;
+}
+
+.entrance-door::before {
+  content: "";
+  position: absolute;
+  inset: 7% 10% 10%;
+  border-radius: 48% 48% 12% 12%;
+  opacity: 0;
+  box-shadow: 0 0 38px 15px rgb(255 206 108 / 58%);
+  transition: opacity 180ms ease;
+}
+
+.entrance-door:hover::before,
+.entrance-door:focus-visible::before {
+  opacity: 1;
+}
+
+.entrance-door:focus-visible {
+  outline: 0;
+}
+
+.entrance-door span {
+  position: absolute;
+  right: 50%;
+  bottom: 8%;
+  width: max-content;
+  max-width: min(310px, 78vw);
+  border: 3px solid #5c3219;
+  border-radius: 999px;
+  padding: 10px 19px;
+  transform: translateX(50%);
+  background: linear-gradient(#ffedbd, #e7af62);
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 34%), 0 5px 0 #4c2916, 0 9px 18px rgb(42 21 8 / 28%);
+  color: #3b2113;
+  font-size: clamp(0.84rem, 1.5vw, 1.08rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.entrance-door:hover span {
+  transform: translateX(50%) translateY(-2px);
+}
+
+.entrance-light {
+  position: absolute;
+  z-index: 2;
+  top: 64%;
+  left: 50%;
+  width: 28vmin;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.25);
+  background: radial-gradient(circle, #fffbd7 0 12%, #ffd072 36%, rgb(255 178 69 / 68%) 56%, transparent 73%);
+  transition: opacity 520ms ease, transform 900ms cubic-bezier(0.18, 0.76, 0.2, 1);
+  pointer-events: none;
+}
+
+.workshop-entrance.is-opening .entrance-scene {
+  transform: scale(1.16);
+  filter: brightness(1.16) saturate(1.04);
+}
+
+.workshop-entrance.is-opening .entrance-light {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(7);
+}
+
+.workshop-entrance.is-opening .entrance-brand {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-12px) scale(0.96);
+}
+
+.workshop-entrance.is-opening .entrance-door {
+  pointer-events: none;
+}
+
+.workshop-entrance.is-opening .entrance-door span {
+  opacity: 0;
+}
+
+@media (orientation: portrait) {
+  .entrance-brand {
+    top: max(20px, env(safe-area-inset-top));
+    width: min(520px, 76vw);
+  }
+
+  .entrance-door {
+    top: 47%;
+    width: min(48vw, 410px);
+    height: 40%;
+  }
+
+  .entrance-door span {
+    bottom: 2%;
+  }
+
+  .entrance-light {
+    top: 65%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrance-scene,
+  .entrance-brand,
+  .entrance-door span,
+  .entrance-light {
+    transition-duration: 1ms;
+  }
+
+  .workshop-entrance.is-opening .entrance-scene {
+    transform: none;
+  }
+}
+
 .welcome-screen {
   position: relative;
   isolation: isolate;
