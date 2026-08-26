@@ -8,6 +8,7 @@ export type WorkshopSound =
   | 'randomise'
   | 'restore'
   | 'reset'
+  | 'homeTune'
   | 'welcome'
   | 'finish'
   | 'save';
@@ -25,6 +26,7 @@ const sources: Record<WorkshopSound, string[]> = {
   randomise: [new URL('../../assets/audio/randomise-costume-box.wav', import.meta.url).href],
   restore: [new URL('../../assets/audio/restore-rustle.wav', import.meta.url).href],
   reset: [new URL('../../assets/audio/reset-tidy.wav', import.meta.url).href],
+  homeTune: [new URL('../../assets/audio/home-workshop-tune.wav', import.meta.url).href],
   welcome: [new URL('../../assets/audio/welcome-workshop.wav', import.meta.url).href],
   finish: [new URL('../../assets/audio/review-celebration.wav', import.meta.url).href],
   save: [new URL('../../assets/audio/save-stamp.wav', import.meta.url).href]
@@ -38,6 +40,7 @@ const volumes: Record<WorkshopSound, number> = {
   randomise: 0.46,
   restore: 0.38,
   reset: 0.38,
+  homeTune: 0.24,
   welcome: 0.46,
   finish: 0.5,
   save: 0.44
@@ -53,6 +56,7 @@ function savedPreference() {
 
 export function useWorkshopSound() {
   const [enabled, setEnabledState] = useState(savedPreference);
+  const enabledRef = useRef(enabled);
   const activeRef = useRef(new Map<WorkshopSound, HTMLAudioElement>());
   const selectionVariantRef = useRef(0);
 
@@ -65,6 +69,7 @@ export function useWorkshopSound() {
   }, []);
 
   const setEnabled = useCallback((nextEnabled: boolean) => {
+    enabledRef.current = nextEnabled;
     setEnabledState(nextEnabled);
     try {
       localStorage.setItem(preferenceKey, String(nextEnabled));
@@ -75,7 +80,7 @@ export function useWorkshopSound() {
   }, [stopAll]);
 
   const play = useCallback((sound: WorkshopSound) => {
-    if (!enabled) return;
+    if (!enabledRef.current) return;
 
     const options = sources[sound];
     const optionIndex = sound === 'select' ? selectionVariantRef.current++ % options.length : 0;
@@ -95,7 +100,35 @@ export function useWorkshopSound() {
     audio.addEventListener('ended', clear, { once: true });
     audio.addEventListener('error', clear, { once: true });
     void audio.play().catch(clear);
-  }, [enabled]);
+  }, []);
+
+  const stop = useCallback((sound: WorkshopSound, fadeMilliseconds = 0) => {
+    const audio = activeRef.current.get(sound);
+    if (!audio) return;
+
+    if (fadeMilliseconds <= 0) {
+      audio.pause();
+      audio.currentTime = 0;
+      activeRef.current.delete(sound);
+      return;
+    }
+
+    const startingVolume = audio.volume;
+    const startedAt = performance.now();
+    const fade = (now: number) => {
+      if (activeRef.current.get(sound) !== audio) return;
+      const progress = Math.min(1, (now - startedAt) / fadeMilliseconds);
+      audio.volume = startingVolume * (1 - progress);
+      if (progress < 1) {
+        requestAnimationFrame(fade);
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        activeRef.current.delete(sound);
+      }
+    };
+    requestAnimationFrame(fade);
+  }, []);
 
   useEffect(() => {
     const handleVisibility = () => {
@@ -108,5 +141,5 @@ export function useWorkshopSound() {
     };
   }, [stopAll]);
 
-  return { enabled, setEnabled, play };
+  return { enabled, setEnabled, play, stop };
 }
