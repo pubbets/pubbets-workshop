@@ -53,9 +53,19 @@ function savedPreference() {
 
 export function useWorkshopSound() {
   const [enabled, setEnabledState] = useState(savedPreference);
+  const [playingSounds, setPlayingSounds] = useState<Set<WorkshopSound>>(() => new Set());
   const enabledRef = useRef(enabled);
   const activeRef = useRef(new Map<WorkshopSound, HTMLAudioElement>());
   const selectionVariantRef = useRef(0);
+
+  const setSoundPlaying = useCallback((sound: WorkshopSound, playing: boolean) => {
+    setPlayingSounds((current) => {
+      const next = new Set(current);
+      if (playing) next.add(sound);
+      else next.delete(sound);
+      return next;
+    });
+  }, []);
 
   const stopAll = useCallback(() => {
     for (const audio of activeRef.current.values()) {
@@ -63,6 +73,7 @@ export function useWorkshopSound() {
       audio.currentTime = 0;
     }
     activeRef.current.clear();
+    setPlayingSounds(new Set());
   }, []);
 
   const setEnabled = useCallback((nextEnabled: boolean) => {
@@ -92,12 +103,15 @@ export function useWorkshopSound() {
     audio.volume = volumes[sound];
     activeRef.current.set(sound, audio);
     const clear = () => {
-      if (activeRef.current.get(sound) === audio) activeRef.current.delete(sound);
+      if (activeRef.current.get(sound) === audio) {
+        activeRef.current.delete(sound);
+        setSoundPlaying(sound, false);
+      }
     };
     audio.addEventListener('ended', clear, { once: true });
     audio.addEventListener('error', clear, { once: true });
-    void audio.play().catch(clear);
-  }, []);
+    void audio.play().then(() => setSoundPlaying(sound, true)).catch(clear);
+  }, [setSoundPlaying]);
 
   const stop = useCallback((sound: WorkshopSound, fadeMilliseconds = 0) => {
     const audio = activeRef.current.get(sound);
@@ -107,6 +121,7 @@ export function useWorkshopSound() {
       audio.pause();
       audio.currentTime = 0;
       activeRef.current.delete(sound);
+      setSoundPlaying(sound, false);
       return;
     }
 
@@ -122,10 +137,13 @@ export function useWorkshopSound() {
         audio.pause();
         audio.currentTime = 0;
         activeRef.current.delete(sound);
+        setSoundPlaying(sound, false);
       }
     };
     requestAnimationFrame(fade);
-  }, []);
+  }, [setSoundPlaying]);
+
+  const isPlaying = useCallback((sound: WorkshopSound) => playingSounds.has(sound), [playingSounds]);
 
   useEffect(() => {
     const handleVisibility = () => {
@@ -138,5 +156,5 @@ export function useWorkshopSound() {
     };
   }, [stopAll]);
 
-  return { enabled, setEnabled, play, stop };
+  return { enabled, setEnabled, play, stop, isPlaying };
 }

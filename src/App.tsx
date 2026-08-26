@@ -66,7 +66,7 @@ export function App() {
   const [undoSnapshot, setUndoSnapshot] = useState<UndoSnapshot | null>(null);
   const [touchedCategories, setTouchedCategories] = useState<TouchedState>(() => touchedFromSelections(restoreSelections()));
   const [motionKey, setMotionKey] = useState(0);
-  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop } = useWorkshopSound();
+  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
@@ -172,6 +172,7 @@ export function App() {
     return (
       <WelcomeScreen
         soundEnabled={soundEnabled}
+        tunePlaying={isPlaying('homeTune')}
         onPlayTune={() => play('homeTune')}
         onToggleSound={() => {
           const nextEnabled = !soundEnabled;
