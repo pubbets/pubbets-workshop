@@ -195,27 +195,6 @@ const sounds = {
     addEcho(sound, 0.075, 0.15);
     return sound;
   },
-  'home-workshop-tune': () => {
-    const sound = createBuffer(7.4);
-    const melody = [
-      [0.08, 523.25], [0.46, 659.25], [0.84, 783.99], [1.22, 659.25],
-      [1.68, 698.46], [2.06, 880], [2.44, 1046.5], [2.82, 880],
-      [3.28, 783.99], [3.66, 659.25], [4.04, 587.33], [4.42, 783.99],
-      [4.88, 659.25], [5.26, 783.99], [5.64, 987.77], [6.02, 1046.5]
-    ];
-    const bass = [
-      [0.08, 261.63], [1.68, 349.23], [3.28, 392], [4.88, 261.63]
-    ];
-
-    for (const [start, pitch] of melody) addBrightNote(sound, start, pitch, 0.28, 0.42);
-    for (const [start, pitch] of bass) {
-      addTone(sound, start, 1.35, pitch, pitch * 0.998, 0.16, 2.7);
-      addTone(sound, start, 1.15, pitch * 1.5, pitch * 1.498, 0.07, 3.2);
-    }
-    addGlitter(sound, 6.08, 0.075);
-    addEcho(sound, 0.095, 0.12);
-    return sound;
-  },
   'review-celebration': () => {
     const sound = createBuffer(1.22);
     addGlitter(sound, 0.01, 0.1);

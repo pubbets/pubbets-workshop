@@ -25,7 +25,7 @@ const sources: Record<WorkshopSound, string[]> = {
   randomise: [new URL('../../assets/audio/randomise-costume-box.wav', import.meta.url).href],
   restore: [new URL('../../assets/audio/restore-rustle.wav', import.meta.url).href],
   reset: [new URL('../../assets/audio/reset-tidy.wav', import.meta.url).href],
-  homeTune: [new URL('../../assets/audio/home-workshop-tune.wav', import.meta.url).href],
+  homeTune: [new URL('../../assets/audio/puppet-workshop-whimsy.mp3', import.meta.url).href],
   welcome: [new URL('../../assets/audio/welcome-workshop.wav', import.meta.url).href],
   finish: [new URL('../../assets/audio/review-celebration.wav', import.meta.url).href]
 };
