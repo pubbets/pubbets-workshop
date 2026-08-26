@@ -37,6 +37,7 @@ export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying,
       <header className="welcome-brand" aria-label="Pubbets Workshop">
         <img className="welcome-logo" src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
       </header>
+      <div className="welcome-puppet-stage" aria-hidden="true" />
       <div className="welcome-actions">
         <UiArtButton asset="startBuilding" label="Start building" size="long" onClick={onStart} />
         <UiArtButton asset="randomiseWide" label="In a hurry? Randomise!" size="long" onClick={onRandomize} />

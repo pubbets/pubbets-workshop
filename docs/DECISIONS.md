@@ -91,3 +91,15 @@ existing interior home screen.
 - Saved builds are out of scope.
 - Easter eggs are postponed. Seasonal visual overlays such as snow may be added
   later without replacing the base exterior artwork.
+
+## 2026-08-26 — Keep the interior home screen ready for a featured puppet
+
+The interior home screen uses a clear top-centre-bottom composition: the
+Pubbets Workshop logo stays at the top, an open stage occupies the centre, and
+the Start Building and Randomise actions stay together at the bottom.
+
+- The centre remains visually open until the final aligned body, clothing, and
+  feature artwork is ready.
+- That centre stage will later show a randomly changing assembled puppet.
+- The wide Randomise button uses the same light wood border treatment as the
+  Start Building button.
