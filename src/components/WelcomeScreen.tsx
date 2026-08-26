@@ -6,11 +6,12 @@ type Props = {
   onStart: () => void;
   onRandomize: () => void;
   soundEnabled: boolean;
+  tunePlaying: boolean;
   onToggleSound: () => void;
   onPlayTune: () => void;
 };
 
-export function WelcomeScreen({ onStart, onRandomize, soundEnabled, onToggleSound, onPlayTune }: Props) {
+export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying, onToggleSound, onPlayTune }: Props) {
   const tuneRequested = useRef(false);
 
   const requestTune = () => {
@@ -20,7 +21,11 @@ export function WelcomeScreen({ onStart, onRandomize, soundEnabled, onToggleSoun
   };
 
   return (
-    <main className="welcome-screen" onPointerDownCapture={requestTune} onKeyDownCapture={requestTune}>
+    <main
+      className={`welcome-screen${tunePlaying ? ' is-tune-playing' : ''}`}
+      onPointerDownCapture={requestTune}
+      onKeyDownCapture={requestTune}
+    >
       <UiArtButton
         asset={soundEnabled ? 'soundOn' : 'soundOff'}
         label={soundEnabled ? 'Mute all sound' : 'Enable sound and play home tune'}
