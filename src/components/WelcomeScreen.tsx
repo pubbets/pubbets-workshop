@@ -15,7 +15,7 @@ export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying,
   const tuneRequested = useRef(false);
 
   const requestTune = () => {
-    if (tuneRequested.current) return;
+    if (tunePlaying || tuneRequested.current) return;
     tuneRequested.current = true;
     onPlayTune();
   };

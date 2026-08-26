@@ -74,3 +74,19 @@ Current V1 asset fields:
   requiredTier?: 'diy'|'curated'|'masterworks'
 }
 ```
+
+## 2026-08-26 — Add a responsive exterior entrance before the home screen
+
+The app opens outside a fantasy handcrafted Pubbets Workshop. Tapping the large
+central door is the intentional user gesture that unlocks audible theme music on
+mobile browsers, followed by a short move-through-the-door transition into the
+existing interior home screen.
+
+- Use one landscape exterior composition for desktop and landscape tablets.
+- Use one matching portrait composition for phones and portrait tablets.
+- Do not create separate images for individual devices.
+- Show the exterior once per app load; returning home from the builder goes to
+  the interior home screen.
+- Saved builds are out of scope.
+- Easter eggs are postponed. Seasonal visual overlays such as snow may be added
+  later without replacing the base exterior artwork.

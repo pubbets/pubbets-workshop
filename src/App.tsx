@@ -6,6 +6,7 @@ import { ReviewPanel } from './components/ReviewPanel';
 import { StepRail } from './components/StepRail';
 import { UiArtButton } from './components/UiArtButton';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { WorkshopEntrance } from './components/WorkshopEntrance';
 import { useWorkshopSound } from './hooks/useWorkshopSound';
 import type { AssetOption, Category, SelectionState } from './types';
 import { calculateTotal, formatMoney } from './utils/pricing';
@@ -59,6 +60,7 @@ function restoreSelections(): SelectionState {
 }
 
 export function App() {
+  const [enteredWorkshop, setEnteredWorkshop] = useState(false);
   const [started, setStarted] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [completedThrough, setCompletedThrough] = useState(-1);
@@ -167,6 +169,15 @@ export function App() {
     setActiveStep(steps.length - 1);
     setCompletedThrough(steps.length - 2);
   };
+
+  if (!enteredWorkshop) {
+    return (
+      <WorkshopEntrance
+        onEnter={() => play('homeTune')}
+        onEntered={() => setEnteredWorkshop(true)}
+      />
+    );
+  }
 
   if (!started) {
     return (
