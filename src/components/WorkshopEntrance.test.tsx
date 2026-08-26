@@ -38,4 +38,15 @@ describe('WorkshopEntrance', () => {
 
     act(() => root.unmount());
   });
+
+  it('renders the large prompt and magic sparkle layer', () => {
+    const root = createRoot(container);
+
+    act(() => root.render(<WorkshopEntrance onEnter={vi.fn()} onEntered={vi.fn()} />));
+
+    expect(container.querySelector('.entrance-prompt')?.textContent).toBe('Tap the door to enter');
+    expect(container.querySelectorAll('.entrance-sparkles i')).toHaveLength(10);
+
+    act(() => root.unmount());
+  });
 });

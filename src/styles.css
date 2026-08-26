@@ -150,6 +150,7 @@ button:focus-visible {
   height: 100dvh;
   overflow: hidden;
   background: #d7a05c;
+  view-transition-name: workshop-screen;
 }
 
 .entrance-scene {
@@ -157,8 +158,8 @@ button:focus-visible {
   inset: 0;
   z-index: 0;
   display: block;
-  transition: transform 900ms cubic-bezier(0.2, 0.72, 0.25, 1), filter 900ms ease;
-  will-change: transform, filter;
+  transform-origin: 50% 68%;
+  will-change: transform;
 }
 
 .entrance-scene img {
@@ -176,8 +177,8 @@ button:focus-visible {
   left: 50%;
   width: min(390px, 42vw);
   transform: translateX(-50%);
-  transition: opacity 260ms ease, transform 450ms ease;
   filter: drop-shadow(0 12px 12px rgb(48 25 10 / 34%));
+  will-change: transform, opacity;
 }
 
 .entrance-brand img {
@@ -207,7 +208,7 @@ button:focus-visible {
   border-radius: 48% 48% 12% 12%;
   opacity: 0;
   box-shadow: 0 0 38px 15px rgb(255 206 108 / 58%);
-  transition: opacity 180ms ease;
+  transition: opacity 220ms ease;
 }
 
 .entrance-door:hover::before,
@@ -219,29 +220,87 @@ button:focus-visible {
   outline: 0;
 }
 
-.entrance-door span {
+.entrance-prompt {
   position: absolute;
+  z-index: 4;
   right: 50%;
-  bottom: 8%;
+  top: -12%;
   width: max-content;
-  max-width: min(310px, 78vw);
-  border: 3px solid #5c3219;
+  min-width: min(360px, 78vw);
+  max-width: min(440px, 84vw);
+  border: 4px solid #5c3219;
   border-radius: 999px;
-  padding: 10px 19px;
+  padding: clamp(13px, 1.5vw, 18px) clamp(24px, 3vw, 38px);
   transform: translateX(50%);
   background: linear-gradient(#ffedbd, #e7af62);
-  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 34%), 0 5px 0 #4c2916, 0 9px 18px rgb(42 21 8 / 28%);
+  box-shadow: inset 0 0 0 3px rgb(255 255 255 / 34%), 0 6px 0 #4c2916, 0 12px 24px rgb(42 21 8 / 30%);
   color: #3b2113;
-  font-size: clamp(0.84rem, 1.5vw, 1.08rem);
+  font-size: clamp(1rem, 2vw, 1.38rem);
   font-weight: 900;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+  will-change: transform, opacity;
 }
 
-.entrance-door:hover span {
+.entrance-door:hover .entrance-prompt {
   transform: translateX(50%) translateY(-2px);
 }
+
+.entrance-prompt.is-jiggle {
+  animation: entrance-prompt-jiggle 780ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.entrance-prompt.is-pulse {
+  animation: entrance-prompt-pulse 820ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.entrance-portal {
+  position: absolute;
+  z-index: 2;
+  inset: 11% 13% 8%;
+  border-radius: 48% 48% 12% 12%;
+  opacity: 0;
+  transform: scale(0.82);
+  background: radial-gradient(ellipse at 50% 54%, #fffbd9 0 16%, #ffd471 38%, rgb(247 132 33 / 72%) 66%, transparent 76%);
+  box-shadow: 0 0 42px 18px rgb(255 209 110 / 42%);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.entrance-sparkles {
+  position: absolute;
+  z-index: 5;
+  top: -26%;
+  left: 50%;
+  width: min(570px, 120vw);
+  height: 52%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.entrance-sparkles i {
+  position: absolute;
+  width: clamp(6px, 1vw, 12px);
+  aspect-ratio: 1;
+  opacity: 0;
+  transform: rotate(45deg) scale(0.25);
+  border-radius: 2px;
+  background: #fff9c9;
+  box-shadow: 0 0 7px 2px #fff8c4, 0 0 16px 5px rgb(255 188 65 / 70%);
+  animation: entrance-sparkle-twinkle 3.2s ease-in-out infinite;
+}
+
+.entrance-sparkles i:nth-child(1) { top: 34%; left: 4%; animation-delay: -0.4s; }
+.entrance-sparkles i:nth-child(2) { top: 10%; left: 18%; animation-delay: -2.2s; }
+.entrance-sparkles i:nth-child(3) { top: 55%; left: 27%; animation-delay: -1.1s; }
+.entrance-sparkles i:nth-child(4) { top: 2%; left: 42%; animation-delay: -2.7s; }
+.entrance-sparkles i:nth-child(5) { top: 64%; left: 49%; animation-delay: -0.8s; }
+.entrance-sparkles i:nth-child(6) { top: 16%; left: 59%; animation-delay: -1.7s; }
+.entrance-sparkles i:nth-child(7) { top: 50%; left: 70%; animation-delay: -2.9s; }
+.entrance-sparkles i:nth-child(8) { top: 5%; left: 80%; animation-delay: -1.3s; }
+.entrance-sparkles i:nth-child(9) { top: 39%; left: 93%; animation-delay: -2.4s; }
+.entrance-sparkles i:nth-child(10) { top: 72%; left: 87%; animation-delay: -0.2s; }
 
 .entrance-light {
   position: absolute;
@@ -254,31 +313,118 @@ button:focus-visible {
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.25);
   background: radial-gradient(circle, #fffbd7 0 12%, #ffd072 36%, rgb(255 178 69 / 68%) 56%, transparent 73%);
-  transition: opacity 520ms ease, transform 900ms cubic-bezier(0.18, 0.76, 0.2, 1);
   pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.entrance-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  opacity: 0;
+  background: #fff0bd;
+  pointer-events: none;
+  will-change: opacity;
 }
 
 .workshop-entrance.is-opening .entrance-scene {
-  transform: scale(1.16);
-  filter: brightness(1.16) saturate(1.04);
+  animation: entrance-camera-move 1080ms cubic-bezier(0.38, 0, 0.18, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-light {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(7);
+  animation: entrance-light-bloom 1080ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-brand {
-  opacity: 0;
-  transform: translateX(-50%) translateY(-12px) scale(0.96);
+  animation: entrance-brand-away 500ms ease-out both;
 }
 
 .workshop-entrance.is-opening .entrance-door {
   pointer-events: none;
 }
 
-.workshop-entrance.is-opening .entrance-door span {
-  opacity: 0;
+.workshop-entrance.is-opening .entrance-prompt {
+  animation: entrance-prompt-away 260ms ease-in both;
+}
+
+.workshop-entrance.is-opening .entrance-portal {
+  animation: entrance-portal-open 980ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+}
+
+.workshop-entrance.is-opening .entrance-sparkles i {
+  animation: entrance-sparkle-burst 720ms cubic-bezier(0.16, 0.7, 0.25, 1) both;
+}
+
+.workshop-entrance.is-opening .entrance-sparkles i:nth-child(2n) {
+  animation-delay: 55ms;
+}
+
+.workshop-entrance.is-opening .entrance-sparkles i:nth-child(3n) {
+  animation-delay: 110ms;
+}
+
+.workshop-entrance.is-opening .entrance-wash {
+  animation: entrance-wash-in 1080ms cubic-bezier(0.42, 0, 0.25, 1) both;
+}
+
+@keyframes entrance-prompt-jiggle {
+  0%, 100% { transform: translateX(50%) rotate(0); }
+  18% { transform: translateX(50%) rotate(-2.2deg); }
+  36% { transform: translateX(50%) rotate(1.8deg); }
+  54% { transform: translateX(50%) rotate(-1.2deg); }
+  72% { transform: translateX(50%) rotate(0.7deg); }
+}
+
+@keyframes entrance-prompt-pulse {
+  0%, 100% { transform: translateX(50%) scale(1); }
+  38% { transform: translateX(50%) scale(1.055); }
+  68% { transform: translateX(50%) scale(0.99); }
+}
+
+@keyframes entrance-sparkle-twinkle {
+  0%, 68%, 100% { opacity: 0; transform: rotate(45deg) scale(0.2); }
+  78% { opacity: 0.95; transform: rotate(135deg) scale(1); }
+  88% { opacity: 0.28; transform: rotate(210deg) scale(0.55); }
+}
+
+@keyframes entrance-sparkle-burst {
+  0% { opacity: 0.25; transform: translateY(10px) rotate(45deg) scale(0.25); }
+  36% { opacity: 1; transform: translateY(-12px) rotate(135deg) scale(1.35); }
+  100% { opacity: 0; transform: translateY(-46px) rotate(260deg) scale(0.35); }
+}
+
+@keyframes entrance-portal-open {
+  0% { opacity: 0; transform: scale(0.82); }
+  18% { opacity: 0.38; transform: scale(0.88); }
+  58% { opacity: 0.92; transform: scale(1.18); }
+  100% { opacity: 1; transform: scale(2.25); }
+}
+
+@keyframes entrance-light-bloom {
+  0%, 12% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  52% { opacity: 0.72; transform: translate(-50%, -50%) scale(2.1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(7); }
+}
+
+@keyframes entrance-camera-move {
+  0%, 16% { transform: scale(1); }
+  52% { transform: scale(1.025); }
+  100% { transform: scale(1.09); }
+}
+
+@keyframes entrance-brand-away {
+  from { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  to { opacity: 0; transform: translateX(-50%) translateY(-10px) scale(0.97); }
+}
+
+@keyframes entrance-prompt-away {
+  from { opacity: 1; transform: translateX(50%) scale(1); }
+  to { opacity: 0; transform: translateX(50%) scale(0.94); }
+}
+
+@keyframes entrance-wash-in {
+  0%, 62% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @media (orientation: portrait) {
@@ -293,8 +439,8 @@ button:focus-visible {
     height: 40%;
   }
 
-  .entrance-door span {
-    bottom: 2%;
+  .entrance-prompt {
+    top: -30%;
   }
 
   .entrance-light {
@@ -318,8 +464,8 @@ button:focus-visible {
     height: 45%;
   }
 
-  .entrance-door span {
-    bottom: 11%;
+  .entrance-prompt {
+    top: -25%;
   }
 
   .entrance-light {
@@ -330,13 +476,21 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .entrance-scene,
   .entrance-brand,
-  .entrance-door span,
-  .entrance-light {
+  .entrance-prompt,
+  .entrance-light,
+  .entrance-portal,
+  .entrance-wash,
+  .entrance-sparkles i {
+    animation: none !important;
     transition-duration: 1ms;
   }
 
   .workshop-entrance.is-opening .entrance-scene {
     transform: none;
+  }
+
+  .workshop-entrance.is-opening .entrance-wash {
+    opacity: 1;
   }
 }
 
@@ -356,6 +510,24 @@ button:focus-visible {
     linear-gradient(rgb(72 33 10 / 8%), rgb(72 33 10 / 12%)),
     url("../assets/ui/backgrounds/home-pegboard-background.png") center / cover no-repeat,
     linear-gradient(135deg, #d89b51, #f5c97f 42%, #d48f41);
+  view-transition-name: workshop-screen;
+}
+
+::view-transition-old(workshop-screen) {
+  animation: entrance-view-away 180ms ease-out both;
+}
+
+::view-transition-new(workshop-screen) {
+  animation: entrance-view-arrive 320ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes entrance-view-away {
+  to { opacity: 0; }
+}
+
+@keyframes entrance-view-arrive {
+  from { opacity: 0; transform: scale(1.012); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .welcome-settings {

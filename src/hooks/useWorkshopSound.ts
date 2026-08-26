@@ -31,7 +31,7 @@ const sources: Record<WorkshopSound, string[]> = {
 };
 
 const volumes: Record<WorkshopSound, number> = {
-  select: 0.38,
+  select: 0.19,
   forward: 0.42,
   back: 0.35,
   blocked: 0.28,

@@ -103,3 +103,17 @@ the Start Building and Randomise actions stay together at the bottom.
 - That centre stage will later show a randomly changing assembled puppet.
 - The wide Randomise button uses the same light wood border treatment as the
   Start Building button.
+
+## 2026-08-26 — Make entering the workshop feel magical and responsive
+
+The entrance interaction uses a short staged sequence rather than a single
+large zoom: the prompt responds first, sparkles burst around the doorway, warm
+light grows from inside, the camera moves forward gently, and the interior
+crossfades in where the browser supports view transitions.
+
+- Animate transforms and opacity for smooth performance on tablets and phones.
+- Keep the prompt large and above the door so the action is immediately clear.
+- Randomly alternate occasional prompt jiggles and pulses while the screen is idle.
+- Respect reduced-motion preferences with a brief, nearly static reveal.
+- Keep the frequently repeated selection sound low, warm, and short so it
+  supports tactile feedback without competing with the theme music.

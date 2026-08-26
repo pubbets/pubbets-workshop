@@ -118,19 +118,17 @@ function writeWav(name, buffer) {
 
 const sounds = {
   'select-wood-01': () => {
-    const sound = createBuffer(0.22);
-    addBrightNote(sound, 0.004, 783.99, 0.42, 0.16);
-    addBrightNote(sound, 0.048, 1174.66, 0.28, 0.16);
-    addGlitter(sound, 0.025, 0.045);
-    addEcho(sound, 0.038, 0.08);
+    const sound = createBuffer(0.18);
+    addTone(sound, 0.008, 0.13, 360, 285, 0.26, 6.8);
+    addTone(sound, 0.012, 0.1, 720, 560, 0.055, 8.5);
+    addEcho(sound, 0.045, 0.035);
     return sound;
   },
   'select-wood-02': () => {
-    const sound = createBuffer(0.22);
-    addBrightNote(sound, 0.004, 880, 0.4, 0.16);
-    addBrightNote(sound, 0.048, 1318.51, 0.27, 0.16);
-    addGlitter(sound, 0.028, 0.04);
-    addEcho(sound, 0.038, 0.08);
+    const sound = createBuffer(0.18);
+    addTone(sound, 0.008, 0.13, 400, 315, 0.24, 6.8);
+    addTone(sound, 0.012, 0.1, 800, 620, 0.05, 8.5);
+    addEcho(sound, 0.045, 0.035);
     return sound;
   },
   'wizard-forward': () => {
