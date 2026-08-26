@@ -83,8 +83,9 @@ mobile browsers, followed by a short move-through-the-door transition into the
 existing interior home screen.
 
 - Use one landscape exterior composition for desktop and landscape tablets.
-- Use one matching portrait composition for phones and portrait tablets.
-- Do not create separate images for individual devices.
+- Use a 4:5 tablet portrait composition for iPad-like browser viewports.
+- Use a taller matching portrait composition for phones.
+- Do not create separate images for individual device models.
 - Show the exterior once per app load; returning home from the builder goes to
   the interior home screen.
 - Saved builds are out of scope.

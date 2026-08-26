@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import pubbetsWorkshopLogo from '../../assets/ui/logo/pubbets-workshop-logo.png';
 import workshopExteriorLandscape from '../../assets/ui/backgrounds/workshop-exterior-landscape.webp';
 import workshopExteriorPortrait from '../../assets/ui/backgrounds/workshop-exterior-portrait.webp';
+import workshopExteriorTablet from '../../assets/ui/backgrounds/workshop-exterior-tablet.webp';
 
 type Props = {
   onEnter: () => void;
@@ -30,6 +31,7 @@ export function WorkshopEntrance({ onEnter, onEntered }: Props) {
   return (
     <main className={`workshop-entrance${opening ? ' is-opening' : ''}`}>
       <picture className="entrance-scene" aria-hidden="true">
+        <source media="(orientation: portrait) and (min-aspect-ratio: 3 / 5)" srcSet={workshopExteriorTablet} />
         <source media="(orientation: portrait)" srcSet={workshopExteriorPortrait} />
         <img src={workshopExteriorLandscape} alt="" />
       </picture>

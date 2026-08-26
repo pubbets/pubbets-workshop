@@ -302,6 +302,31 @@ button:focus-visible {
   }
 }
 
+@media (orientation: portrait) and (min-aspect-ratio: 3 / 5) {
+  .workshop-entrance {
+    height: 100vh;
+  }
+
+  .entrance-brand {
+    top: max(44px, env(safe-area-inset-top));
+    width: min(440px, 54vw);
+  }
+
+  .entrance-door {
+    top: 45%;
+    width: min(43vw, 430px);
+    height: 45%;
+  }
+
+  .entrance-door span {
+    bottom: 11%;
+  }
+
+  .entrance-light {
+    top: 66%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .entrance-scene,
   .entrance-brand,
