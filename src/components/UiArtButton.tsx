@@ -9,7 +9,6 @@ const buttonAssets = {
   randomiseSquare: new URL('../../assets/ui/buttons/ui-button-randomise-square-clean.png', import.meta.url).href,
   randomiseWide: new URL('../../assets/ui/buttons/ui-button-randomise-wide-clean.png', import.meta.url).href,
   reset: new URL('../../assets/ui/buttons/ui-button-reset-clean.png', import.meta.url).href,
-  saveBuildSheet: new URL('../../assets/ui/buttons/ui-button-save-build-sheet-clean.png', import.meta.url).href,
   skipThisStep: new URL('../../assets/ui/buttons/ui-button-skip-this-step-clean.png', import.meta.url).href,
   soundOff: new URL('../../assets/ui/buttons/ui-button-sound-off-clean.png', import.meta.url).href,
   soundOn: new URL('../../assets/ui/buttons/ui-button-sound-on-clean.png', import.meta.url).href,

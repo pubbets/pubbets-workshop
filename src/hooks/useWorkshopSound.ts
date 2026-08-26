@@ -10,8 +10,7 @@ export type WorkshopSound =
   | 'reset'
   | 'homeTune'
   | 'welcome'
-  | 'finish'
-  | 'save';
+  | 'finish';
 
 const preferenceKey = 'pubbets-workshop-sound-enabled';
 
@@ -28,8 +27,7 @@ const sources: Record<WorkshopSound, string[]> = {
   reset: [new URL('../../assets/audio/reset-tidy.wav', import.meta.url).href],
   homeTune: [new URL('../../assets/audio/home-workshop-tune.wav', import.meta.url).href],
   welcome: [new URL('../../assets/audio/welcome-workshop.wav', import.meta.url).href],
-  finish: [new URL('../../assets/audio/review-celebration.wav', import.meta.url).href],
-  save: [new URL('../../assets/audio/save-stamp.wav', import.meta.url).href]
+  finish: [new URL('../../assets/audio/review-celebration.wav', import.meta.url).href]
 };
 
 const volumes: Record<WorkshopSound, number> = {
@@ -42,8 +40,7 @@ const volumes: Record<WorkshopSound, number> = {
   reset: 0.38,
   homeTune: 0.24,
   welcome: 0.46,
-  finish: 0.5,
-  save: 0.44
+  finish: 0.5
 };
 
 function savedPreference() {

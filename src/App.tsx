@@ -168,23 +168,6 @@ export function App() {
     setCompletedThrough(steps.length - 2);
   };
 
-  const saveBuild = () => {
-    const payload = {
-      schema: 'pubbets-workshop-build/v1',
-      createdAt: new Date().toISOString(),
-      basePrice,
-      total,
-      selections: Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option ? { id: option.id, label: option.label, price: option.price ?? 0 } : null]))
-    };
-    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `pubbet-build-${new Date().toISOString().slice(0, 10)}.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
-    play('save');
-  };
-
   if (!started) {
     return (
       <WelcomeScreen
@@ -239,13 +222,13 @@ export function App() {
               onSelect={(option) => select(category, option)}
               onBack={() => moveTo(activeStep - 1)}
             />
-          ) : <ReviewPanel selections={selections} total={total} onSave={saveBuild} />}
+          ) : <ReviewPanel selections={selections} total={total} />}
           <footer className="navigation-bar">
             <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
             <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
-            {activeStep < steps.length - 1
-              ? canContinue && <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
-              : <UiArtButton asset="saveBuildSheet" label="Save build sheet" size="wide" onClick={saveBuild} />}
+            {activeStep < steps.length - 1 && canContinue && (
+              <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
+            )}
           </footer>
         </section>
       </div>

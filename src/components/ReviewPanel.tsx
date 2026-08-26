@@ -1,11 +1,10 @@
 import { steps } from '../data/catalog';
 import type { Category, SelectionState } from '../types';
 import { formatMoney } from '../utils/pricing';
-import { UiArtButton } from './UiArtButton';
 
-type Props = { selections: SelectionState; total: number; onSave: () => void };
+type Props = { selections: SelectionState; total: number };
 
-export function ReviewPanel({ selections, total, onSave }: Props) {
+export function ReviewPanel({ selections, total }: Props) {
   return (
     <section className="review-panel">
       <div className="review-banner"><span>OK</span><div><strong>What a character!</strong><small>Your workshop build is ready.</small></div></div>
@@ -16,7 +15,6 @@ export function ReviewPanel({ selections, total, onSave }: Props) {
         })}
       </div>
       <div className="review-total"><span>Workshop total</span><strong>{formatMoney(total)}</strong></div>
-      <UiArtButton asset="saveBuildSheet" label="Save build sheet" size="long" onClick={onSave} />
       <p className="checkout-note">Checkout stays off until real Shopify base and add-on variants are mapped, so the amount charged can never disagree with this total.</p>
     </section>
   );

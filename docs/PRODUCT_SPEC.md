@@ -27,7 +27,7 @@ screens reviewed on 2026-08-06.
 6. Outfit
 7. Shoes
 8. Extras
-9. Review and save build
+9. Review finished build
 
 ## Launch behavior
 
@@ -35,7 +35,7 @@ screens reviewed on 2026-08-06.
 - Reset, randomize, sound toggle, next/back navigation, progress, and pricing work
   without a network connection after the app has loaded.
 - Selections persist in the browser.
-- The review step exports a production build sheet as JSON.
+- The V1 review step is read-only. Build-sheet buttons and downloads are postponed.
 - Future build-sheet v2 should generate a customer/admin visual build sheet in
   the handmade Pubbets tracking-sheet style: customer details, order number,
   start date, final puppet preview, selected features/garments, production notes,
