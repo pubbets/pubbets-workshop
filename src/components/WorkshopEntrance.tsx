@@ -4,7 +4,7 @@ import workshopExteriorLandscape from '../../assets/ui/backgrounds/workshop-exte
 import workshopExteriorPortrait from '../../assets/ui/backgrounds/workshop-exterior-portrait.webp';
 import workshopExteriorTablet from '../../assets/ui/backgrounds/workshop-exterior-tablet.webp';
 
-const entranceDuration = 1080;
+const entranceDuration = 900;
 
 type ViewTransitionDocument = Document & {
   startViewTransition?: (updateCallback: () => void | Promise<void>) => unknown;

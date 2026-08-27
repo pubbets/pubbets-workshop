@@ -117,3 +117,18 @@ crossfades in where the browser supports view transitions.
 - Respect reduced-motion preferences with a brief, nearly static reveal.
 - Keep the frequently repeated selection sound low, warm, and short so it
   supports tactile feedback without competing with the theme music.
+
+## 2026-08-27 — Require explicit choices and keep navigation close
+
+Multi-stage choices do not preselect their first available value. A user must
+choose each variable themselves, and the Next button appears with a short pulse
+only after the step has a complete selection or has been intentionally skipped.
+
+- Round eyes are 45 mm only; the obsolete 30 mm option and redundant Round size
+  screen are removed.
+- “Skip this step” sits above the main navigation row instead of inside the
+  option grid.
+- Back, Reset, and Next follow directly after the current choices rather than
+  being pinned to the bottom of a tall empty panel.
+- The warm entrance wash is brief and overlaps the interior reveal so the
+  screen never holds on an empty cream frame.

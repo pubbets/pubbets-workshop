@@ -1,18 +1,5 @@
 [
   {
-    "id": "round-30-dome-plain",
-    "label": "Plain",
-    "group": "round",
-    "shape": "round",
-    "sizeMm": 30,
-    "style": "dome",
-    "finish": "plain",
-    "riveArtboardRef": "Puppet/Eyes/Round/30mm/Dome/Plain",
-    "category": "eyes",
-    "colourBindable": false,
-    "thumbnailPath": "thumbnails/eyes_round-30-dome-plain-tn.png"
-  },
-  {
     "id": "round-45-dome-plain",
     "label": "Plain",
     "group": "round",

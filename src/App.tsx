@@ -239,7 +239,7 @@ export function App() {
             <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
             <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
             {activeStep < steps.length - 1 && canContinue && (
-              <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
+              <UiArtButton className="navigation-next is-ready" asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
             )}
           </footer>
         </section>

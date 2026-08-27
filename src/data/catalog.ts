@@ -60,7 +60,6 @@ export function resolveThumbnail(option: AssetOption): string | null {
     }
     case 'eyes': {
       const eyeMap: Record<string, string> = {
-        'round-30-dome-plain': 'eyes_round-flat-plain.webp',
         'round-45-dome-plain': 'eyes_round-flat-plain.webp',
         'round-45-flat-plain': 'eyes_round-flat-plain.webp',
         'round-45-flat-blue-eyelids': 'eyes_round-flat-blue-lids.webp',

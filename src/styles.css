@@ -328,11 +328,11 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-scene {
-  animation: entrance-camera-move 1080ms cubic-bezier(0.38, 0, 0.18, 1) both;
+  animation: entrance-camera-move 900ms cubic-bezier(0.38, 0, 0.18, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-light {
-  animation: entrance-light-bloom 1080ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+  animation: entrance-light-bloom 900ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-brand {
@@ -348,7 +348,7 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-portal {
-  animation: entrance-portal-open 980ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  animation: entrance-portal-open 820ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-sparkles i {
@@ -364,7 +364,7 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-wash {
-  animation: entrance-wash-in 1080ms cubic-bezier(0.42, 0, 0.25, 1) both;
+  animation: entrance-wash-in 900ms cubic-bezier(0.42, 0, 0.25, 1) both;
 }
 
 @keyframes entrance-prompt-jiggle {
@@ -423,8 +423,8 @@ button:focus-visible {
 }
 
 @keyframes entrance-wash-in {
-  0%, 62% { opacity: 0; }
-  100% { opacity: 1; }
+  0%, 78% { opacity: 0; }
+  100% { opacity: 0.92; }
 }
 
 @media (orientation: portrait) {
@@ -514,11 +514,11 @@ button:focus-visible {
 }
 
 ::view-transition-old(workshop-screen) {
-  animation: entrance-view-away 180ms ease-out both;
+  animation: entrance-view-away 80ms ease-out both;
 }
 
 ::view-transition-new(workshop-screen) {
-  animation: entrance-view-arrive 320ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation: entrance-view-arrive 180ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
 @keyframes entrance-view-away {
@@ -871,8 +871,10 @@ button:focus-visible {
 }
 
 .controls-column {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   gap: clamp(8px, 1vh, 12px);
   padding: clamp(10px, 1.35vw, 16px);
   overflow: hidden;
@@ -1040,11 +1042,6 @@ button:focus-visible {
   font-size: 1rem;
 }
 
-.option-card--none {
-  min-height: 86px;
-  background: linear-gradient(#fff0ca, #f0ca89);
-}
-
 .workshop-app[data-step-id="body"] .option-card {
   min-height: 44px;
 }
@@ -1053,10 +1050,29 @@ button:focus-visible {
   display: none;
 }
 
-.skip-card-art {
-  width: min(100%, 170px);
+.skip-step-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(8px, 1vh, 12px);
+}
+
+.skip-step-row .ui-art-button {
+  width: min(210px, 64%);
   height: auto;
   aspect-ratio: 3.65 / 1;
+}
+
+.skip-step-row.is-selected .ui-art-button {
+  filter: drop-shadow(0 0 8px rgb(92 191 44 / 55%)) drop-shadow(0 6px 6px rgb(57 29 12 / 20%));
+}
+
+.wizard-skip-confirmation {
+  grid-column: 1 / -1;
+  margin: 8px 0;
+  color: #60401f;
+  font-weight: 900;
+  text-align: center;
 }
 
 .catalog-note {
@@ -1114,6 +1130,26 @@ button:focus-visible {
   align-items: center;
   gap: clamp(6px, 1vw, 10px);
   padding-top: 2px;
+  flex: 0 0 auto;
+  align-self: stretch;
+}
+
+.navigation-next.is-ready {
+  animation: navigation-next-ready 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes navigation-next-ready {
+  0% { opacity: 0; transform: scale(0.88); }
+  42% { opacity: 1; transform: scale(1.08) rotate(1.5deg); }
+  62% { transform: scale(0.98) rotate(-1deg); }
+  82% { transform: scale(1.035) rotate(0.5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-next.is-ready {
+    animation: none;
+  }
 }
 
 .navigation-bar .ui-art-button,

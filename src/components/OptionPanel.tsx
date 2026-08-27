@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { optionColour } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
-import { UiArtButton, UiArtImage } from './UiArtButton';
+import { UiArtButton } from './UiArtButton';
 
 type Props = {
   category: Category;
@@ -93,12 +93,11 @@ function OptionCard({ option, selected, onSelect }: { option: AssetOption; selec
   );
 }
 
-function NoThanksCard({ selected, onSelect }: { selected: boolean; onSelect: () => void }) {
+function SkipStepButton({ selected, onSelect }: { selected: boolean; onSelect: () => void }) {
   return (
-    <button className={`option-card option-card--none ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected} aria-label="Skip this step">
-      <UiArtImage asset="skipThisStep" label="Skip this step" size="wide" className="skip-card-art" />
-      {selected && <span className="option-card__check" aria-hidden="true">✓</span>}
-    </button>
+    <div className={`skip-step-row${selected ? ' is-selected' : ''}`}>
+      <UiArtButton className="skip-step-button" asset="skipThisStep" label="Skip this step" size="wide" onClick={onSelect} aria-pressed={selected} />
+    </div>
   );
 }
 
@@ -107,19 +106,16 @@ function representativeOption(options: AssetOption[], shape: string) {
 }
 
 function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
-  const initialShape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
   const [stage, setStage] = useState<'shape' | 'size' | 'style' | 'finish'>('shape');
-  const [eyeShape, setEyeShape] = useState(initialShape);
-  const [eyeSize, setEyeSize] = useState(selected ? eyeSizeKey(selected) : eyeSizeKey(representativeOption(options, initialShape)));
-  const [eyeStyle, setEyeStyle] = useState(selected?.style ?? representativeOption(options, initialShape)?.style ?? '');
+  const [eyeShape, setEyeShape] = useState(selected?.shape ?? '');
+  const [eyeSize, setEyeSize] = useState(selected ? eyeSizeKey(selected) : '');
+  const [eyeStyle, setEyeStyle] = useState(selected?.style ?? '');
 
   useEffect(() => {
-    const shape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
-    const next = selected ?? representativeOption(options, shape);
     setStage('shape');
-    setEyeShape(shape);
-    setEyeSize(next ? eyeSizeKey(next) : '');
-    setEyeStyle(next?.style ?? '');
+    setEyeShape(selected?.shape ?? '');
+    setEyeSize(selected ? eyeSizeKey(selected) : '');
+    setEyeStyle(selected?.style ?? '');
   }, [options]);
 
   const eyeShapes = useMemo(() => [...new Set(options.map((option) => option.shape).filter(Boolean))] as string[], [options]);
@@ -128,13 +124,17 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
   const finishOptions = useMemo(() => options.filter((option) => option.shape === eyeShape && (eyeShape === 'beady' || (eyeSizeKey(option) === eyeSize && option.style === eyeStyle))), [options, eyeShape, eyeSize, eyeStyle]);
 
   const chooseShape = (shape: string) => {
-    const next = representativeOption(options, shape);
+    const availableSizes = [...new Set(options.filter((option) => option.shape === shape).map(eyeSizeKey).filter(Boolean))];
     setEyeShape(shape);
-    setEyeSize(next ? eyeSizeKey(next) : '');
-    setEyeStyle(next?.style ?? '');
-    if (shape === 'beady' && next) {
-      onSelect(next);
+    setEyeSize('');
+    setEyeStyle('');
+    if (shape === 'beady') {
       setStage('finish');
+      return;
+    }
+    if (availableSizes.length === 1) {
+      setEyeSize(availableSizes[0]);
+      setStage('style');
       return;
     }
     setStage('size');
@@ -148,9 +148,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
   };
 
   const chooseStyle = (style: string) => {
-    const next = options.find((option) => option.shape === eyeShape && eyeSizeKey(option) === eyeSize && option.style === style);
     setEyeStyle(style);
-    if (next) onSelect(next);
     setStage('finish');
   };
 
@@ -161,8 +159,8 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
 
   const goBack = () => {
     if (stage === 'shape') return onBack?.();
-    if (stage === 'finish') return setStage(selected === null || eyeShape === 'beady' ? 'shape' : 'style');
-    if (stage === 'style') return setStage('size');
+    if (stage === 'finish') return setStage((touched && selected === null) || eyeShape === 'beady' ? 'shape' : 'style');
+    if (stage === 'style') return setStage(eyeSizes.length > 1 ? 'size' : 'shape');
     setStage('shape');
   };
 
@@ -172,12 +170,12 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Eye shape</span></div>
           <div className="option-grid option-grid--eyes">
-            <NoThanksCard selected={touched && selected === null} onSelect={chooseNoThanks} />
             {eyeShapes.map((shape) => {
               const option = representativeOption(options, shape);
-              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={eyeShape === shape && selected !== null} onSelect={() => chooseShape(shape)} />;
+              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={eyeShape === shape} onSelect={() => chooseShape(shape)} />;
             })}
           </div>
+          <SkipStepButton selected={touched && selected === null} onSelect={chooseNoThanks} />
         </>
       )}
       {stage === 'size' && (
@@ -186,7 +184,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
           <div className="option-grid option-grid--eyes">
             {eyeSizes.map((size) => {
               const option = options.find((item) => item.shape === eyeShape && eyeSizeKey(item) === size) ?? options[0];
-              return <OptionCard key={size} option={{ ...option, label: eyeSizeLabel(size) }} selected={eyeSize === size} onSelect={() => chooseSize(size)} />;
+              return <OptionCard key={size} option={{ ...option, label: eyeSizeLabel(size) }} selected={eyeSize === size && Boolean(eyeSize)} onSelect={() => chooseSize(size)} />;
             })}
           </div>
         </>
@@ -197,7 +195,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
           <div className="option-grid option-grid--eyes">
             {eyeStyles.map((style) => {
               const option = options.find((item) => item.shape === eyeShape && eyeSizeKey(item) === eyeSize && item.style === style) ?? options[0];
-              return <OptionCard key={style} option={{ ...option, label: title(style) }} selected={eyeStyle === style} onSelect={() => chooseStyle(style)} />;
+              return <OptionCard key={style} option={{ ...option, label: title(style) }} selected={eyeStyle === style && Boolean(eyeStyle)} onSelect={() => chooseStyle(style)} />;
             })}
           </div>
         </>
@@ -206,8 +204,9 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Confirm</span></div>
           <div className="option-grid option-grid--eyes">
-            {touched && selected === null ? <NoThanksCard selected onSelect={chooseNoThanks} /> : finishOptions.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => onSelect(option)} />)}
+            {touched && selected === null ? <p className="wizard-skip-confirmation">No eyes selected</p> : finishOptions.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => onSelect(option)} />)}
           </div>
+          {touched && selected === null && <SkipStepButton selected onSelect={chooseNoThanks} />}
         </>
       )}
       <p className="catalog-note">{touched && selected === null ? 'Eye step skipped' : stage === 'shape' ? 'Choose the eye family first' : `Choosing ${title(eyeShape)} eyes`}</p>
@@ -219,18 +218,14 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
 }
 
 function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Props) {
-  const initialShape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
-  const initialOption = selected ?? representativeOption(options, initialShape);
   const [stage, setStage] = useState<'shape' | 'size' | 'colour' | 'finish'>('shape');
-  const [noseShape, setNoseShape] = useState(initialShape);
-  const [noseSize, setNoseSize] = useState(initialOption?.size ?? '');
+  const [noseShape, setNoseShape] = useState(selected?.shape ?? '');
+  const [noseSize, setNoseSize] = useState(selected?.size ?? '');
 
   useEffect(() => {
-    const shape = selected?.shape ?? representativeOption(options, 'round')?.shape ?? 'round';
-    const next = selected ?? representativeOption(options, shape);
     setStage('shape');
-    setNoseShape(shape);
-    setNoseSize(next?.size ?? '');
+    setNoseShape(selected?.shape ?? '');
+    setNoseSize(selected?.size ?? '');
   }, [options]);
 
   const shapes = useMemo(() => [...new Set(options.map((option) => option.shape).filter(Boolean))] as string[], [options]);
@@ -238,9 +233,8 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
   const colourOptions = useMemo(() => options.filter((option) => option.shape === noseShape && option.size === noseSize), [options, noseShape, noseSize]);
 
   const chooseShape = (shape: string) => {
-    const next = representativeOption(options, shape);
     setNoseShape(shape);
-    setNoseSize(next?.size ?? '');
+    setNoseSize('');
     setStage('size');
   };
 
@@ -262,12 +256,12 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Nose shape</span></div>
           <div className="option-grid option-grid--nose">
-            <NoThanksCard selected={touched && selected === null} onSelect={chooseNoThanks} />
             {shapes.map((shape) => {
               const option = representativeOption(options, shape);
-              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={noseShape === shape && selected !== null} onSelect={() => chooseShape(shape)} />;
+              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={noseShape === shape} onSelect={() => chooseShape(shape)} />;
             })}
           </div>
+          <SkipStepButton selected={touched && selected === null} onSelect={chooseNoThanks} />
         </>
       )}
       {stage === 'size' && (
@@ -276,7 +270,7 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
           <div className="option-grid option-grid--nose">
             {sizes.map((size) => {
               const option = options.find((item) => item.shape === noseShape && item.size === size) ?? options[0];
-              return <OptionCard key={size} option={{ ...option, label: title(size) }} selected={noseSize === size} onSelect={() => { setNoseSize(size); setStage('colour'); }} />;
+              return <OptionCard key={size} option={{ ...option, label: title(size) }} selected={noseSize === size && Boolean(noseSize)} onSelect={() => { setNoseSize(size); setStage('colour'); }} />;
             })}
           </div>
         </>
@@ -293,8 +287,9 @@ function NoseWizard({ options, selected, touched = false, onSelect, onBack }: Pr
         <>
           <div className="eye-wizard__stage"><span className="filter-label">Confirm</span></div>
           <div className="option-grid option-grid--nose">
-            {touched && selected === null ? <NoThanksCard selected onSelect={chooseNoThanks} /> : selected && <OptionCard option={selected} selected onSelect={() => setStage('colour')} />}
+            {touched && selected === null ? <p className="wizard-skip-confirmation">No nose selected</p> : selected && <OptionCard option={selected} selected onSelect={() => setStage('colour')} />}
           </div>
+          {touched && selected === null && <SkipStepButton selected onSelect={chooseNoThanks} />}
         </>
       )}
       <p className="catalog-note">{touched && selected === null ? 'Nose step skipped' : stage === 'shape' ? 'Choose the nose shape first' : `Choosing ${title(noseShape)} nose`}</p>
@@ -329,10 +324,10 @@ export function OptionPanel({ category, options, selected, touched = false, onSe
         </div>
       )}
       <div className={`option-grid option-grid--${category}`}>
-        {optionalCategories.has(category) && <NoThanksCard selected={touched && selected === null} onSelect={() => onSelect(null)} />}
         {visible.map((option) => <OptionCard key={option.id} option={option} selected={selected?.id === option.id} onSelect={() => onSelect(option)} />)}
       </div>
       <p className="catalog-note">Showing {visible.length} of {options.length} {category} choices</p>
+      {optionalCategories.has(category) && <SkipStepButton selected={touched && selected === null} onSelect={() => onSelect(null)} />}
     </section>
   );
 }

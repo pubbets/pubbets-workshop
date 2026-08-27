@@ -4,7 +4,7 @@ import { calculateTotal } from './pricing';
 
 describe('v1 catalog and pricing', () => {
   it('contains the generated launch records', () => {
-    expect(categoryCount).toBe(409);
+    expect(categoryCount).toBe(408);
   });
 
   it('starts at the base price with free defaults', () => {
