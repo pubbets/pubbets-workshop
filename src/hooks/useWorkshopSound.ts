@@ -39,7 +39,7 @@ const volumes: Record<WorkshopSound, number> = {
   restore: 0.38,
   reset: 0.38,
   homeTune: 0.24,
-  welcome: 0.46,
+  welcome: 0.36,
   finish: 0.5
 };
 

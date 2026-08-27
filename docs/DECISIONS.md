@@ -150,3 +150,15 @@ and secondary actions use a quieter shared parchment-and-teal system.
   text links, leaving one unmistakable main Back button in the footer.
 - Allow short option sets to form a compact work card rather than stretching an
   empty panel to the bottom of the viewport.
+
+## 2026-08-27 — Keep the entrance handoff immediate
+
+The door effect is a single short 420 ms reveal. Title-screen artwork is
+preloaded while the entrance is visible, and the separate browser view
+transition and cream wash are not used because they can hold on an empty frame
+on iPad Safari.
+
+- Start Building uses a clean original harp arpeggio at a restrained volume.
+- Eye-shape choices use dedicated scalable Round, horizontal Oval, and Black
+  Beady diagrams so a missing or placeholder thumbnail never represents the
+  wrong physical eye shape.

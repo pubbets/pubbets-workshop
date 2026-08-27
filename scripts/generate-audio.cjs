@@ -69,6 +69,13 @@ function addBrightNote(buffer, start, pitch, strength = 0.5, duration = 0.28) {
   addTone(buffer, start, duration * 0.68, pitch * 4.02, pitch * 4, strength * 0.055, 6.2);
 }
 
+function addHarpNote(buffer, start, pitch, strength = 0.42, duration = 0.72) {
+  addTone(buffer, start, duration, pitch * 1.002, pitch * 0.998, strength, 5.2);
+  addTone(buffer, start, duration * 0.72, pitch * 2.006, pitch * 2, strength * 0.24, 6.8);
+  addTone(buffer, start, duration * 0.54, pitch * 3.005, pitch * 3, strength * 0.09, 8.2);
+  addTone(buffer, start, duration * 0.4, pitch * 4.004, pitch * 4, strength * 0.035, 9.5);
+}
+
 function addGlitter(buffer, start, strength = 0.18) {
   addBrightNote(buffer, start, 1318.51, strength, 0.12);
   addBrightNote(buffer, start + 0.035, 1567.98, strength * 0.82, 0.14);
@@ -184,13 +191,13 @@ const sounds = {
     return sound;
   },
   'welcome-workshop': () => {
-    const sound = createBuffer(0.84);
-    addBrightNote(sound, 0.01, 523.25, 0.32, 0.3);
-    addBrightNote(sound, 0.12, 659.25, 0.38, 0.32);
-    addBrightNote(sound, 0.24, 783.99, 0.43, 0.36);
-    addBrightNote(sound, 0.38, 1046.5, 0.48, 0.4);
-    addGlitter(sound, 0.46, 0.12);
-    addEcho(sound, 0.075, 0.15);
+    const sound = createBuffer(1.22);
+    addHarpNote(sound, 0.01, 523.25, 0.32, 0.75);
+    addHarpNote(sound, 0.095, 659.25, 0.34, 0.78);
+    addHarpNote(sound, 0.19, 783.99, 0.36, 0.82);
+    addHarpNote(sound, 0.3, 1046.5, 0.4, 0.86);
+    addHarpNote(sound, 0.43, 1318.51, 0.23, 0.68);
+    addEcho(sound, 0.085, 0.1);
     return sound;
   },
   'review-celebration': () => {

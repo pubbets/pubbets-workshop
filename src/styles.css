@@ -328,15 +328,15 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-scene {
-  animation: entrance-camera-move 900ms cubic-bezier(0.38, 0, 0.18, 1) both;
+  animation: entrance-camera-move 420ms cubic-bezier(0.38, 0, 0.18, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-light {
-  animation: entrance-light-bloom 900ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+  animation: entrance-light-bloom 420ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-brand {
-  animation: entrance-brand-away 500ms ease-out both;
+  animation: entrance-brand-away 280ms ease-out both;
 }
 
 .workshop-entrance.is-opening .entrance-door {
@@ -348,11 +348,11 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-portal {
-  animation: entrance-portal-open 820ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
+  animation: entrance-portal-open 420ms cubic-bezier(0.2, 0.75, 0.2, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-sparkles i {
-  animation: entrance-sparkle-burst 720ms cubic-bezier(0.16, 0.7, 0.25, 1) both;
+  animation: entrance-sparkle-burst 410ms cubic-bezier(0.16, 0.7, 0.25, 1) both;
 }
 
 .workshop-entrance.is-opening .entrance-sparkles i:nth-child(2n) {
@@ -364,7 +364,7 @@ button:focus-visible {
 }
 
 .workshop-entrance.is-opening .entrance-wash {
-  animation: entrance-wash-in 900ms cubic-bezier(0.42, 0, 0.25, 1) both;
+  display: none;
 }
 
 @keyframes entrance-prompt-jiggle {
@@ -510,7 +510,12 @@ button:focus-visible {
     linear-gradient(rgb(72 33 10 / 8%), rgb(72 33 10 / 12%)),
     url("../assets/ui/backgrounds/home-pegboard-background.png") center / cover no-repeat,
     linear-gradient(135deg, #d89b51, #f5c97f 42%, #d48f41);
-  view-transition-name: workshop-screen;
+  animation: welcome-screen-arrive 180ms ease-out both;
+}
+
+@keyframes welcome-screen-arrive {
+  from { opacity: 0.25; }
+  to { opacity: 1; }
 }
 
 ::view-transition-old(workshop-screen) {
@@ -1875,9 +1880,76 @@ button:focus-visible {
 
 .option-card__image img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: min(100%, 104px);
+  height: 92%;
   object-fit: contain;
+}
+
+.eye-shape-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  height: 76px;
+  margin-bottom: 2px;
+  border-radius: 11px;
+  background: rgb(255 255 255 / 55%);
+}
+
+.eye-shape-preview i {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border: 3px solid #3d2b23;
+  border-radius: 50%;
+  background: #fffdf5;
+}
+
+.eye-shape-preview i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1f1a17;
+  transform: translateY(-50%);
+}
+
+.eye-shape-preview i:first-child::after {
+  right: 7px;
+}
+
+.eye-shape-preview i:last-child::after {
+  left: 7px;
+}
+
+.eye-shape-preview.is-oval i {
+  width: 57px;
+  height: 39px;
+}
+
+.eye-shape-preview.is-beady {
+  gap: 22px;
+}
+
+.eye-shape-preview.is-beady i {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #49352a;
+  background: #171311;
+  box-shadow: inset 4px 4px 0 rgb(255 255 255 / 10%);
+}
+
+.eye-shape-preview.is-beady i::after {
+  top: 4px;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  background: #fffdf0;
+  transform: none;
 }
 
 .option-card__swatch,
@@ -2105,6 +2177,30 @@ button:focus-visible {
 
   .option-card__image {
     height: 52px;
+  }
+
+  .eye-shape-preview {
+    height: 52px;
+  }
+
+  .eye-shape-preview i {
+    width: 34px;
+    height: 34px;
+  }
+
+  .eye-shape-preview i::after {
+    width: 12px;
+    height: 12px;
+  }
+
+  .eye-shape-preview.is-oval i {
+    width: 42px;
+    height: 30px;
+  }
+
+  .eye-shape-preview.is-beady i {
+    width: 19px;
+    height: 19px;
   }
 
   .navigation-bar {

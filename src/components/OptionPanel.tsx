@@ -78,14 +78,24 @@ function optionGroup(option: AssetOption) {
   return 'base';
 }
 
-function OptionCard({ option, selected, onSelect }: { option: AssetOption; selected: boolean; onSelect: () => void }) {
+function EyeShapePreview({ shape }: { shape: string }) {
+  return (
+    <span className={`eye-shape-preview is-${shape}`} aria-hidden="true">
+      <i /><i />
+    </span>
+  );
+}
+
+function OptionCard({ option, selected, onSelect, eyeShapePreview }: { option: AssetOption; selected: boolean; onSelect: () => void; eyeShapePreview?: string }) {
   const isBodyColour = option.category === 'body';
   const swatchStyle = isBodyColour ? ({ '--swatch-colour': optionColour(option) } as React.CSSProperties) : undefined;
-  const thumbnail = resolveThumbnail(option);
+  const thumbnail = eyeShapePreview ? null : resolveThumbnail(option);
+  const hasVisual = Boolean(thumbnail || eyeShapePreview);
 
   return (
-    <button className={`option-card${thumbnail ? ' has-image' : ''}${selected ? ' is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
+    <button className={`option-card${hasVisual ? ' has-image' : ''}${selected ? ' is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
       {isBodyColour && <span className="option-card__swatch" style={swatchStyle} aria-hidden="true" />}
+      {eyeShapePreview && <EyeShapePreview shape={eyeShapePreview} />}
       {thumbnail && <span className="option-card__image" aria-hidden="true"><img src={thumbnail} alt="" /></span>}
       <span className="option-card__label">{option.label}</span>
       {option.group && <span className="option-card__meta">{title(option.group)}</span>}
@@ -174,7 +184,7 @@ function EyeWizard({ options, selected, touched = false, onSelect, onBack }: Pro
           <div className="option-grid option-grid--eyes">
             {eyeShapes.map((shape) => {
               const option = representativeOption(options, shape);
-              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={eyeShape === shape} onSelect={() => chooseShape(shape)} />;
+              return <OptionCard key={shape} option={{ ...option, label: title(shape) }} selected={eyeShape === shape} onSelect={() => chooseShape(shape)} eyeShapePreview={shape} />;
             })}
           </div>
           <SkipStepButton selected={touched && selected === null} onSelect={chooseNoThanks} />

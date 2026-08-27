@@ -3,12 +3,11 @@ import pubbetsWorkshopLogo from '../../assets/ui/logo/pubbets-workshop-logo.png'
 import workshopExteriorLandscape from '../../assets/ui/backgrounds/workshop-exterior-landscape.webp';
 import workshopExteriorPortrait from '../../assets/ui/backgrounds/workshop-exterior-portrait.webp';
 import workshopExteriorTablet from '../../assets/ui/backgrounds/workshop-exterior-tablet.webp';
+import homePegboardBackground from '../../assets/ui/backgrounds/home-pegboard-background.png';
+import startBuildingButton from '../../assets/ui/buttons/ui-button-start-building-clean.png';
+import randomiseButton from '../../assets/ui/buttons/ui-button-randomise-wide-clean.png';
 
-const entranceDuration = 900;
-
-type ViewTransitionDocument = Document & {
-  startViewTransition?: (updateCallback: () => void | Promise<void>) => unknown;
-};
+const entranceDuration = 420;
 
 type PromptMotion = 'jiggle' | 'pulse' | null;
 
@@ -24,6 +23,16 @@ export function WorkshopEntrance({ onEnter, onEntered }: Props) {
 
   useEffect(() => () => {
     if (transitionTimer.current !== null) window.clearTimeout(transitionTimer.current);
+  }, []);
+
+  useEffect(() => {
+    // The title screen uses large illustrated assets. Warm them into the browser
+    // cache while the user is looking at the entrance so the reveal is instant.
+    [homePegboardBackground, pubbetsWorkshopLogo, startBuildingButton, randomiseButton].forEach((source) => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.src = source;
+    });
   }, []);
 
   useEffect(() => {
@@ -56,18 +65,7 @@ export function WorkshopEntrance({ onEnter, onEntered }: Props) {
     setOpening(true);
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const finishEntrance = () => {
-      const transitionDocument = document as ViewTransitionDocument;
-      if (!prefersReducedMotion && transitionDocument.startViewTransition) {
-        transitionDocument.startViewTransition(async () => {
-          onEntered();
-          await new Promise<void>((resolve) => window.requestAnimationFrame(() => resolve()));
-        });
-      } else {
-        onEntered();
-      }
-    };
-    transitionTimer.current = window.setTimeout(finishEntrance, prefersReducedMotion ? 80 : entranceDuration);
+    transitionTimer.current = window.setTimeout(onEntered, prefersReducedMotion ? 40 : entranceDuration);
   };
 
   return (

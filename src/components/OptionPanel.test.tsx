@@ -55,4 +55,17 @@ describe('OptionPanel eye wizard', () => {
 
     act(() => root.unmount());
   });
+
+  it('shows a distinct visual for each eye shape', () => {
+    const root = createRoot(container);
+    act(() => root.render(
+      <OptionPanel category="eyes" options={catalog.eyes} selected={null} touched={false} onSelect={vi.fn()} />
+    ));
+
+    expect(container.querySelector('.eye-shape-preview.is-round')).not.toBeNull();
+    expect(container.querySelector('.eye-shape-preview.is-oval')).not.toBeNull();
+    expect(container.querySelector('.eye-shape-preview.is-beady')).not.toBeNull();
+
+    act(() => root.unmount());
+  });
 });
