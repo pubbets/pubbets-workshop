@@ -69,11 +69,30 @@ function addBrightNote(buffer, start, pitch, strength = 0.5, duration = 0.28) {
   addTone(buffer, start, duration * 0.68, pitch * 4.02, pitch * 4, strength * 0.055, 6.2);
 }
 
-function addHarpNote(buffer, start, pitch, strength = 0.42, duration = 0.72) {
-  addTone(buffer, start, duration, pitch * 1.002, pitch * 0.998, strength, 5.2);
-  addTone(buffer, start, duration * 0.72, pitch * 2.006, pitch * 2, strength * 0.24, 6.8);
-  addTone(buffer, start, duration * 0.54, pitch * 3.005, pitch * 3, strength * 0.09, 8.2);
-  addTone(buffer, start, duration * 0.4, pitch * 4.004, pitch * 4, strength * 0.035, 9.5);
+function addPluckedString(buffer, start, pitch, strength = 0.42, duration = 0.9) {
+  const startSample = Math.floor(start * SAMPLE_RATE);
+  const sampleCount = Math.floor(duration * SAMPLE_RATE);
+  const delayLength = Math.max(2, Math.round(SAMPLE_RATE / pitch));
+  const string = new Float64Array(delayLength);
+
+  for (let index = 0; index < delayLength; index += 1) {
+    const position = index / delayLength;
+    string[index] = (random() * 2 - 1) * Math.sin(Math.PI * position);
+  }
+
+  let stringIndex = 0;
+  for (let index = 0; index < sampleCount && startSample + index < buffer.length; index += 1) {
+    const current = string[stringIndex];
+    const nextIndex = (stringIndex + 1) % delayLength;
+    const next = string[nextIndex];
+    string[stringIndex] = (current * 0.46 + next * 0.54) * 0.9962;
+    stringIndex = nextIndex;
+
+    const time = index / SAMPLE_RATE;
+    const release = Math.min(1, (duration - time) / 0.16);
+    const naturalDecay = Math.exp(-1.25 * time / duration);
+    buffer[startSample + index] += current * strength * naturalDecay * Math.max(0, release);
+  }
 }
 
 function addGlitter(buffer, start, strength = 0.18) {
@@ -191,13 +210,15 @@ const sounds = {
     return sound;
   },
   'welcome-workshop': () => {
-    const sound = createBuffer(1.22);
-    addHarpNote(sound, 0.01, 523.25, 0.32, 0.75);
-    addHarpNote(sound, 0.095, 659.25, 0.34, 0.78);
-    addHarpNote(sound, 0.19, 783.99, 0.36, 0.82);
-    addHarpNote(sound, 0.3, 1046.5, 0.4, 0.86);
-    addHarpNote(sound, 0.43, 1318.51, 0.23, 0.68);
-    addEcho(sound, 0.085, 0.1);
+    const sound = createBuffer(1.28);
+    addPluckedString(sound, 0.01, 523.25, 0.34, 1.0);
+    addPluckedString(sound, 0.075, 659.25, 0.32, 0.98);
+    addPluckedString(sound, 0.145, 783.99, 0.33, 0.96);
+    addPluckedString(sound, 0.225, 987.77, 0.31, 0.9);
+    addPluckedString(sound, 0.33, 1174.66, 0.28, 0.82);
+    addPluckedString(sound, 0.45, 1567.98, 0.19, 0.7);
+    addEcho(sound, 0.052, 0.08);
+    addEcho(sound, 0.091, 0.065);
     return sound;
   },
   'review-celebration': () => {

@@ -235,11 +235,11 @@ export function App() {
               onBack={() => moveTo(activeStep - 1)}
             />
           ) : <ReviewPanel selections={selections} total={total} />}
-          <footer className="navigation-bar">
-            <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
+          <footer className={`navigation-bar${activeStep === 0 ? ' is-first-step' : ''}`}>
+            {activeStep > 0 && <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} />}
             <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
             {activeStep < steps.length - 1 && canContinue && (
-              <UiArtButton className="navigation-next is-ready" asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
+              <UiArtButton key={`next-${activeStep}`} className="navigation-next is-ready" asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
             )}
           </footer>
         </section>

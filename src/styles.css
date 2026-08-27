@@ -1139,8 +1139,19 @@ button:focus-visible {
   align-self: stretch;
 }
 
+.navigation-bar.is-first-step {
+  grid-template-columns: repeat(2, minmax(0, 164px));
+  justify-content: center;
+}
+
+.navigation-bar.is-first-step .ui-art-button:only-child {
+  grid-column: 1 / -1;
+}
+
 .navigation-next.is-ready {
-  animation: navigation-next-ready 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation:
+    navigation-next-ready 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both,
+    navigation-next-reminder 1900ms 700ms ease-in-out infinite;
 }
 
 @keyframes navigation-next-ready {
@@ -1149,6 +1160,13 @@ button:focus-visible {
   62% { transform: scale(0.98) rotate(-1deg); }
   82% { transform: scale(1.035) rotate(0.5deg); }
   100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes navigation-next-reminder {
+  0%, 48%, 100% { transform: scale(1) rotate(0); }
+  61% { transform: scale(1.055) rotate(1deg); }
+  72% { transform: scale(0.985) rotate(-0.7deg); }
+  83% { transform: scale(1.035) rotate(0.35deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

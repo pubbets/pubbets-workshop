@@ -158,7 +158,13 @@ preloaded while the entrance is visible, and the separate browser view
 transition and cream wash are not used because they can hold on an empty frame
 on iPad Safari.
 
-- Start Building uses a clean original harp arpeggio at a restrained volume.
+- Start Building uses an original plucked-string harp WAV with a short quirky
+  arpeggio and restrained volume, avoiding the previous sine-tone character.
 - Eye-shape choices use dedicated scalable Round, horizontal Oval, and Black
   Beady diagrams so a missing or placeholder thumbnail never represents the
   wrong physical eye shape.
+- The first builder step does not render a Back button. Reset stays centred
+  until the step is complete, then Reset and Next share the action row.
+- When a step becomes complete, Next arrives once and then gives a gentle
+  repeating reminder until the user changes steps. Reduced-motion preferences
+  disable both animations.
