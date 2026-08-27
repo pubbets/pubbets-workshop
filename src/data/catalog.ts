@@ -10,6 +10,18 @@ import type { AssetOption, Category, SelectionState, StepDefinition } from '../t
 
 const asOptions = (items: unknown) => items as AssetOption[];
 
+const thumbnailModules = import.meta.glob('../../assets/thumbnails/*.{png,webp}', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+}) as Record<string, string>;
+
+const thumbnailUrls = Object.fromEntries(
+  Object.entries(thumbnailModules).map(([path, url]) => [path.split('/').pop(), url])
+) as Record<string, string>;
+
+const thumbnailUrl = (filename: string) => thumbnailUrls[filename] ?? null;
+
 export const catalog: Record<Category, AssetOption[]> = {
   body: asOptions(bodyData),
   eyes: asOptions(eyesData),
@@ -56,7 +68,7 @@ export function resolveThumbnail(option: AssetOption): string | null {
   switch (option.category) {
     case 'body': {
       const fileId = id === 'caramel-brown' ? 'caramel' : id;
-      return `/thumbnails/body_${fileId}.webp`;
+      return thumbnailUrl(`body_${fileId}.webp`);
     }
     case 'eyes': {
       const eyeMap: Record<string, string> = {
@@ -72,13 +84,13 @@ export function resolveThumbnail(option: AssetOption): string | null {
         'oval-65x40-flat-blue-lashes': 'eyes_round-flat-plain.webp',
         'oval-65x40-flat-pink-lashes': 'eyes_round-flat-plain.webp'
       };
-      return eyeMap[id] ? `/thumbnails/${eyeMap[id]}` : null;
+      return eyeMap[id] ? thumbnailUrl(eyeMap[id]) : null;
     }
     case 'nose':
-      return option.shape ? `/thumbnails/nose_${option.shape.replaceAll('-', '-')}.webp` : null;
+      return option.shape ? thumbnailUrl(`nose_${option.shape.replaceAll('-', '-')}.webp`) : null;
     case 'glasses': {
       const fileId = id.replace(/-xl$/, '');
-      return `/thumbnails/glasses_${fileId}.webp`;
+      return thumbnailUrl(`glasses_${fileId}.webp`);
     }
     case 'outfit': {
       const outfitMap: Record<string, string> = {
@@ -96,7 +108,7 @@ export function resolveThumbnail(option: AssetOption): string | null {
         'white-t': 'outfit_white-t.webp',
         'blue-jeans': 'outfit_blue-jeans.webp'
       };
-      return outfitMap[id] ? `/thumbnails/${outfitMap[id]}` : null;
+      return outfitMap[id] ? thumbnailUrl(outfitMap[id]) : null;
     }
     default:
       return null;

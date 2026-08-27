@@ -33,7 +33,7 @@ describe('OptionPanel eye wizard', () => {
     expect(container.querySelector('.option-card.is-selected')).toBeNull();
 
     act(() => buttonNamed('Dome')?.click());
-    expect(container.textContent).toContain('Confirm');
+    expect(container.textContent).toContain('Choose your eye look');
     expect(container.querySelector('.option-card.is-selected')).toBeNull();
     expect(onSelect).not.toHaveBeenCalled();
 

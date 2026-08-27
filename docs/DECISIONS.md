@@ -132,3 +132,21 @@ only after the step has a complete selection or has been intentionally skipped.
   being pinned to the bottom of a tall empty panel.
 - The warm entrance wash is brief and overlaps the interior reveal so the
   screen never holds on an empty cream frame.
+
+## 2026-08-27 — Use one restrained visual system in the builder
+
+The builder should feel like a playful craft game, but its interface must stay
+clearer than its scenery. Decorative orange artwork is reserved for the primary
+Back, Reset, and Next navigation, while choice cards, filters, progress, totals,
+and secondary actions use a quieter shared parchment-and-teal system.
+
+- Use opaque parchment work surfaces so the workshop background does not muddy
+  text or controls.
+- Make the active step dark teal, completed steps warm neutral, and future steps
+  subdued so only one step appears current.
+- Show available product thumbnails inside choice cards when an approved asset
+  exists; retain colour swatches and clean text cards as fallbacks.
+- Put multi-stage “previous choice” controls inside the option area as simple
+  text links, leaving one unmistakable main Back button in the footer.
+- Allow short option sets to form a compact work card rather than stretching an
+  empty panel to the bottom of the viewport.

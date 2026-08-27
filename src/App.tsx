@@ -221,7 +221,7 @@ export function App() {
         </section>
         <section className="controls-column">
           <header className="controls-heading">
-            {category !== 'body' && <span className="eyebrow">{step.title}</span>}
+            <span className="eyebrow">{activeStep === steps.length - 1 ? 'Final check' : `Step ${activeStep + 1} of ${steps.length - 1}`}<b>{` · ${step.title}`}</b></span>
             <h1>{stepHeading}</h1>
             <p>{category === 'body' ? 'Body colour is required. Tap a colour to preview it live.' : category ? 'Tap a choice to see it on your Pubbet.' : 'Everything look just right?'}</p>
           </header>
