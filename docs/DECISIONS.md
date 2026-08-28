@@ -103,3 +103,18 @@ the Start Building and Randomise actions stay together at the bottom.
 - That centre stage will later show a randomly changing assembled puppet.
 - The wide Randomise button uses the same light wood border treatment as the
   Start Building button.
+
+## 2026-08-28 — Locked the V1 blank puppet base from the app graphics Canva file
+
+The approved V1 blank puppet base is now page 2 of the Canva file
+`NEW 2026 PUBBETS WORKSHOP APP GRAPHICS`.
+
+- Treat this page as the current visual source of truth for the base puppet.
+- Use this base for future full-body overlays, close-up overlays, and asset
+  fitting decisions.
+- The base should remain a clean blank puppet: no eyes, nose, hair, glasses,
+  clothes, shoes, or accessories baked into the permanent body layer.
+- Older generated body drafts and the old Rive base notes are superseded for V1
+  production decisions.
+- The V1 app may still use app-applied body colour tinting until final aligned
+  colour body PNGs are exported from the approved Canva base.

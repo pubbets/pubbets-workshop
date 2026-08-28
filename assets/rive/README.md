@@ -1,8 +1,10 @@
 # Pubbet Rive source art
 
-`pubbet-base.svg` is the locked 2026 blank puppet base for the new app. Its approved visual source is page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`). Its body shapes use a neutral white fill so Rive can apply the customer-selected colour at runtime. It has a transparent canvas and simple fills and strokes that import cleanly into Rive.
+`pubbet-base.svg` is an archived Rive/vector base candidate. It was originally approved from page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`), but the V1 app has since moved to layered PNG artwork.
 
-This base replaces the older CPB-copy body proportions. Future clothing, hair, glasses, shoes, and accessories should be fitted to this 2026 base, even if their thumbnails still show human-style garments or older source shapes.
+The current approved V1 blank puppet source is page 2 of the Canva file `NEW 2026 PUBBETS WORKSHOP APP GRAPHICS`. Future Rive/vector work should rebuild from that Canva page rather than from this older SVG.
+
+This archived base replaced the older CPB-copy body proportions at the time. Current V1 clothing, hair, glasses, shoes, and accessories should be fitted to the approved Canva page 2 base, even if their thumbnails still show human-style garments or older source shapes.
 
 The riggable parts have stable IDs: head and ears, torso, separate arms and hands, and separate legs and feet. Suggested pivot positions are recorded in `pubbet-base.rig.json`.
 

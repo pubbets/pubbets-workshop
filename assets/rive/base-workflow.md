@@ -1,6 +1,8 @@
 # Base puppet workflow
 
-The current locked base is `pubbet-base.svg`, approved from page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`) on 2026-08-07.
+The current locked V1 base is page 2 of the Canva file `NEW 2026 PUBBETS WORKSHOP APP GRAPHICS`, approved on 2026-08-28.
+
+The older `pubbet-base.svg` was approved from page 3 of the Canva file `2026 ASSETS OUTFITS & SHOES` (`DAHRnSvPYPE`) on 2026-08-07. It is now archive/reference material until rebuilt from the approved V1 Canva page.
 
 Use this workflow if replacing the locked Pubbet base with a newer blank puppet graphic.
 
