@@ -35,6 +35,9 @@ export function WorkshopEntrance({ onEnter, onEntered }: Props) {
         <source media="(orientation: portrait)" srcSet={workshopExteriorPortrait} />
         <img src={workshopExteriorLandscape} alt="" />
       </picture>
+      <div className="entrance-sparkles" aria-hidden="true">
+        {Array.from({ length: 12 }, (_, index) => <span key={index} />)}
+      </div>
       <div className="entrance-light" aria-hidden="true" />
       <header className="entrance-brand">
         <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
