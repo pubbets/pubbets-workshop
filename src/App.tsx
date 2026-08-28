@@ -15,6 +15,7 @@ import pubbetsWorkshopLogo from '../assets/ui/logo/pubbets-workshop-logo.png';
 const storageKey = 'pubbets-workshop-v1.3-selection';
 const optionalCategories = new Set<Category>(['eyes', 'nose', 'glasses', 'hair', 'outfit', 'shoes', 'accessory']);
 const allCategories = Object.keys(catalog) as Category[];
+const closeUpSteps = new Set(['eyes', 'nose', 'glasses', 'hair']);
 
 type TouchedState = Record<Category, boolean>;
 type UndoSnapshot = {
@@ -68,6 +69,7 @@ export function App() {
   const [undoSnapshot, setUndoSnapshot] = useState<UndoSnapshot | null>(null);
   const [touchedCategories, setTouchedCategories] = useState<TouchedState>(() => touchedFromSelections(restoreSelections()));
   const [motionKey, setMotionKey] = useState(0);
+  const [previewMode, setPreviewMode] = useState<'full' | 'close'>('full');
   const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
@@ -84,6 +86,10 @@ export function App() {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));
     localStorage.setItem(storageKey, JSON.stringify(ids));
   }, [selections]);
+
+  useEffect(() => {
+    setPreviewMode(closeUpSteps.has(step.id) ? 'close' : 'full');
+  }, [step.id]);
 
   const select = (category: Category, option: AssetOption | null) => {
     setSelections((current) => ({ ...current, [category]: option }));
@@ -201,11 +207,12 @@ export function App() {
   }
 
   return (
-    <main className="workshop-app" data-step-id={step.id}>
+    <main className="workshop-app" data-step-id={step.id} data-preview-mode={previewMode}>
       <header className="app-header">
         <button className="app-logo-button" onClick={() => { setStarted(false); play('homeTune'); }} aria-label="Return to Pubbets Workshop home">
           <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
         </button>
+        <div className="step-status" aria-live="polite">Step {activeStep + 1} of {steps.length}</div>
         <div className="header-actions">
           <UiArtButton asset="randomiseSquare" label={category ? `Randomise ${category}` : 'Randomise build'} size="square" onClick={randomizeCurrent} title="Randomise" />
           <UiArtButton asset={soundEnabled ? 'soundOn' : 'soundOff'} label={soundEnabled ? 'Mute sound' : 'Enable sound'} size="square" onClick={() => setSoundEnabled(!soundEnabled)} title="Sound" />
@@ -215,7 +222,14 @@ export function App() {
       <div className="builder-layout">
         <section className="preview-column">
           <div className="mobile-step-heading"><strong>{stepHeading}</strong></div>
-          <PuppetPreview selections={selections} closeUp={['eyes', 'nose', 'glasses', 'hair'].includes(step.id)} bodyOnly={step.id === 'body'} motionKey={motionKey} />
+          <button
+            className="preview-mode-toggle"
+            onClick={() => setPreviewMode((mode) => mode === 'full' ? 'close' : 'full')}
+            type="button"
+          >
+            {previewMode === 'full' ? 'Close-up view' : 'Full body view'}
+          </button>
+          <PuppetPreview selections={selections} closeUp={previewMode === 'close'} bodyOnly={step.id === 'body'} motionKey={motionKey} />
           {undoSnapshot && <button className="restore-randomize" onClick={restorePrevious}>Restore previous</button>}
           {step.id !== 'body' && <div className="price-ticket"><span>Build total</span><strong>{formatMoney(total)}</strong></div>}
         </section>
