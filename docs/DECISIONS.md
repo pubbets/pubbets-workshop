@@ -110,6 +110,8 @@ The approved V1 blank puppet base is now page 2 of the Canva file
 `NEW 2026 PUBBETS WORKSHOP APP GRAPHICS`.
 
 - Treat this page as the current visual source of truth for the base puppet.
+- Page 2 was revised again on 2026-08-29; use the latest page 2 artwork rather
+  than earlier screenshots or exported drafts.
 - Use this base for future full-body overlays, close-up overlays, and asset
   fitting decisions.
 - The base should remain a clean blank puppet: no eyes, nose, hair, glasses,
