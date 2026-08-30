@@ -7,7 +7,10 @@ class FakeAudio {
   volume = 1;
   currentTime = 0;
   preload = '';
+  muted = false;
+  src = '';
   addEventListener() {}
+  load() {}
   play() {
     return Promise.resolve();
   }

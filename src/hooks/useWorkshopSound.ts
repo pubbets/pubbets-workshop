@@ -14,10 +14,10 @@ export type WorkshopSound =
 
 const preferenceKey = 'pubbets-workshop-sound-enabled';
 
-const sources: Record<WorkshopSound, string[]> = {
+export const workshopSoundSources: Record<WorkshopSound, string[]> = {
   select: [
-    new URL('../../assets/audio/select-wood-01.wav', import.meta.url).href,
-    new URL('../../assets/audio/select-wood-02.wav', import.meta.url).href
+    new URL('../../assets/audio/select-felt-01.wav', import.meta.url).href,
+    new URL('../../assets/audio/select-felt-02.wav', import.meta.url).href
   ],
   forward: [new URL('../../assets/audio/wizard-forward.wav', import.meta.url).href],
   back: [new URL('../../assets/audio/wizard-back.wav', import.meta.url).href],
@@ -30,10 +30,10 @@ const sources: Record<WorkshopSound, string[]> = {
   finish: [new URL('../../assets/audio/review-celebration.wav', import.meta.url).href]
 };
 
-const volumes: Record<WorkshopSound, number> = {
-  select: 0.38,
-  forward: 0.42,
-  back: 0.35,
+export const workshopSoundVolumes: Record<WorkshopSound, number> = {
+  select: 0.2,
+  forward: 0.32,
+  back: 0.28,
   blocked: 0.28,
   randomise: 0.46,
   restore: 0.38,
@@ -42,6 +42,33 @@ const volumes: Record<WorkshopSound, number> = {
   welcome: 0.46,
   finish: 0.5
 };
+
+const silentUnlockUrl = (() => {
+  const sampleRate = 44_100;
+  const samples = 441;
+  const dataSize = samples * 2;
+  const bytes = new Uint8Array(44 + dataSize);
+  const view = new DataView(bytes.buffer);
+  const writeString = (offset: number, value: string) => {
+    for (let index = 0; index < value.length; index += 1) bytes[offset + index] = value.charCodeAt(index);
+  };
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataSize, true);
+  let binary = '';
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return `data:audio/wav;base64,${btoa(binary)}`;
+})();
 
 function savedPreference() {
   try {
@@ -56,6 +83,9 @@ export function useWorkshopSound() {
   const [playingSounds, setPlayingSounds] = useState<Set<WorkshopSound>>(() => new Set());
   const enabledRef = useRef(enabled);
   const activeRef = useRef(new Map<WorkshopSound, HTMLAudioElement>());
+  const poolRef = useRef(new Map<string, HTMLAudioElement>());
+  const unlockedRef = useRef(false);
+  const preloadedRef = useRef(false);
   const selectionVariantRef = useRef(0);
 
   const setSoundPlaying = useCallback((sound: WorkshopSound, playing: boolean) => {
@@ -67,8 +97,18 @@ export function useWorkshopSound() {
     });
   }, []);
 
+  const audioFor = useCallback((url: string) => {
+    const existing = poolRef.current.get(url);
+    if (existing) return existing;
+    const audio = new Audio();
+    audio.preload = 'auto';
+    audio.src = url;
+    poolRef.current.set(url, audio);
+    return audio;
+  }, []);
+
   const stopAll = useCallback(() => {
-    for (const audio of activeRef.current.values()) {
+    for (const audio of poolRef.current.values()) {
       audio.pause();
       audio.currentTime = 0;
     }
@@ -87,31 +127,58 @@ export function useWorkshopSound() {
     if (!nextEnabled) stopAll();
   }, [stopAll]);
 
+  const preloadSfx = useCallback(() => {
+    for (const urls of Object.values(workshopSoundSources)) {
+      for (const url of urls) audioFor(url);
+    }
+    preloadedRef.current = true;
+  }, [audioFor]);
+
+  const unlock = useCallback(() => {
+    if (!enabledRef.current) return;
+
+    const silence = audioFor(silentUnlockUrl);
+    silence.muted = true;
+    silence.volume = 0;
+    void silence.play().then(() => {
+      unlockedRef.current = true;
+      silence.pause();
+      silence.currentTime = 0;
+    }).catch(() => {
+      unlockedRef.current = false;
+    });
+
+    if (!preloadedRef.current) preloadSfx();
+  }, [audioFor, preloadSfx]);
+
   const play = useCallback((sound: WorkshopSound) => {
     if (!enabledRef.current) return;
 
-    const options = sources[sound];
-    const optionIndex = sound === 'select' ? selectionVariantRef.current++ % options.length : 0;
-    const current = activeRef.current.get(sound);
-    if (current) {
-      current.pause();
-      current.currentTime = 0;
-    }
+    if (!unlockedRef.current) unlock();
 
-    const audio = new Audio(options[optionIndex]);
-    audio.preload = 'auto';
-    audio.volume = volumes[sound];
+    const options = workshopSoundSources[sound];
+    const optionIndex = sound === 'select' ? selectionVariantRef.current++ % options.length : 0;
+    const url = options[optionIndex];
+    const audio = audioFor(url);
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.muted = false;
+    audio.volume = workshopSoundVolumes[sound];
     activeRef.current.set(sound, audio);
-    const clear = () => {
+
+    void audio.play().then(() => {
+      unlockedRef.current = true;
+      setSoundPlaying(sound, true);
+      if (!preloadedRef.current) preloadSfx();
+    }).catch(() => {
+      unlockedRef.current = false;
       if (activeRef.current.get(sound) === audio) {
         activeRef.current.delete(sound);
         setSoundPlaying(sound, false);
       }
-    };
-    audio.addEventListener('ended', clear, { once: true });
-    audio.addEventListener('error', clear, { once: true });
-    void audio.play().then(() => setSoundPlaying(sound, true)).catch(clear);
-  }, [setSoundPlaying]);
+    });
+  }, [audioFor, preloadSfx, setSoundPlaying, unlock]);
 
   const stop = useCallback((sound: WorkshopSound, fadeMilliseconds = 0) => {
     const audio = activeRef.current.get(sound);
@@ -147,7 +214,10 @@ export function useWorkshopSound() {
 
   useEffect(() => {
     const handleVisibility = () => {
-      if (document.hidden) stopAll();
+      if (document.hidden) {
+        stopAll();
+        unlockedRef.current = false;
+      }
     };
     document.addEventListener('visibilitychange', handleVisibility);
     return () => {
@@ -156,5 +226,5 @@ export function useWorkshopSound() {
     };
   }, [stopAll]);
 
-  return { enabled, setEnabled, play, stop, isPlaying };
+  return { enabled, setEnabled, play, stop, isPlaying, unlock };
 }

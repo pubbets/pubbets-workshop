@@ -70,7 +70,7 @@ export function App() {
   const [touchedCategories, setTouchedCategories] = useState<TouchedState>(() => touchedFromSelections(restoreSelections()));
   const [motionKey, setMotionKey] = useState(0);
   const [previewMode, setPreviewMode] = useState<'full' | 'close'>('full');
-  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying } = useWorkshopSound();
+  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying, unlock } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
@@ -193,7 +193,10 @@ export function App() {
   if (!enteredWorkshop) {
     return (
       <WorkshopEntrance
-        onEnter={() => play('homeTune')}
+        onEnter={() => {
+          unlock();
+          play('homeTune');
+        }}
         onEntered={() => setEnteredWorkshop(true)}
       />
     );
@@ -208,7 +211,10 @@ export function App() {
         onToggleSound={() => {
           const nextEnabled = !soundEnabled;
           setSoundEnabled(nextEnabled);
-          if (nextEnabled) play('homeTune');
+          if (nextEnabled) {
+            unlock();
+            play('homeTune');
+          }
         }}
         onStart={() => {
           stop('homeTune', 180);
@@ -223,7 +229,7 @@ export function App() {
   return (
     <main className="workshop-app" data-step-id={step.id} data-preview-mode={previewMode}>
       <header className="app-header">
-        <button className="app-logo-button" onClick={() => { setStarted(false); play('homeTune'); }} aria-label="Return to Pubbets Workshop home">
+        <button className="app-logo-button" onClick={() => { setStarted(false); unlock(); play('homeTune'); }} aria-label="Return to Pubbets Workshop home">
           <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
         </button>
         <div className="step-status" aria-live="polite">Step {activeStep + 1} of {steps.length}</div>

@@ -82,11 +82,53 @@ function addEcho(buffer, delaySeconds = 0.045, amount = 0.13) {
   }
 }
 
-function finish(buffer) {
-  const fadeSamples = Math.floor(0.008 * SAMPLE_RATE);
+function raisedCosine(time, attack) {
+  if (time <= 0) return 0;
+  if (time >= attack) return 1;
+  return 0.5 - 0.5 * Math.cos((Math.PI * time) / attack);
+}
+
+function addFeltPluck(buffer, start, frequency, amplitude) {
+  const duration = 0.126;
+  const attack = 0.014;
+  const startSample = Math.floor(start * SAMPLE_RATE);
+  const sampleCount = Math.floor(duration * SAMPLE_RATE);
+  let phaseRoot = 0;
+  let phaseWarm = 0;
+  let phaseOctave = 0;
+  let phaseAir = 0;
+  let felt = 0;
+
+  for (let index = 0; index < sampleCount && startSample + index < buffer.length; index += 1) {
+    const time = index / SAMPLE_RATE;
+    const progress = time / duration;
+    const decay = Math.exp(-11.8 * progress);
+    const release = time > duration - 0.028 ? (duration - time) / 0.028 : 1;
+    const shape = raisedCosine(time, attack) * decay * Math.max(0, release);
+
+    phaseRoot += (Math.PI * 2 * frequency) / SAMPLE_RATE;
+    phaseWarm += (Math.PI * 2 * frequency * 0.5) / SAMPLE_RATE;
+    phaseOctave += (Math.PI * 2 * frequency * 2.015) / SAMPLE_RATE;
+    phaseAir += (Math.PI * 2 * frequency * 3.04) / SAMPLE_RATE;
+
+    felt = felt * 0.88 + (random() * 2 - 1) * 0.12;
+    const feltDust = time < 0.01 ? felt * 0.045 * (1 - time / 0.01) : 0;
+
+    const harmonic =
+      Math.sin(phaseRoot) +
+      Math.sin(phaseWarm) * 0.11 +
+      Math.sin(phaseOctave) * 0.1 +
+      Math.sin(phaseAir) * 0.03;
+
+    buffer[startSample + index] += (harmonic * amplitude + feltDust) * shape;
+  }
+}
+
+function finish(buffer, peakTarget = 0.82, fadeSeconds = 0.008) {
+  const fadeSamples = Math.floor(fadeSeconds * SAMPLE_RATE);
   let peak = 0;
   for (let index = 0; index < buffer.length; index += 1) peak = Math.max(peak, Math.abs(buffer[index]));
-  const scale = peak > 0 ? 0.82 / peak : 1;
+  const scale = peak > 0 ? peakTarget / peak : 1;
   for (let index = 0; index < buffer.length; index += 1) {
     const edgeFade = Math.min(1, index / fadeSamples, (buffer.length - 1 - index) / fadeSamples);
     buffer[index] *= scale * Math.max(0, edgeFade);
@@ -132,6 +174,16 @@ const sounds = {
     addGlitter(sound, 0.028, 0.04);
     addEcho(sound, 0.038, 0.08);
     return sound;
+  },
+  'select-felt-01': () => {
+    const sound = createBuffer(0.128);
+    addFeltPluck(sound, 0, 659.25, 0.42);
+    return finish(sound, 0.28, 0.008);
+  },
+  'select-felt-02': () => {
+    const sound = createBuffer(0.128);
+    addFeltPluck(sound, 0, 783.99, 0.4);
+    return finish(sound, 0.28, 0.008);
   },
   'wizard-forward': () => {
     const sound = createBuffer(0.38);
@@ -221,5 +273,10 @@ const sounds = {
 };
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-for (const [name, build] of Object.entries(sounds)) writeWav(name, finish(build()));
-console.log(`Generated ${Object.keys(sounds).length} original workshop sounds in ${OUTPUT_DIR}`);
+const requested = process.argv.slice(2);
+const entries = Object.entries(sounds).filter(([name]) => requested.length === 0 || requested.includes(name));
+for (const [name, build] of entries) {
+  const rendered = build();
+  writeWav(name, name.startsWith('select-felt-') ? rendered : finish(rendered));
+}
+console.log(`Generated ${entries.length} original workshop sounds in ${OUTPUT_DIR}`);
