@@ -55,6 +55,8 @@ screens reviewed on 2026-08-06.
 - Use the same master canvas, puppet scale, centre point, and neutral front-facing pose.
 - Export assets already positioned for the base puppet; do not tightly crop individual layers.
 - Preserve transparency and export at 2x display resolution where practical.
+- The shared blank body is `assets/puppet/body-base.png`, tinted in-app with the
+  nine customer body colours.
 - Layer order is: body, outfit, shoes, hair, eyes, glasses, nose, extras.
 - Thumbnails may be generated from the same master art, but the preview uses the
   full-size aligned PNG layer.
@@ -73,5 +75,5 @@ screens reviewed on 2026-08-06.
 ## Known inputs still required
 
 - Final aligned transparent PNG layers for catalog records that currently use a
-  generated fallback tile.
+  generated fallback tile or SVG placeholder.
 - Shopify store domain plus base/add-on variant mapping.

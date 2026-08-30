@@ -120,3 +120,17 @@ The approved V1 blank puppet base is now page 2 of the Canva file
   production decisions.
 - The V1 app may still use app-applied body colour tinting until final aligned
   colour body PNGs are exported from the approved Canva base.
+
+## 2026-08-30 — Production V1 base PNG is the live workshop preview
+
+The approved blank puppet is page 2 of the Canva file
+`PUBBETS WORKSHOP ASSETS 2000x3000` (`DAHRnSvPYPE`). That page is saved
+losslessly as `assets/puppet/body-base.png` (2000 × 3000 RGBA, true
+transparency, off-white fill, red open mouth, no eyes/nose/hair/clothes/shoes).
+
+- The builder preview uses this PNG as the body/base layer on the wooden plinth.
+- The nine customer body colours are app tints of this one base. White is not a
+  customer colour; an unselected body shows the untinted artwork.
+- Feature, garment, shoe, and extra overlays may stay as placeholders on top
+  until aligned option PNGs exist. They must not replace this body PNG.
+- Older SVG/Rive body drawings are archive/fallback history only.

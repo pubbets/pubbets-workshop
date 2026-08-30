@@ -719,25 +719,40 @@ button:focus-visible {
   min-height: 0;
 }
 
-.puppet-svg {
+.puppet-assembled {
+  position: relative;
   z-index: 1;
   display: block;
-  width: min(100%, 470px);
-  height: min(100%, 91%);
-  max-height: 610px;
-  object-fit: contain;
+  width: auto;
+  height: min(100%, 91%, 610px);
+  max-width: min(100%, 470px);
+  aspect-ratio: 2 / 3;
   animation: puppet-arrive 0.32s ease-out;
   filter: drop-shadow(0 15px 9px rgb(58 28 12 / 22%));
 }
 
-.puppet-stage.is-close .puppet-svg {
+.puppet-body-base,
+.puppet-feature-overlays {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.puppet-feature-overlays {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.puppet-stage.is-close .puppet-assembled {
   transform: scale(1.42) translateY(7%);
   transform-origin: center 28%;
 }
 
-.puppet-stage.is-body-only .puppet-svg {
-  width: min(100%, 470px);
-  height: min(100%, 95%);
+.puppet-stage.is-body-only .puppet-assembled {
+  height: min(100%, 95%, 610px);
 }
 
 .preview-mode-toggle {
@@ -1343,9 +1358,9 @@ button:focus-visible {
     font-size: 0.92rem;
   }
 
-  .puppet-svg {
-    max-height: 100%;
-    width: min(100%, 420px);
+  .puppet-assembled {
+    height: min(100%, 91%);
+    max-width: min(100%, 420px);
   }
 
   .wooden-plinth {

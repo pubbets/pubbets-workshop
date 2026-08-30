@@ -26,7 +26,8 @@ and the production bundle.
 ## Project structure
 
 - `src/App.tsx` — nine-step flow and persistent selection state
-- `src/components/PuppetPreview.tsx` — layered puppet preview and whole-puppet motion
+- `src/components/PuppetPreview.tsx` — layered PNG puppet preview and whole-puppet motion
+- `assets/puppet/body-base.png` — approved Canva V1 blank puppet base
 - `src/data/*.json` — generated launch catalog
 - `scripts/generate-data.cjs` — Drive-sourced catalog generator
 - `docs/PRODUCT_SPEC.md` — implementation source of truth
