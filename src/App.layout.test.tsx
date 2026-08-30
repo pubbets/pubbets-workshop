@@ -96,4 +96,17 @@ describe('workshop builder layout', () => {
 
     act(() => root.unmount());
   });
+
+  it('updates the puppet in place when a body colour is tapped', () => {
+    const root = startBuilder();
+    const canvas = container.querySelector('.puppet-body-base');
+    const secondSwatch = container.querySelectorAll<HTMLButtonElement>('.option-grid--body .option-card')[1];
+
+    act(() => secondSwatch?.click());
+
+    expect(container.querySelector('.puppet-body-base')).toBe(canvas);
+    expect(container.querySelector('.puppet-motion')?.classList.contains('is-celebrating')).toBe(false);
+
+    act(() => root.unmount());
+  });
 });

@@ -699,7 +699,7 @@ button:focus-visible {
 .builder-layout {
   grid-area: builder;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(220px, 1fr) minmax(0, auto);
   gap: clamp(6px, 1vh, 12px);
   width: min(1240px, 100%);
   min-height: 0;
@@ -738,8 +738,18 @@ button:focus-visible {
   max-width: min(100%, 48vw, 520px);
   overflow: hidden;
   aspect-ratio: 2 / 3;
-  animation: puppet-arrive 0.32s ease-out;
   filter: drop-shadow(0 15px 9px rgb(58 28 12 / 22%));
+}
+
+.puppet-motion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 38%;
+}
+
+.puppet-motion.is-celebrating {
+  animation: puppet-celebrate 0.42s ease;
 }
 
 .puppet-body-base,
@@ -923,7 +933,7 @@ button:focus-visible {
 
 .workshop-app[data-step-id="body"] .choice-tray,
 .workshop-app[data-step-id="review"] .choice-tray {
-  max-height: min(52vh, 580px);
+  max-height: min(40vh, 420px);
 }
 
 .option-grid--body {
@@ -1344,15 +1354,10 @@ button:focus-visible {
   font-weight: 800;
 }
 
-@keyframes puppet-arrive {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+@keyframes puppet-celebrate {
+  0%, 100% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-6px) scale(1.03); }
+  70% { transform: translateY(2px) scale(0.985); }
 }
 
 @media (min-width: 1100px) {
@@ -1728,8 +1733,14 @@ button:focus-visible {
     min-height: 0;
   }
 
-  .choice-tray {
-    max-height: min(38vh, 300px);
+  .builder-layout {
+    grid-template-rows: minmax(200px, 1fr) minmax(0, auto);
+  }
+
+  .choice-tray,
+  .workshop-app[data-step-id="body"] .choice-tray,
+  .workshop-app[data-step-id="review"] .choice-tray {
+    max-height: min(28vh, 200px);
   }
 
   .option-card {
@@ -1739,6 +1750,10 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .entrance-cta {
+    animation: none;
+  }
+
+  .puppet-motion.is-celebrating {
     animation: none;
   }
 }
