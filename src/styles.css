@@ -1737,14 +1737,35 @@ button:focus-visible {
     grid-template-rows: minmax(200px, 1fr) minmax(0, auto);
   }
 
-  .choice-tray,
+  .choice-tray {
+    max-height: min(30vh, 210px);
+  }
+
   .workshop-app[data-step-id="body"] .choice-tray,
   .workshop-app[data-step-id="review"] .choice-tray {
-    max-height: min(28vh, 200px);
+    max-height: min(36vh, 250px);
+  }
+
+  .tray-heading h1 {
+    font-size: 1rem;
+  }
+
+  .tray-actions {
+    gap: 4px;
   }
 
   .option-card {
     min-height: 70px;
+  }
+}
+
+@media (min-width: 1100px) and (max-height: 720px) {
+  .option-grid--body {
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+  }
+
+  .option-grid--body .option-card__swatch {
+    width: min(100%, 48px);
   }
 }
 
