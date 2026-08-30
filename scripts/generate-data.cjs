@@ -3,7 +3,8 @@
 // Source: legacy Pubbets Lab config structure (body/eyes/nose/glasses/hair/
 // outfit/shoes/accessory), reshaped — gender/subgroup dropped, riveArtboardRef
 // + colourBindable + tier fields added.
-// Run: node scripts/generate-data.js  →  outputs src/data/*.json (402 assets)
+// Run: node scripts/generate-data.cjs  →  outputs src/data/*.json (409 assets).
+// The in-app preview filters that full set through src/data/betaKit.ts.
 
 const fs = require('fs');
 const path = require('path');

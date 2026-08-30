@@ -54,4 +54,46 @@ describe('PuppetPreview', () => {
 
     act(() => root.unmount());
   });
+
+  it('keeps the body canvas mounted when the selected colour changes', () => {
+    const selections = defaultSelections();
+    selections.body = catalog.body[0];
+    const root = createRoot(container);
+
+    act(() => {
+      root.render(<PuppetPreview selections={selections} motionKey={0} bodyOnly />);
+    });
+    const canvas = container.querySelector('.puppet-body-base');
+    expect(canvas).toBeTruthy();
+
+    const nextSelections = defaultSelections();
+    nextSelections.body = catalog.body[1];
+    act(() => {
+      root.render(<PuppetPreview selections={nextSelections} motionKey={0} bodyOnly />);
+    });
+
+    expect(container.querySelector('.puppet-body-base')).toBe(canvas);
+
+    act(() => root.unmount());
+  });
+
+  it('celebrates randomise without remounting the body canvas', () => {
+    const selections = defaultSelections();
+    selections.body = catalog.body[0];
+    const root = createRoot(container);
+
+    act(() => {
+      root.render(<PuppetPreview selections={selections} motionKey={0} bodyOnly />);
+    });
+    const canvas = container.querySelector('.puppet-body-base');
+
+    act(() => {
+      root.render(<PuppetPreview selections={selections} motionKey={2} bodyOnly />);
+    });
+
+    expect(container.querySelector('.puppet-body-base')).toBe(canvas);
+    expect(container.querySelector('.puppet-motion')?.classList.contains('is-celebrating')).toBe(true);
+
+    act(() => root.unmount());
+  });
 });

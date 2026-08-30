@@ -7,10 +7,65 @@ import noseData from './nose.json';
 import outfitData from './outfit.json';
 import shoesData from './shoes.json';
 import type { AssetOption, Category, SelectionState, StepDefinition } from '../types';
+import { BETA_KIT_ENABLED, BETA_KIT_IDS } from './betaKit';
 
 const asOptions = (items: unknown) => items as AssetOption[];
 
-export const catalog: Record<Category, AssetOption[]> = {
+const thumbnailModules = import.meta.glob('../../assets/thumbnails/*.{png,webp}', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+}) as Record<string, string>;
+
+const thumbnailUrls = Object.fromEntries(
+  Object.entries(thumbnailModules).map(([path, url]) => [path.split('/').pop() ?? path, url])
+) as Record<string, string>;
+
+const thumbnailUrl = (filename: string | undefined) => (filename ? thumbnailUrls[filename] ?? null : null);
+
+const eyeThumbnailById: Record<string, string> = {
+  'round-45-dome-plain': 'eyes_round-flat-plain.webp',
+  'round-45-flat-plain': 'eyes_round-flat-plain.webp',
+  'round-45-flat-blue-eyelids': 'eyes_round-flat-blue-lids.webp',
+  'round-45-flat-green-eyelids': 'eyes_round-flat-green-lids.webp',
+  'round-45-flat-orange-lashes': 'eyes_round-flat-orange-lashes.webp',
+  'round-45-flat-pink-lashes': 'eyes_round-flat-pink-lashes.webp'
+};
+
+const outfitThumbnailById: Record<string, string> = {
+  'blue-gingham-dress': 'outfit_blue-gingham-dress.webp',
+  'apple-gingham-dress': 'outfit_apple-gingham-dress.webp',
+  'pink-floral-dress-with-bag': 'outfit_pink-floral-dress.webp',
+  'pink-pajamas': 'outfit_pink-pajamas.webp',
+  'red-teddy-dress': 'outfit_red-teddy-dress.webp',
+  'premium-boy-elf': 'outfit_premium-boy-elf.webp',
+  'premium-girl-elf': 'outfit_premium-girl-elf.webp',
+  'premium-bw-fashionista': 'outfit_premium-bw-fashionista.webp',
+  'premium-tuxedo': 'outfit_premium-tuxedo.webp',
+  'black-t': 'outfit_black-t.webp',
+  'blue-t': 'outfit_blue-t.webp',
+  'white-t': 'outfit_white-t.webp',
+  'blue-jeans': 'outfit_blue-jeans.webp'
+};
+
+function thumbnailCandidates(option: AssetOption): string[] {
+  const { category, id } = option;
+  const names: string[] = [];
+
+  if (category === 'eyes' && eyeThumbnailById[id]) names.push(eyeThumbnailById[id]);
+  if (category === 'nose' && option.shape) names.push(`nose_${option.shape}.webp`);
+  if (category === 'glasses') {
+    names.push(`glasses_${id}.webp`);
+    names.push(`glasses_${id.replace(/-xl$/, '')}.webp`);
+  }
+  if (category === 'outfit' && outfitThumbnailById[id]) names.push(outfitThumbnailById[id]);
+
+  names.push(`${category}_${id}.webp`);
+  names.push(`${category}_${id}.png`);
+  return names;
+}
+
+export const fullCatalog: Record<Category, AssetOption[]> = {
   body: asOptions(bodyData),
   eyes: asOptions(eyesData),
   nose: asOptions(noseData),
@@ -19,6 +74,26 @@ export const catalog: Record<Category, AssetOption[]> = {
   outfit: asOptions(outfitData),
   shoes: asOptions(shoesData),
   accessory: asOptions(accessoryData)
+};
+
+function applyBetaKit(category: Category, options: AssetOption[]) {
+  if (!BETA_KIT_ENABLED) return options;
+  const byId = new Map(options.map((option) => [option.id, option]));
+  return BETA_KIT_IDS[category].flatMap((id) => {
+    const option = byId.get(id);
+    return option ? [option] : [];
+  });
+}
+
+export const catalog: Record<Category, AssetOption[]> = {
+  body: applyBetaKit('body', fullCatalog.body),
+  eyes: applyBetaKit('eyes', fullCatalog.eyes),
+  nose: applyBetaKit('nose', fullCatalog.nose),
+  glasses: applyBetaKit('glasses', fullCatalog.glasses),
+  hair: applyBetaKit('hair', fullCatalog.hair),
+  outfit: applyBetaKit('outfit', fullCatalog.outfit),
+  shoes: applyBetaKit('shoes', fullCatalog.shoes),
+  accessory: applyBetaKit('accessory', fullCatalog.accessory)
 };
 
 export const steps: StepDefinition[] = [
@@ -35,9 +110,6 @@ export const steps: StepDefinition[] = [
 
 export const basePrice = 199.95;
 
-const find = (category: Category, id: string) =>
-  catalog[category].find((option) => option.id === id) ?? catalog[category][0] ?? null;
-
 export const defaultSelections = (): SelectionState => ({
   body: null,
   eyes: null,
@@ -50,58 +122,16 @@ export const defaultSelections = (): SelectionState => ({
 });
 
 export const categoryCount = Object.values(catalog).reduce((total, options) => total + options.length, 0);
+export const fullCategoryCount = Object.values(fullCatalog).reduce((total, options) => total + options.length, 0);
 
 export function resolveThumbnail(option: AssetOption): string | null {
-  const id = option.id;
-  switch (option.category) {
-    case 'body': {
-      const fileId = id === 'caramel-brown' ? 'caramel' : id;
-      return `/thumbnails/body_${fileId}.webp`;
-    }
-    case 'eyes': {
-      const eyeMap: Record<string, string> = {
-        'round-30-dome-plain': 'eyes_round-flat-plain.webp',
-        'round-45-dome-plain': 'eyes_round-flat-plain.webp',
-        'round-45-flat-plain': 'eyes_round-flat-plain.webp',
-        'round-45-flat-blue-eyelids': 'eyes_round-flat-blue-lids.webp',
-        'round-45-flat-green-eyelids': 'eyes_round-flat-green-lids.webp',
-        'round-45-flat-orange-lashes': 'eyes_round-flat-orange-lashes.webp',
-        'round-45-flat-pink-lashes': 'eyes_round-flat-pink-lashes.webp',
-        'oval-65x40-flat-plain': 'eyes_round-flat-plain.webp',
-        'oval-65x40-flat-yellow-eyelids': 'eyes_round-flat-plain.webp',
-        'oval-65x40-flat-red-eyelids': 'eyes_round-flat-plain.webp',
-        'oval-65x40-flat-blue-lashes': 'eyes_round-flat-plain.webp',
-        'oval-65x40-flat-pink-lashes': 'eyes_round-flat-plain.webp'
-      };
-      return eyeMap[id] ? `/thumbnails/${eyeMap[id]}` : null;
-    }
-    case 'nose':
-      return option.shape ? `/thumbnails/nose_${option.shape.replaceAll('-', '-')}.webp` : null;
-    case 'glasses': {
-      const fileId = id.replace(/-xl$/, '');
-      return `/thumbnails/glasses_${fileId}.webp`;
-    }
-    case 'outfit': {
-      const outfitMap: Record<string, string> = {
-        'blue-gingham-dress': 'outfit_blue-gingham-dress.webp',
-        'apple-gingham-dress': 'outfit_apple-gingham-dress.webp',
-        'pink-floral-dress-with-bag': 'outfit_pink-floral-dress.webp',
-        'pink-pajamas': 'outfit_pink-pajamas.webp',
-        'red-teddy-dress': 'outfit_red-teddy-dress.webp',
-        'premium-boy-elf': 'outfit_premium-boy-elf.webp',
-        'premium-girl-elf': 'outfit_premium-girl-elf.webp',
-        'premium-bw-fashionista': 'outfit_premium-bw-fashionista.webp',
-        'premium-tuxedo': 'outfit_premium-tuxedo.webp',
-        'black-t': 'outfit_black-t.webp',
-        'blue-t': 'outfit_blue-t.webp',
-        'white-t': 'outfit_white-t.webp',
-        'blue-jeans': 'outfit_blue-jeans.webp'
-      };
-      return outfitMap[id] ? `/thumbnails/${outfitMap[id]}` : null;
-    }
-    default:
-      return null;
+  if (option.category === 'body') return null;
+
+  for (const filename of thumbnailCandidates(option)) {
+    const url = thumbnailUrl(filename);
+    if (url) return url;
   }
+  return null;
 }
 
 export const colourHex: Record<string, string> = {

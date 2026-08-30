@@ -157,30 +157,41 @@ function outfitFill(id = '') {
 }
 
 export function PuppetPreview({ selections, closeUp = false, bodyOnly = false, motionKey }: Props) {
+  const motionRef = useRef<HTMLDivElement>(null);
   const bodyColour = selections.body ? optionColour(selections.body) : null;
   const outfit = bodyOnly ? null : selections.outfit;
   const shoes = bodyOnly ? null : selections.shoes;
   const hasRods = !bodyOnly && Boolean(selections.accessory?.id.includes('rod'));
   const showFeatures = !bodyOnly;
 
+  useEffect(() => {
+    const node = motionRef.current;
+    if (!node || motionKey === 0) return;
+    node.classList.remove('is-celebrating');
+    void node.offsetWidth;
+    node.classList.add('is-celebrating');
+  }, [motionKey]);
+
   return (
     <div className={`puppet-stage ${closeUp ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="png-base">
-      <div key={motionKey} className="puppet-assembled" role="img" aria-label="Your customized Pubbet preview">
-        <TintedBodyBase colour={bodyColour} />
-        {showFeatures && (
-          <svg className="puppet-feature-overlays" viewBox="0 0 2000 3000" aria-hidden="true">
-            <g transform="translate(0 -220) scale(5)">
-              {outfit && <path d="M128 345 Q200 317 272 345 L283 444 Q245 485 200 486 Q155 485 117 444Z" fill={outfitFill(outfit.id)} stroke="#3b261e" strokeWidth="5" />}
-              {outfit?.id.includes('gingham') && <g opacity=".45" stroke="#fff" strokeWidth="8"><path d="M145 350V468 M180 336V482 M220 336V482 M255 350V468" /><path d="M123 380H277 M119 420H281 M125 458H275" /></g>}
-              {shoes && <g fill={outfitFill(shoes.id)} stroke="#3b261e" strokeWidth="5"><path d="M126 548 Q159 536 194 556 L192 585 Q152 602 112 581Z" /><path d="M274 548 Q241 536 206 556 L208 585 Q248 602 288 581Z" /></g>}
-              <Hair selections={selections} />
-              <Eyes selections={selections} />
-              <Glasses selections={selections} />
-              <Nose selections={selections} />
-              {hasRods && <g stroke="#5b4031" strokeWidth="8" strokeLinecap="round"><path d="M73 364L25 545" /><path d="M327 364L375 545" /></g>}
-            </g>
-          </svg>
-        )}
+      <div className="puppet-assembled" role="img" aria-label="Your customized Pubbet preview">
+        <div className="puppet-motion" ref={motionRef}>
+          <TintedBodyBase colour={bodyColour} />
+          {showFeatures && (
+            <svg className="puppet-feature-overlays" viewBox="0 0 2000 3000" aria-hidden="true">
+              <g transform="translate(0 -220) scale(5)">
+                {outfit && <path d="M128 345 Q200 317 272 345 L283 444 Q245 485 200 486 Q155 485 117 444Z" fill={outfitFill(outfit.id)} stroke="#3b261e" strokeWidth="5" />}
+                {outfit?.id.includes('gingham') && <g opacity=".45" stroke="#fff" strokeWidth="8"><path d="M145 350V468 M180 336V482 M220 336V482 M255 350V468" /><path d="M123 380H277 M119 420H281 M125 458H275" /></g>}
+                {shoes && <g fill={outfitFill(shoes.id)} stroke="#3b261e" strokeWidth="5"><path d="M126 548 Q159 536 194 556 L192 585 Q152 602 112 581Z" /><path d="M274 548 Q241 536 206 556 L208 585 Q248 602 288 581Z" /></g>}
+                <Hair selections={selections} />
+                <Eyes selections={selections} />
+                <Glasses selections={selections} />
+                <Nose selections={selections} />
+                {hasRods && <g stroke="#5b4031" strokeWidth="8" strokeLinecap="round"><path d="M73 364L25 545" /><path d="M327 364L375 545" /></g>}
+              </g>
+            </svg>
+          )}
+        </div>
       </div>
       <div className="wooden-plinth" aria-hidden="true" />
     </div>

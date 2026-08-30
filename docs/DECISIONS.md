@@ -134,3 +134,16 @@ transparency, off-white fill, red open mouth, no eyes/nose/hair/clothes/shoes).
 - Feature, garment, shoe, and extra overlays may stay as placeholders on top
   until aligned option PNGs exist. They must not replace this body PNG.
 - Older SVG/Rive body drawings are archive/fallback history only.
+
+## 2026-08-30 — Freeze a closed-beta option kit for the 14-day preview
+
+Testers get a small honest menu, not the 409 generated records.
+
+- Keep the full JSON catalogs. Filter at the `catalog.ts` export with
+  `src/data/betaKit.ts`.
+- Review stays read-only. Totals stay estimates. No Shopify, save/build-sheet,
+  or Rive.
+- Show option-card thumbnails only when a file exists under
+  `assets/thumbnails/`. Body colour keeps felt swatches.
+- Overlay PNGs are still missing. Feature placeholders remain SVG until art
+  lands.

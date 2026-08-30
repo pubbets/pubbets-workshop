@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { optionColour } from '../data/catalog';
+import { optionColour, resolveThumbnail } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
 
 type Props = {
@@ -82,10 +82,16 @@ function sortKnown(values: string[], preferred: string[]) {
 function OptionCard({ option, selected, onSelect, preview }: { option: AssetOption; selected: boolean; onSelect: () => void; preview?: string }) {
   const isBodyColour = option.category === 'body';
   const swatchStyle = isBodyColour ? ({ '--swatch-colour': optionColour(option) } as React.CSSProperties) : undefined;
+  const thumbnail = isBodyColour || preview ? null : resolveThumbnail(option);
 
   return (
-    <button className={`option-card ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
+    <button className={`option-card${thumbnail ? ' has-image' : ''}${selected ? ' is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>
       {isBodyColour && <span className="option-card__swatch" style={swatchStyle} aria-hidden="true" />}
+      {thumbnail && (
+        <span className="option-card__image" aria-hidden="true">
+          <img src={thumbnail} alt="" />
+        </span>
+      )}
       {preview && <span className={`option-card__preview option-card__preview--${preview}`} aria-hidden="true" />}
       <span className="option-card__label">{option.label}</span>
       {!preview && option.group && <span className="option-card__meta">{title(option.group)}</span>}
@@ -291,7 +297,7 @@ export function OptionPanel({ category, options, selected, onSelect }: Props) {
   if (category === 'eyes') return <EyeWizard category={category} options={options} selected={selected} onSelect={onSelect} />;
   if (category === 'nose') return <NoseWizard category={category} options={options} selected={selected} onSelect={onSelect} />;
 
-  const groups = [...new Set(options.map(optionGroup).filter(Boolean))] as string[];
+  const groups = options.length > 8 ? [...new Set(options.map(optionGroup).filter(Boolean))] as string[] : [];
   const visible = group && groups.length > 1 ? options.filter((option) => optionGroup(option) === group) : options;
 
   return (

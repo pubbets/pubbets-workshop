@@ -7,7 +7,10 @@ class FakeAudio {
   volume = 1;
   currentTime = 0;
   preload = '';
+  muted = false;
+  src = '';
   addEventListener() {}
+  load() {}
   play() {
     return Promise.resolve();
   }
@@ -70,6 +73,8 @@ describe('workshop builder layout', () => {
 
     expect(container.querySelector('.option-grid [aria-label="Skip this step"]')).toBeNull();
     expect(container.querySelector('.tray-skip')).toBeNull();
+    expect(container.querySelectorAll('.option-grid--body .option-card')).toHaveLength(9);
+    expect(container.querySelector('.option-card__image')).toBeNull();
     expect(container.querySelector('.puppet-stage')?.getAttribute('data-preview-engine')).toBe('png-base');
     expect(container.querySelector('.workshop-app')?.getAttribute('data-preview-mode')).toBe('full');
 
@@ -91,6 +96,19 @@ describe('workshop builder layout', () => {
     expect(container.querySelector('.option-grid [aria-label="Skip this step"]')).toBeNull();
     expect(container.querySelector('.tray-actions [aria-label="Skip this step"]')).toBeTruthy();
     expect(container.querySelectorAll('.tray-confirm')).toHaveLength(1);
+
+    act(() => root.unmount());
+  });
+
+  it('updates the puppet in place when a body colour is tapped', () => {
+    const root = startBuilder();
+    const canvas = container.querySelector('.puppet-body-base');
+    const secondSwatch = container.querySelectorAll<HTMLButtonElement>('.option-grid--body .option-card')[1];
+
+    act(() => secondSwatch?.click());
+
+    expect(container.querySelector('.puppet-body-base')).toBe(canvas);
+    expect(container.querySelector('.puppet-motion')?.classList.contains('is-celebrating')).toBe(false);
 
     act(() => root.unmount());
   });

@@ -70,7 +70,7 @@ export function App() {
   const [touchedCategories, setTouchedCategories] = useState<TouchedState>(() => touchedFromSelections(restoreSelections()));
   const [motionKey, setMotionKey] = useState(0);
   const [previewMode, setPreviewMode] = useState<'full' | 'close'>('full');
-  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying } = useWorkshopSound();
+  const { enabled: soundEnabled, setEnabled: setSoundEnabled, play, stop, isPlaying, unlock } = useWorkshopSound();
   const step = steps[activeStep];
   const category = step.id === 'review' ? null : step.id;
   const total = useMemo(() => calculateTotal(basePrice, selections), [selections]);
@@ -102,10 +102,11 @@ export function App() {
     setPreviewMode(closeUpSteps.has(step.id) ? 'close' : 'full');
   }, [step.id]);
 
+  const celebratePreview = () => setMotionKey((key) => key + 1);
+
   const select = (category: Category, option: AssetOption | null) => {
     setSelections((current) => ({ ...current, [category]: option }));
     setTouchedCategories((current) => ({ ...current, [category]: true }));
-    setMotionKey((key) => key + 1);
     play('select');
   };
 
@@ -116,6 +117,7 @@ export function App() {
       return;
     }
     setActiveStep(target);
+    if (target === steps.length - 1) celebratePreview();
     play(target < activeStep ? 'back' : target === steps.length - 1 ? 'finish' : 'forward');
   };
 
@@ -127,6 +129,7 @@ export function App() {
     setCompletedThrough((current) => Math.max(current, activeStep));
     const target = Math.min(steps.length - 1, activeStep + 1);
     setActiveStep(target);
+    if (target === steps.length - 1) celebratePreview();
     play(target === steps.length - 1 ? 'finish' : 'forward');
   };
 
@@ -144,7 +147,7 @@ export function App() {
     setUndoSnapshot({ selections, touched: touchedCategories });
     setSelections(nextSelections);
     setTouchedCategories(allTouched());
-    setMotionKey((key) => key + 1);
+    celebratePreview();
     play('randomise');
   };
 
@@ -156,7 +159,7 @@ export function App() {
     setUndoSnapshot({ selections, touched: touchedCategories });
     setSelections((current) => ({ ...current, [category]: randomOption(category) }));
     setTouchedCategories((current) => ({ ...current, [category]: true }));
-    setMotionKey((key) => key + 1);
+    celebratePreview();
     play('randomise');
   };
 
@@ -165,7 +168,7 @@ export function App() {
     setSelections(undoSnapshot.selections);
     setTouchedCategories(undoSnapshot.touched);
     setUndoSnapshot(null);
-    setMotionKey((key) => key + 1);
+    celebratePreview();
     play('restore');
   };
 
@@ -175,7 +178,7 @@ export function App() {
     setTouchedCategories(blankTouched());
     setActiveStep(0);
     setCompletedThrough(-1);
-    setMotionKey((key) => key + 1);
+    celebratePreview();
     play('reset');
   };
 
@@ -190,7 +193,10 @@ export function App() {
   if (!enteredWorkshop) {
     return (
       <WorkshopEntrance
-        onEnter={() => play('homeTune')}
+        onEnter={() => {
+          unlock();
+          play('homeTune');
+        }}
         onEntered={() => setEnteredWorkshop(true)}
       />
     );
@@ -205,7 +211,10 @@ export function App() {
         onToggleSound={() => {
           const nextEnabled = !soundEnabled;
           setSoundEnabled(nextEnabled);
-          if (nextEnabled) play('homeTune');
+          if (nextEnabled) {
+            unlock();
+            play('homeTune');
+          }
         }}
         onStart={() => {
           stop('homeTune', 180);
@@ -220,7 +229,7 @@ export function App() {
   return (
     <main className="workshop-app" data-step-id={step.id} data-preview-mode={previewMode}>
       <header className="app-header">
-        <button className="app-logo-button" onClick={() => { setStarted(false); play('homeTune'); }} aria-label="Return to Pubbets Workshop home">
+        <button className="app-logo-button" onClick={() => { setStarted(false); unlock(); play('homeTune'); }} aria-label="Return to Pubbets Workshop home">
           <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
         </button>
         <div className="step-status" aria-live="polite">Step {activeStep + 1} of {steps.length}</div>
