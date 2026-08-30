@@ -55,7 +55,7 @@ describe('OptionPanel', () => {
     expect(cards).toHaveLength(3);
     expect(cards.map((card) => card.querySelector('.option-card__label')?.textContent)).toEqual(['Black beady', 'Round', 'Oval']);
     expect(container.querySelector('.option-grid [aria-label="Skip this step"]')).toBeNull();
-    expect(container.querySelector('.wizard-back-row')).toBeNull();
+    expect(container.querySelector('.wizard-previous')).toBeNull();
 
     act(() => root.unmount());
   });

@@ -80,7 +80,18 @@ export function App() {
     : category === 'body'
       ? currentStepTouched && Boolean(selections.body)
       : currentStepTouched || activeStep <= completedThrough;
-  const stepHeading = category === 'body' ? step.title : step.prompt;
+  const trayTitles: Record<string, string> = {
+    body: 'Choose your colour',
+    eyes: 'Choose your eye shape',
+    nose: 'Choose your nose',
+    glasses: 'Add glasses?',
+    hair: 'Pick a hairstyle',
+    outfit: 'Dress your Pubbet',
+    shoes: 'Choose shoes',
+    accessory: 'Add extras?',
+    review: 'Your Pubbet'
+  };
+  const stepHeading = trayTitles[step.id] ?? (category === 'body' ? step.title : step.prompt);
 
   useEffect(() => {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));

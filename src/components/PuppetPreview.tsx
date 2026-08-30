@@ -164,7 +164,7 @@ export function PuppetPreview({ selections, closeUp = false, bodyOnly = false, m
   const showFeatures = !bodyOnly;
 
   return (
-    <div className={`puppet-stage ${closeUp && !bodyOnly ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="png-base">
+    <div className={`puppet-stage ${closeUp ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="png-base">
       <div key={motionKey} className="puppet-assembled" role="img" aria-label="Your customized Pubbet preview">
         <TintedBodyBase colour={bodyColour} />
         {showFeatures && (

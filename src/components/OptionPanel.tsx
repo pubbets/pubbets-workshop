@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { optionColour } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
-import { UiArtButton } from './UiArtButton';
 
 type Props = {
   category: Category;
@@ -201,9 +200,9 @@ function EyeWizard({ options, selected, onSelect }: Props) {
         </div>
       )}
       {stage !== 'shape' && (
-        <div className="wizard-back-row">
-          <UiArtButton asset="back" label="Previous eye choice" size="wide" onClick={goBack} />
-        </div>
+        <button className="wizard-previous" type="button" onClick={goBack}>
+          Previous choice
+        </button>
       )}
     </section>
   );
@@ -271,9 +270,9 @@ function NoseWizard({ options, selected, onSelect }: Props) {
         </div>
       )}
       {stage !== 'shape' && (
-        <div className="wizard-back-row">
-          <UiArtButton asset="back" label="Previous nose choice" size="wide" onClick={goBack} />
-        </div>
+        <button className="wizard-previous" type="button" onClick={goBack}>
+          Previous choice
+        </button>
       )}
     </section>
   );
