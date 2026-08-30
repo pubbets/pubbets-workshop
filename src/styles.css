@@ -913,10 +913,17 @@ button:focus-visible {
 .option-panel,
 .review-panel {
   min-height: 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding-right: 3px;
-  scrollbar-color: #9e682e transparent;
+  scrollbar-color: #9e682e #f3dba8;
   scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+.workshop-app[data-step-id="body"] .choice-tray,
+.workshop-app[data-step-id="review"] .choice-tray {
+  max-height: min(52vh, 580px);
 }
 
 .option-grid--body {
@@ -936,7 +943,7 @@ button:focus-visible {
 }
 
 .option-grid--body .option-card {
-  width: min(100%, 108px);
+  width: min(100%, 88px);
   min-height: 0;
   border: 0;
   padding: 0;
@@ -946,7 +953,7 @@ button:focus-visible {
 }
 
 .option-grid--body .option-card__swatch {
-  width: min(100%, clamp(58px, 6.8vw, 102px));
+  width: min(100%, clamp(46px, 5.4vw, 78px));
 }
 
 .filter-row {
@@ -981,7 +988,7 @@ button:focus-visible {
 
 .option-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
   gap: clamp(8px, 1vw, 12px);
   align-content: start;
 }
@@ -1234,7 +1241,7 @@ button:focus-visible {
 
 .review-panel {
   display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
 .review-banner {
@@ -1268,7 +1275,8 @@ button:focus-visible {
 
 .review-list {
   display: grid;
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
 }
 
 .review-row {
@@ -1278,7 +1286,7 @@ button:focus-visible {
   gap: 10px;
   border: 3px solid #bd7d39;
   border-radius: 16px;
-  padding: 8px 10px;
+  padding: 6px 10px;
   background: rgb(255 239 203 / 86%);
 }
 
@@ -1367,7 +1375,7 @@ button:focus-visible {
   }
 
   .option-grid--body {
-    grid-template-columns: repeat(5, minmax(92px, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -1682,6 +1690,10 @@ button:focus-visible {
     left: 8px;
     padding: 6px 10px;
     font-size: 0.68rem;
+  }
+
+  .review-list {
+    grid-template-columns: 1fr;
   }
 
   .review-row {

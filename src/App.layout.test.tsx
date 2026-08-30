@@ -70,6 +70,8 @@ describe('workshop builder layout', () => {
 
     expect(container.querySelector('.option-grid [aria-label="Skip this step"]')).toBeNull();
     expect(container.querySelector('.tray-skip')).toBeNull();
+    expect(container.querySelectorAll('.option-grid--body .option-card')).toHaveLength(9);
+    expect(container.querySelector('.option-card__image')).toBeNull();
     expect(container.querySelector('.puppet-stage')?.getAttribute('data-preview-engine')).toBe('png-base');
     expect(container.querySelector('.workshop-app')?.getAttribute('data-preview-mode')).toBe('full');
 
