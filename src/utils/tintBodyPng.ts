@@ -23,9 +23,8 @@ export function isTintableBodyPixel(r: number, g: number, b: number): boolean {
   return saturation < TINTABLE_SATURATION && luminance > TINTABLE_LUMINANCE;
 }
 
-export function tintBodyImageData(imageData: ImageData, hex: string): ImageData {
+export function tintBodyPixels(pixels: Uint8ClampedArray | Uint8Array, hex: string): void {
   const [tintR, tintG, tintB] = parseHexColour(hex);
-  const pixels = imageData.data;
   for (let index = 0; index < pixels.length; index += 4) {
     const alpha = pixels[index + 3];
     if (alpha === 0) continue;
@@ -37,5 +36,9 @@ export function tintBodyImageData(imageData: ImageData, hex: string): ImageData 
     pixels[index + 1] = tintG;
     pixels[index + 2] = tintB;
   }
+}
+
+export function tintBodyImageData(imageData: ImageData, hex: string): ImageData {
+  tintBodyPixels(imageData.data, hex);
   return imageData;
 }
