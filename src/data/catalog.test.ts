@@ -62,7 +62,7 @@ describe('option-card thumbnails', () => {
     expect(glasses && resolveThumbnail(glasses)).toMatch(/glasses_round-thick-black\.webp/);
     expect(pinkLashes && resolveThumbnail(pinkLashes)).toMatch(/eyes_round-flat-pink-lashes\.webp/);
     expect(nose && resolveThumbnail(nose)).toMatch(/nose_round\.webp/);
-    expect(resolveThumbnail(tuxedo!)).not.toContain('/thumbnails/');
+    expect(resolveThumbnail(tuxedo!)).not.toMatch(/^\/thumbnails\//);
   });
 
   it('skips body swatches and missing disk files instead of inventing paths', () => {

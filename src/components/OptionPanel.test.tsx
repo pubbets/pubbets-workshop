@@ -1,8 +1,14 @@
-import { act } from 'react';
+import { act, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { catalog } from '../data/catalog';
 import { OptionPanel } from './OptionPanel';
+import type { AssetOption, Category } from '../types';
+
+function StatefulPanel({ category, options }: { category: Category; options: AssetOption[] }) {
+  const [selected, setSelected] = useState<AssetOption | null>(null);
+  return <OptionPanel category={category} options={options} selected={selected} onSelect={setSelected} />;
+}
 
 describe('OptionPanel', () => {
   let container: HTMLDivElement;
@@ -85,7 +91,6 @@ describe('OptionPanel', () => {
   });
 
   it('keeps felt swatches for body colour and still walks the smaller eye set', () => {
-    const onSelect = vi.fn();
     const root = createRoot(container);
 
     act(() => {
@@ -103,14 +108,7 @@ describe('OptionPanel', () => {
     expect(container.querySelector('.option-card__image')).toBeNull();
 
     act(() => {
-      root.render(
-        <OptionPanel
-          category="eyes"
-          options={catalog.eyes}
-          selected={null}
-          onSelect={onSelect}
-        />
-      );
+      root.render(<StatefulPanel category="eyes" options={catalog.eyes} />);
     });
 
     const round = [...container.querySelectorAll('button')].find((button) => button.textContent?.includes('Round'));
@@ -131,18 +129,10 @@ describe('OptionPanel', () => {
   });
 
   it('walks the smaller nose kit through shape, size, and colour', () => {
-    const onSelect = vi.fn();
     const root = createRoot(container);
 
     act(() => {
-      root.render(
-        <OptionPanel
-          category="nose"
-          options={catalog.nose}
-          selected={null}
-          onSelect={onSelect}
-        />
-      );
+      root.render(<StatefulPanel category="nose" options={catalog.nose} />);
     });
 
     const labels = [...container.querySelectorAll('.option-card__label')].map((node) => node.textContent);
@@ -162,7 +152,8 @@ describe('OptionPanel', () => {
     act(() => {
       [...container.querySelectorAll('button')].find((button) => button.textContent?.includes('Pink'))?.click();
     });
-    expect(onSelect).toHaveBeenCalledWith(expect.objectContaining({ id: 'triangle-small-pink' }));
+    const selected = container.querySelector('.option-card.is-selected .option-card__label');
+    expect(selected?.textContent).toBe('Triangle Small Pink');
 
     act(() => root.unmount());
   });
