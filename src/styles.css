@@ -6,13 +6,13 @@
   --ink: #341f12;
   --cream: #fff0c8;
   --paper: #f7cc82;
-  --teal: #075d58;
-  --teal-dark: #034541;
   --wood: #7a431d;
+  --wood-dark: #4a2612;
   --orange: #ef780f;
   --green: #3f8f1e;
+  --felt: #f3d7a0;
+  --felt-deep: #edd09a;
   --shadow: 0 12px 24px rgb(48 24 8 / 26%);
-  --soft-panel: rgb(255 226 169 / 82%);
 }
 
 * {
@@ -219,28 +219,53 @@ button:focus-visible {
   outline: 0;
 }
 
-.entrance-door span {
+.entrance-cta {
   position: absolute;
   right: 50%;
-  bottom: 8%;
+  bottom: 18%;
   width: max-content;
-  max-width: min(310px, 78vw);
-  border: 3px solid #5c3219;
+  max-width: min(420px, 86vw);
+  border: 4px solid #4a2612;
   border-radius: 999px;
-  padding: 10px 19px;
+  padding: 16px 32px;
   transform: translateX(50%);
-  background: linear-gradient(#ffedbd, #e7af62);
-  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 34%), 0 5px 0 #4c2916, 0 9px 18px rgb(42 21 8 / 28%);
+  background:
+    linear-gradient(rgb(255 248 214 / 28%), transparent 42%),
+    linear-gradient(#fff4c8, #e8a94a);
+  box-shadow:
+    inset 0 0 0 3px rgb(255 255 255 / 38%),
+    0 6px 0 #3d1f0e,
+    0 14px 24px rgb(42 21 8 / 34%);
   color: #3b2113;
-  font-size: clamp(0.84rem, 1.5vw, 1.08rem);
+  font-size: clamp(1.08rem, 2.6vw, 1.55rem);
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-shadow: 0 1px 0 rgb(255 244 210 / 70%);
+  animation: entrance-cta-pulse 1.8s ease-in-out infinite;
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
-.entrance-door:hover span {
-  transform: translateX(50%) translateY(-2px);
+.entrance-door:hover .entrance-cta,
+.entrance-door:focus-visible .entrance-cta {
+  transform: translateX(50%) translateY(-3px);
+}
+
+@keyframes entrance-cta-pulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 0 3px rgb(255 255 255 / 38%),
+      0 6px 0 #3d1f0e,
+      0 14px 24px rgb(42 21 8 / 34%),
+      0 0 0 0 rgb(255 214 110 / 0%);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 3px rgb(255 255 255 / 38%),
+      0 6px 0 #3d1f0e,
+      0 14px 24px rgb(42 21 8 / 34%),
+      0 0 0 12px rgb(255 214 110 / 28%);
+  }
 }
 
 .entrance-light {
@@ -325,7 +350,7 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.workshop-entrance.is-opening .entrance-door span {
+  .workshop-entrance.is-opening .entrance-cta {
   opacity: 0;
 }
 
@@ -341,8 +366,9 @@ button:focus-visible {
     height: 40%;
   }
 
-  .entrance-door span {
-    bottom: 2%;
+  .entrance-cta {
+    bottom: 20%;
+    padding: 15px 26px;
   }
 
   .entrance-light {
@@ -366,8 +392,8 @@ button:focus-visible {
     height: 45%;
   }
 
-  .entrance-door span {
-    bottom: 11%;
+  .entrance-cta {
+    bottom: 16%;
   }
 
   .entrance-light {
@@ -378,7 +404,7 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .entrance-scene,
   .entrance-brand,
-  .entrance-door span,
+  .entrance-cta,
   .entrance-light,
   .entrance-sparkles span {
     transition-duration: 1ms;
@@ -494,7 +520,7 @@ button:focus-visible {
 
 .workshop-app {
   display: grid;
-  grid-template-columns: clamp(72px, 8vw, 108px) minmax(0, 1fr);
+  grid-template-columns: clamp(72px, 7vw, 104px) minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas:
     "header header"
@@ -510,13 +536,6 @@ button:focus-visible {
     linear-gradient(135deg, #d8994c, #f3c377 50%, #cc8437);
 }
 
-.workshop-app[data-step-id="body"] {
-  background:
-    linear-gradient(rgb(62 30 10 / 10%), rgb(62 30 10 / 16%)),
-    url("../assets/ui/backgrounds/workshop-full-body-stage-v1.jpg") center 45% / cover no-repeat,
-    linear-gradient(135deg, #d8994c, #f3c377 50%, #cc8437);
-}
-
 .app-header,
 .step-rail {
   border: 0;
@@ -525,12 +544,12 @@ button:focus-visible {
 .app-header {
   grid-area: header;
   display: grid;
-  grid-template-columns: minmax(140px, 1fr) auto minmax(120px, 1fr);
+  grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
   align-items: center;
   gap: 12px;
   width: min(1360px, 100%);
   margin: 0 auto;
-  min-height: 74px;
+  min-height: 72px;
   padding: 2px clamp(8px, 1.5vw, 18px) 0;
   background: transparent;
 }
@@ -574,8 +593,13 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: end;
-  gap: clamp(6px, 1vw, 10px);
+  gap: clamp(6px, 0.9vw, 12px);
   min-width: 0;
+}
+
+.header-dot {
+  width: clamp(44px, 4.4vw, 58px);
+  height: clamp(44px, 4.4vw, 58px);
 }
 
 .step-rail {
@@ -648,13 +672,12 @@ button:focus-visible {
 .step-token__icon {
   display: grid;
   place-items: center;
-  width: min(52%, 34px);
+  width: min(72%, 42px);
   height: auto;
   aspect-ratio: 1;
-  border: 2px solid #8f5b2b;
-  border-radius: 50%;
-  background: rgb(255 247 219 / 88%);
-  font-size: clamp(0.78rem, 1.1vw, 0.96rem);
+  border: 0;
+  background: transparent;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
   line-height: 1;
 }
 
@@ -672,42 +695,23 @@ button:focus-visible {
   grid-area: builder;
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
-  gap: clamp(8px, 1.1vh, 14px);
+  gap: clamp(6px, 1vh, 12px);
   width: min(1240px, 100%);
   min-height: 0;
-  margin: 0 auto 0 0;
-}
-
-.preview-column,
-.controls-column {
-  min-height: 0;
-  border: 4px solid #7a431d;
-  border-radius: 28px;
-  background: var(--soft-panel);
-  box-shadow: var(--shadow), inset 0 0 0 3px rgb(255 255 255 / 24%);
-  backdrop-filter: blur(1px);
+  margin: 0 auto;
 }
 
 .preview-column {
   position: relative;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
   justify-items: center;
-  align-items: center;
-  padding: clamp(8px, 1.25vw, 18px);
+  align-items: end;
+  min-height: 0;
+  padding: clamp(4px, 0.8vw, 12px) clamp(8px, 1.25vw, 18px) 0;
   overflow: hidden;
-  border-color: transparent;
+  border: 0;
   background: transparent;
   box-shadow: none;
-  backdrop-filter: none;
-}
-
-.workshop-app[data-preview-mode="close"] .preview-column {
-  background: transparent;
-}
-
-.mobile-step-heading {
-  display: none;
 }
 
 .puppet-stage {
@@ -724,8 +728,8 @@ button:focus-visible {
   z-index: 1;
   display: block;
   width: auto;
-  height: min(100%, 91%, 610px);
-  max-width: min(100%, 470px);
+  height: min(100%, 62vh, 720px);
+  max-width: min(100%, 48vw, 520px);
   aspect-ratio: 2 / 3;
   animation: puppet-arrive 0.32s ease-out;
   filter: drop-shadow(0 15px 9px rgb(58 28 12 / 22%));
@@ -746,13 +750,24 @@ button:focus-visible {
   pointer-events: none;
 }
 
+.puppet-stage.is-close {
+  overflow: hidden;
+}
+
 .puppet-stage.is-close .puppet-assembled {
-  transform: scale(1.42) translateY(7%);
-  transform-origin: center 28%;
+  height: 175%;
+  max-height: none;
+  max-width: min(140%, 720px);
+  transform: translateY(18%);
+  transform-origin: 50% 10%;
+}
+
+.puppet-stage.is-close .wooden-plinth {
+  display: none;
 }
 
 .puppet-stage.is-body-only .puppet-assembled {
-  height: min(100%, 95%, 610px);
+  height: min(100%, 64vh, 740px);
 }
 
 .preview-mode-toggle {
@@ -774,13 +789,17 @@ button:focus-visible {
 .wooden-plinth {
   position: absolute;
   z-index: 0;
-  bottom: 2%;
-  width: min(72%, 420px);
-  height: 8%;
-  min-height: 26px;
+  bottom: 1%;
+  width: min(78%, 460px);
+  height: 11%;
+  min-height: 34px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 26%, #c7823e, #875024 58%, #5f3419);
-  box-shadow: 0 10px 14px rgb(49 23 8 / 26%);
+  background:
+    repeating-radial-gradient(ellipse at 50% 40%, rgb(255 214 150 / 18%) 0 6px, transparent 7px 14px),
+    radial-gradient(ellipse at 50% 26%, #d28d48, #875024 58%, #5f3419);
+  box-shadow:
+    inset 0 8px 10px rgb(255 220 160 / 18%),
+    0 12px 16px rgb(49 23 8 / 28%);
 }
 
 .restore-randomize {
@@ -799,68 +818,80 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
+.choice-tray {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(6px, 0.9vh, 10px);
+  width: min(920px, 100%);
+  max-height: min(38vh, 420px);
+  justify-self: center;
+  min-height: 0;
+  overflow: hidden;
+  border: 4px solid #8a5628;
+  border-radius: 28px;
+  padding: clamp(10px, 1.2vw, 16px) clamp(12px, 1.6vw, 22px) clamp(8px, 1vw, 12px);
+  background:
+    repeating-linear-gradient(28deg, rgb(255 255 255 / 7%) 0 2px, transparent 2px 9px),
+    linear-gradient(#f6e2b4, #edd09a);
+  box-shadow:
+    inset 0 0 0 3px #fff3c9,
+    inset 0 0 0 8px rgb(138 86 40 / 18%),
+    0 8px 0 #5a3216,
+    0 16px 22px rgb(48 24 8 / 22%);
+}
+
+.choice-tray::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 2px dashed rgb(120 70 30 / 32%);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.tray-heading {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.tray-heading h1 {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #3a2113;
+  font-size: clamp(1.05rem, 2.1vw, 1.7rem);
+  line-height: 1.08;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
 .price-ticket {
-  align-self: end;
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  min-width: min(360px, 92%);
-  margin-top: 6px;
-  border: 4px solid #a66d34;
-  border-radius: 18px;
-  padding: 8px 16px;
+  gap: 12px;
+  min-width: min(220px, 42vw);
+  border: 3px solid #a66d34;
+  border-radius: 16px;
+  padding: 7px 12px;
   background: linear-gradient(#ffe2a8, #f0bd70);
-  box-shadow: inset 0 0 0 2px #fff0bd, 0 5px 0 #70401f;
+  box-shadow: inset 0 0 0 2px #fff0bd, 0 4px 0 #70401f;
   text-transform: uppercase;
   color: #6a421f;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 900;
 }
 
 .price-ticket strong {
   color: #372013;
-  font-size: 1.25rem;
-}
-
-.controls-column {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: clamp(8px, 1vh, 12px);
-  padding: clamp(10px, 1.35vw, 16px) clamp(12px, 1.7vw, 22px);
-  overflow: hidden;
-}
-
-.controls-heading {
-  text-align: center;
-}
-
-.controls-heading .eyebrow {
-  display: inline-block;
-  margin-bottom: 2px;
-  color: #06635e;
-  font-size: clamp(0.78rem, 1vw, 0.96rem);
-  font-weight: 900;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.controls-heading h1 {
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #3a2113;
-  font-size: clamp(1.28rem, 2.5vw, 2.35rem);
-  line-height: 1.06;
-  white-space: nowrap;
-}
-
-.controls-heading p {
-  margin: 4px auto 0;
-  max-width: 560px;
-  color: #60401f;
-  font-size: clamp(0.82rem, 1.05vw, 0.98rem);
-  font-weight: 800;
+  font-size: 1.08rem;
 }
 
 .option-panel,
@@ -876,6 +907,16 @@ button:focus-visible {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(8px, 1.3vw, 15px);
   justify-items: center;
+}
+
+.option-grid--featured {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 16px);
+}
+
+.option-grid--featured .option-card {
+  min-height: 132px;
+  padding: 14px 10px 12px;
 }
 
 .option-grid--body .option-card {
@@ -1047,39 +1088,59 @@ button:focus-visible {
   min-height: 44px;
 }
 
-.workshop-app[data-step-id="body"] .catalog-note {
-  display: none;
+.option-grid--featured .option-card__label {
+  font-size: clamp(0.9rem, 1.2vw, 1.08rem);
 }
 
-.skip-card-art {
-  width: min(100%, 170px);
-  height: auto;
-  aspect-ratio: 3.65 / 1;
+.option-card__preview {
+  display: grid;
+  place-items: center;
+  width: min(100%, 92px);
+  aspect-ratio: 1.35 / 1;
 }
 
-.catalog-note {
-  margin: 10px 0 0;
-  color: #69421e;
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-align: center;
+.option-card__preview::before,
+.option-card__preview::after {
+  content: "";
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f8f3e6;
+  box-shadow: inset 0 0 0 9px #191512;
 }
 
-.panel-confirm-row,
-.body-ok-row,
-.eye-wizard__nav {
+.option-card__preview--beady::before,
+.option-card__preview--beady::after {
+  width: 16px;
+  height: 16px;
+  background: #191512;
+  box-shadow: none;
+}
+
+.option-card__preview--oval::before,
+.option-card__preview--oval::after {
+  width: 34px;
+  height: 20px;
+}
+
+.option-card__preview {
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding-top: 10px;
+}
+
+.wizard-back-row {
+  display: flex;
+  justify-content: start;
+  padding-top: 6px;
+}
+
+.wizard-back-row .ui-art-button {
+  width: min(100%, 132px);
 }
 
 .eye-wizard {
   display: block;
-}
-
-.eye-wizard .catalog-note {
-  margin-top: 8px;
 }
 
 .step-token:disabled {
@@ -1106,20 +1167,30 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.navigation-bar {
+.tray-actions {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: clamp(6px, 1vw, 10px);
+  gap: 8px;
   padding-top: 2px;
 }
 
-.navigation-bar .ui-art-button,
-.body-ok-row .ui-art-button,
-.panel-confirm-row .ui-art-button,
-.eye-wizard__nav .ui-art-button {
+.tray-skip {
+  grid-column: 1;
+  justify-self: start;
+  width: min(100%, 168px);
+}
+
+.tray-confirm {
+  grid-column: 2;
   justify-self: center;
-  width: min(100%, 162px);
+  width: min(220px, 42vw);
+}
+
+.tray-skip.is-skip-selected {
+  filter: drop-shadow(0 0 0 #4e9b24) brightness(1.06);
 }
 
 .review-panel {
@@ -1178,7 +1249,7 @@ button:focus-visible {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #0a6963;
+  background: #8a5628;
   color: #ffe5a4;
   font-weight: 900;
 }
@@ -1237,17 +1308,27 @@ button:focus-visible {
   }
 }
 
-@media (min-width: 901px) {
-  .workshop-app[data-step-id="body"] .builder-layout {
-    grid-template-rows: minmax(0, 1fr) auto;
+@media (min-width: 1100px) {
+  .builder-layout {
+    width: min(1180px, 100%);
   }
 
-  .workshop-app[data-step-id="body"] .option-grid--body {
+  .choice-tray {
+    width: min(860px, 100%);
+    max-height: min(34vh, 380px);
+  }
+
+  .puppet-assembled {
+    height: min(64vh, 740px);
+    max-width: min(100%, 36vw, 540px);
+  }
+
+  .option-grid--body {
     grid-template-columns: repeat(5, minmax(92px, 1fr));
   }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 701px) and (max-width: 1099px) {
   .welcome-screen {
     gap: clamp(8px, 1.3vh, 14px);
     padding: clamp(52px, 6vh, 66px) 14px clamp(22px, 3vh, 34px);
@@ -1263,233 +1344,63 @@ button:focus-visible {
   }
 
   .workshop-app {
-    grid-template-columns: 62px minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    gap: 6px;
-    padding: 6px;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 8px;
+    padding: 10px;
   }
 
   .app-header {
-    grid-template-columns: minmax(96px, 1fr) auto minmax(88px, 1fr);
-    min-height: 54px;
-    border-width: 3px;
-    border-radius: 16px 16px 9px 9px;
-    padding: 5px 7px;
-  }
-
-  .app-logo-button {
-    width: clamp(116px, 34vw, 170px);
-  }
-
-  .step-status {
-    min-width: clamp(112px, 26vw, 168px);
-    border-width: 3px;
-    border-radius: 14px;
-    padding: 7px 10px;
-    font-size: clamp(0.88rem, 2.8vw, 1.22rem);
-  }
-
-  .ui-art-button--square {
-    width: 42px;
-    height: 42px;
-  }
-
-  .step-rail {
-    grid-auto-rows: minmax(45px, 1fr);
-    gap: 5px;
-    padding: 6px;
-    border-width: 3px;
-    border-radius: 14px;
-  }
-
-  .step-token {
-    padding: 5px 6px 4px;
-    border-width: 2px;
-  }
-
-  .step-token__icon {
-    width: 25px;
-    height: 25px;
-    font-size: 0.78rem;
-  }
-
-  .step-token__label {
-    font-size: 0.55rem;
-  }
-
-  .step-token__check {
-    top: -7px;
-    right: -6px;
-  }
-
-  .step-token__check .ui-art-button--badge {
-    width: 22px;
-  }
-
-  .builder-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(190px, 49%) minmax(0, 51%);
-    gap: 6px;
-  }
-
-  .workshop-app[data-step-id="body"] .builder-layout {
-    grid-template-rows: minmax(0, 1fr) auto;
-  }
-
-  .preview-column,
-  .controls-column {
-    border-width: 3px;
-    border-radius: 20px;
-  }
-
-  .preview-column {
-    padding: 5px;
-  }
-
-  .mobile-step-heading {
-    display: block;
-    align-self: start;
-    width: 100%;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #3d2618;
-    font-size: 0.92rem;
-  }
-
-  .puppet-assembled {
-    height: min(100%, 91%);
-    max-width: min(100%, 420px);
-  }
-
-  .wooden-plinth {
-    width: 62%;
-    min-height: 16px;
-  }
-
-  .price-ticket {
-    min-width: min(320px, 90%);
-    padding: 6px 12px;
-    font-size: 0.68rem;
-  }
-
-  .price-ticket strong {
-    font-size: 1rem;
-  }
-
-  .controls-column {
-    gap: 6px;
-    padding: 7px;
-  }
-
-  .controls-heading .eyebrow,
-  .controls-heading p,
-  .controls-heading h1 {
-    display: none;
-  }
-
-  .controls-heading h1 {
-    font-size: clamp(1.04rem, 5vw, 1.38rem);
-  }
-
-  .option-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7px;
-  }
-
-  .workshop-app[data-step-id="body"] .option-grid--body {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(8px, 1.2vw, 12px);
-  }
-
-  .workshop-app[data-step-id="body"] .option-card {
-    width: min(100%, 112px);
-    min-height: 0;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .workshop-app[data-step-id="body"] .option-card__swatch {
-    width: min(100%, clamp(54px, 10vw, 92px));
-    border-width: 3px;
-  }
-
-  .workshop-app[data-step-id="body"] .option-card__label {
-    font-size: 0.58rem;
-  }
-
-  .option-card {
-    min-height: 82px;
-    border-width: 3px;
-    border-radius: 17px;
-    padding: 7px 6px;
-  }
-
-  .option-card__label {
-    font-size: 0.78rem;
-  }
-
-  .option-card__meta,
-  .option-card__price,
-  .catalog-note {
-    font-size: 0.66rem;
-  }
-
-  .eye-wizard .catalog-note {
-    display: none;
-  }
-
-  .option-grid--eyes .option-card,
-  .option-grid--nose .option-card {
     min-height: 62px;
   }
 
-  .option-card__check {
-    width: 25px;
-    height: 25px;
-    top: -8px;
-    right: -8px;
-    border-width: 2px;
+  .app-logo-button {
+    width: clamp(130px, 22vw, 200px);
   }
 
-  .navigation-bar {
-    gap: 4px;
+  .step-status {
+    min-width: clamp(140px, 24vw, 200px);
+    font-size: clamp(0.95rem, 2.2vw, 1.4rem);
   }
 
-  .navigation-bar .ui-art-button {
-    width: min(100%, 116px);
-    height: 38px;
+  .header-dot {
+    width: 48px;
+    height: 48px;
   }
 
-  .body-ok-row,
-  .panel-confirm-row,
-  .eye-wizard__nav {
-    padding-top: 6px;
+  .step-rail {
+    max-width: 80px;
+    padding: 8px;
   }
 
-  .body-ok-row .ui-art-button,
-  .panel-confirm-row .ui-art-button,
-  .eye-wizard__nav .ui-art-button {
-    width: 126px;
-    height: 40px;
+  .step-token__icon {
+    font-size: 1.25rem;
   }
 
-  .restore-randomize {
-    top: 8px;
-    left: 8px;
-    padding: 6px 10px;
-    font-size: 0.68rem;
+  .builder-layout {
+    width: 100%;
+  }
+
+  .choice-tray {
+    width: min(760px, 100%);
+    max-height: min(36vh, 400px);
+    border-radius: 24px;
+  }
+
+  .puppet-assembled {
+    height: min(58vh, 640px);
+    max-width: min(100%, 46vw, 460px);
+  }
+
+  .option-grid--body {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .option-grid--featured .option-card {
+    min-height: 118px;
   }
 }
 
-@media (max-width: 560px) {
-  body {
-    background: #d79b4b;
-  }
-
+@media (max-width: 700px) {
   .welcome-screen {
     gap: clamp(7px, 1.2vh, 12px);
     padding: 54px 12px 20px;
@@ -1500,10 +1411,6 @@ button:focus-visible {
     max-height: 25vh;
   }
 
-  .welcome-actions .ui-art-button--long {
-    width: 100%;
-  }
-
   .welcome-actions {
     width: min(300px, 80vw);
   }
@@ -1511,20 +1418,26 @@ button:focus-visible {
   .welcome-settings {
     width: 42px;
     height: 42px;
-    font-size: 1rem;
   }
 
   .workshop-app {
-    grid-template-columns: 54px minmax(0, 1fr);
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 5px;
     padding: 5px;
   }
 
   .app-header {
-    grid-template-columns: minmax(86px, 1fr) auto minmax(76px, 1fr);
+    grid-template-columns: minmax(86px, 1fr) auto minmax(112px, 1fr);
+    min-height: 52px;
+    padding: 4px 6px;
+  }
+
+  .app-logo-button {
+    width: clamp(104px, 30vw, 148px);
   }
 
   .step-status {
-    min-width: 96px;
+    min-width: 92px;
     padding: 6px 8px;
     font-size: 0.78rem;
   }
@@ -1533,48 +1446,113 @@ button:focus-visible {
     gap: 4px;
   }
 
+  .header-dot,
   .ui-art-button--square {
     width: 38px;
     height: 38px;
   }
 
   .step-rail {
+    max-width: 52px;
     grid-auto-rows: minmax(40px, 1fr);
     padding: 5px;
+    border-radius: 14px;
   }
 
   .step-token {
-    min-height: 50px;
+    min-height: 0;
+    padding: 3px;
     box-shadow: inset 0 0 0 2px rgb(255 255 255 / 25%), 0 3px 0 #563018;
   }
 
   .step-token__icon {
-    width: min(58%, 24px);
-    height: auto;
-    font-size: 0.7rem;
+    width: min(78%, 26px);
+    font-size: 0.95rem;
+  }
+
+  .step-token__check {
+    top: -6px;
+    right: -5px;
+  }
+
+  .step-token__check .ui-art-button--badge {
+    width: 18px;
+    height: 18px;
   }
 
   .builder-layout {
-    grid-template-rows: minmax(176px, 48%) minmax(0, 52%);
+    width: 100%;
+    gap: 5px;
+  }
+
+  .preview-column {
+    padding: 2px 4px 0;
+  }
+
+  .puppet-assembled {
+    height: min(100%, 48vh);
+    max-width: min(100%, 58vw);
+  }
+
+  .puppet-stage.is-close .puppet-assembled {
+    height: 190%;
+    max-width: min(160%, 520px);
+    transform: translateY(16%);
+  }
+
+  .wooden-plinth {
+    width: 70%;
+    min-height: 22px;
+  }
+
+  .choice-tray {
+    width: 100%;
+    max-height: min(40vh, 340px);
+    border-width: 3px;
+    border-radius: 20px;
+    padding: 8px 8px 6px;
+  }
+
+  .choice-tray::before {
+    inset: 6px;
+    border-radius: 14px;
+  }
+
+  .tray-heading {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .tray-heading h1 {
+    font-size: 0.92rem;
+  }
+
+  .price-ticket {
+    min-width: 0;
+    gap: 6px;
+    padding: 5px 8px;
+    font-size: 0.58rem;
+  }
+
+  .price-ticket strong {
+    font-size: 0.82rem;
   }
 
   .option-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
   }
 
-  .workshop-app[data-step-id="body"] .builder-layout {
-    grid-template-rows: minmax(220px, 50%) minmax(0, 50%);
-  }
-
-  .workshop-app[data-step-id="body"] .option-panel {
-    overflow: hidden;
-  }
-
-  .workshop-app[data-step-id="body"] .option-grid--body {
+  .option-grid--body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px 6px;
   }
 
+  .option-grid--featured {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .option-grid--body .option-card,
   .workshop-app[data-step-id="body"] .option-card {
     width: min(100%, 86px);
     min-height: 0;
@@ -1584,30 +1562,73 @@ button:focus-visible {
     box-shadow: none;
   }
 
-  .workshop-app[data-step-id="body"] .option-card__swatch {
+  .option-grid--body .option-card__swatch {
     width: min(100%, clamp(48px, 15vw, 70px));
     border-width: 2px;
   }
 
+  .option-grid--body .option-card__label,
   .workshop-app[data-step-id="body"] .option-card__label {
     font-size: 0.55rem;
   }
 
-  .workshop-app[data-step-id="body"] .catalog-note {
-    display: none;
+  .option-card {
+    min-height: 78px;
+    border-width: 3px;
+    border-radius: 16px;
+    padding: 6px 5px;
   }
 
-  .workshop-app[data-step-id="body"] .controls-column {
-    grid-template-rows: auto minmax(0, 1fr) auto;
-  }
-
-  .workshop-app[data-step-id="body"] .controls-heading {
-    display: none;
+  .option-card__label {
+    font-size: 0.74rem;
   }
 
   .option-card__meta,
   .option-card__price {
     display: none;
+  }
+
+  .option-card__preview {
+    width: min(100%, 64px);
+    gap: 6px;
+  }
+
+  .option-card__preview::before,
+  .option-card__preview::after {
+    width: 18px;
+    height: 18px;
+    box-shadow: inset 0 0 0 6px #191512;
+  }
+
+  .option-card__check {
+    width: 22px;
+    height: 22px;
+    top: -7px;
+    right: -7px;
+    border-width: 2px;
+  }
+
+  .tray-actions {
+    gap: 4px;
+  }
+
+  .tray-skip {
+    width: min(100%, 128px);
+  }
+
+  .tray-confirm {
+    width: min(150px, 46vw);
+  }
+
+  .wizard-back-row .ui-art-button {
+    width: 110px;
+  }
+
+  .restore-randomize {
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    font-size: 0.68rem;
   }
 
   .review-row {
@@ -1634,31 +1655,25 @@ button:focus-visible {
     width: min(360px, 78vw);
   }
 
-  .welcome-actions .ui-art-button--long {
-    width: 100%;
-  }
-
   .app-header {
     min-height: 50px;
   }
 
   .step-token {
-    min-height: 48px;
+    min-height: 0;
   }
 
-  .controls-heading p {
-    display: none;
+  .choice-tray {
+    max-height: min(38vh, 300px);
   }
 
   .option-card {
-    min-height: 74px;
+    min-height: 70px;
   }
+}
 
-  .price-ticket {
-    display: none;
-  }
-
-  .catalog-note {
-    display: none;
+@media (prefers-reduced-motion: reduce) {
+  .entrance-cta {
+    animation: none;
   }
 }

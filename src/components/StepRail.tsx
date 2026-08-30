@@ -22,8 +22,9 @@ export function StepRail({ steps, activeStep, completedThrough, onStepChange }: 
             disabled={!reachable}
             aria-current={activeStep === index ? 'step' : undefined}
             aria-label={`Step ${index + 1}: ${step.title}${reachable ? '' : ' (locked)'}`}
+            data-step-id={step.id}
           >
-            <span className="step-token__icon" aria-hidden="true">{index + 1}</span>
+            <span className="step-token__icon" aria-hidden="true">{step.icon}</span>
             <span className="step-token__label">{step.shortLabel}</span>
             {complete && <span className="step-token__check" aria-hidden="true"><UiArtImage asset="completeTick" label="Complete" size="badge" /></span>}
           </button>
