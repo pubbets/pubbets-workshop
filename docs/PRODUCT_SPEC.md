@@ -35,19 +35,26 @@ screens reviewed on 2026-08-06.
 - Reset, randomize, sound toggle, next/back navigation, progress, and pricing work
   without a network connection after the app has loaded.
 - Selections persist in the browser.
-- The V1 review step is read-only. Build-sheet buttons and downloads are postponed.
+- The V1 review step is read-only. There is no JSON build-sheet export.
+  Build-sheet buttons and downloads are postponed.
 - Future build-sheet v2 should generate a customer/admin visual build sheet in
   the handmade Pubbets tracking-sheet style: customer details, order number,
   start date, final puppet preview, selected features/garments, production notes,
   and Pubbets branding. The customer version can support welcome emails; the
   admin version can support order tracking and fulfilment.
-- Checkout must not claim an estimated price is chargeable. Real Shopify checkout
-  is enabled only after base and add-on variant IDs are mapped and tested.
+- Checkout stays off. Workshop totals are estimates only and must not be
+  presented as chargeable. Real Shopify checkout is enabled only after base
+  and add-on variant IDs are mapped and tested.
 
 ## Catalog
 
 `scripts/generate-data.cjs` is the source for the eight category files under
-`src/data/`. Current generated total: 402 records.
+`src/data/`. Current generated JSON total: 409 records.
+
+The 14-day workshop preview is a look-don't-buy closed beta. The in-app
+catalog is the frozen 41-option kit in `src/data/betaKit.ts` and
+`docs/BETA_KIT.md`. The generator can still write the full JSON set. Restore
+the 409-record UI later by setting `BETA_KIT_ENABLED` to `false`.
 
 ## PNG layer contract
 
