@@ -80,7 +80,18 @@ export function App() {
     : category === 'body'
       ? currentStepTouched && Boolean(selections.body)
       : currentStepTouched || activeStep <= completedThrough;
-  const stepHeading = category === 'body' ? step.title : step.prompt;
+  const trayTitles: Record<string, string> = {
+    body: 'Choose your colour',
+    eyes: 'Choose your eye shape',
+    nose: 'Choose your nose',
+    glasses: 'Add glasses?',
+    hair: 'Pick a hairstyle',
+    outfit: 'Dress your Pubbet',
+    shoes: 'Choose shoes',
+    accessory: 'Add extras?',
+    review: 'Your Pubbet'
+  };
+  const stepHeading = trayTitles[step.id] ?? (category === 'body' ? step.title : step.prompt);
 
   useEffect(() => {
     const ids = Object.fromEntries(Object.entries(selections).map(([category, option]) => [category, option?.id ?? null]));
@@ -214,14 +225,14 @@ export function App() {
         </button>
         <div className="step-status" aria-live="polite">Step {activeStep + 1} of {steps.length}</div>
         <div className="header-actions">
-          <UiArtButton asset="randomiseSquare" label={category ? `Randomise ${category}` : 'Randomise build'} size="square" onClick={randomizeCurrent} title="Randomise" />
-          <UiArtButton asset={soundEnabled ? 'soundOn' : 'soundOff'} label={soundEnabled ? 'Mute sound' : 'Enable sound'} size="square" onClick={() => setSoundEnabled(!soundEnabled)} title="Sound" />
+          <UiArtButton asset="reset" label="Reset build" size="square" className="header-dot" onClick={reset} title="Reset" />
+          <UiArtButton asset="randomiseSquare" label={category ? `Randomise ${category}` : 'Randomise build'} size="square" className="header-dot" onClick={randomizeCurrent} title="Randomise" />
+          <UiArtButton asset={soundEnabled ? 'soundOn' : 'soundOff'} label={soundEnabled ? 'Mute sound' : 'Enable sound'} size="square" className="header-dot" onClick={() => setSoundEnabled(!soundEnabled)} title="Sound" />
         </div>
       </header>
       <StepRail steps={steps} activeStep={activeStep} completedThrough={completedThrough} onStepChange={moveTo} />
       <div className="builder-layout">
         <section className="preview-column">
-          <div className="mobile-step-heading"><strong>{stepHeading}</strong></div>
           <button
             className="preview-mode-toggle"
             onClick={() => setPreviewMode((mode) => mode === 'full' ? 'close' : 'full')}
@@ -229,15 +240,18 @@ export function App() {
           >
             {previewMode === 'full' ? 'Close-up view' : 'Full body view'}
           </button>
-          <PuppetPreview selections={selections} closeUp={previewMode === 'close'} bodyOnly={step.id === 'body'} motionKey={motionKey} />
           {undoSnapshot && <button className="restore-randomize" onClick={restorePrevious}>Restore previous</button>}
-          {step.id !== 'body' && <div className="price-ticket"><span>Build total</span><strong>{formatMoney(total)}</strong></div>}
+          <PuppetPreview selections={selections} closeUp={previewMode === 'close'} bodyOnly={step.id === 'body'} motionKey={motionKey} />
         </section>
-        <section className="controls-column">
-          <header className="controls-heading">
-            {category !== 'body' && <span className="eyebrow">{step.title}</span>}
+        <section className="choice-tray">
+          <header className="tray-heading">
             <h1>{stepHeading}</h1>
-            <p>{category === 'body' ? 'Body colour is required. Tap a colour to preview it live.' : category ? 'Tap a choice to see it on your Pubbet.' : 'Everything look just right?'}</p>
+            {step.id !== 'review' && (
+              <aside className="price-ticket" aria-label="Estimated workshop total">
+                <span>Build total</span>
+                <strong>{formatMoney(total)}</strong>
+              </aside>
+            )}
           </header>
           {category ? (
             <OptionPanel
@@ -246,14 +260,27 @@ export function App() {
               selected={selections[category]}
               touched={touchedCategories[category]}
               onSelect={(option) => select(category, option)}
-              onBack={() => moveTo(activeStep - 1)}
             />
           ) : <ReviewPanel selections={selections} total={total} />}
-          <footer className="navigation-bar">
-            <UiArtButton asset="back" label="Back" size="wide" onClick={() => moveTo(activeStep - 1)} disabled={activeStep === 0} />
-            <UiArtButton asset="reset" label="Reset build" size="wide" onClick={reset} />
-            {activeStep < steps.length - 1 && canContinue && (
-              <UiArtButton asset="next" label={activeStep === 7 ? 'Review build' : 'Next step'} size="wide" onClick={next} />
+          <footer className="tray-actions">
+            {category && optionalCategories.has(category) && (
+              <UiArtButton
+                asset="skipThisStep"
+                label="Skip this step"
+                size="wide"
+                className={`tray-skip${currentStepTouched && selections[category] === null ? ' is-skip-selected' : ''}`}
+                onClick={() => select(category, null)}
+              />
+            )}
+            {activeStep < steps.length - 1 && (
+              <UiArtButton
+                asset="ok"
+                label={canContinue ? (activeStep === 7 ? 'Review build' : 'OK?') : 'Choose an option first'}
+                size="wide"
+                className="tray-confirm"
+                onClick={next}
+                disabled={!canContinue}
+              />
             )}
           </footer>
         </section>

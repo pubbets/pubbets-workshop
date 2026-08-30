@@ -43,7 +43,7 @@ export function WorkshopEntrance({ onEnter, onEntered }: Props) {
         <img src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
       </header>
       <button className="entrance-door" type="button" onClick={enterWorkshop} aria-label="Open the door and enter Pubbets Workshop">
-        <span>Tap the door to enter</span>
+        <span className="entrance-cta">Tap the door to enter</span>
       </button>
     </main>
   );

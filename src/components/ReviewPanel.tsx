@@ -15,7 +15,7 @@ export function ReviewPanel({ selections, total }: Props) {
         })}
       </div>
       <div className="review-total"><span>Workshop total</span><strong>{formatMoney(total)}</strong></div>
-      <p className="checkout-note">Checkout stays off until real Shopify base and add-on variants are mapped, so the amount charged can never disagree with this total.</p>
+      <p className="checkout-note">This workshop total is an estimate only. Checkout stays off until real Shopify base and add-on variants are mapped.</p>
     </section>
   );
 }
