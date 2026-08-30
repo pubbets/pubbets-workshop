@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react';
 import type { SelectionState } from '../types';
 import { optionColour } from '../data/catalog';
+import { tintBodyImageData } from '../utils/tintBodyPng';
+import bodyBasePng from '../../assets/puppet/body-base.png';
 
 type Props = {
   selections: SelectionState;
@@ -7,6 +10,50 @@ type Props = {
   bodyOnly?: boolean;
   motionKey: number;
 };
+
+let bodyImagePromise: Promise<HTMLImageElement> | null = null;
+
+function loadBodyImage(src: string) {
+  if (!bodyImagePromise) {
+    bodyImagePromise = new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error('Could not load the puppet body base'));
+      image.src = src;
+    });
+  }
+  return bodyImagePromise;
+}
+
+function TintedBodyBase({ colour }: { colour: string | null }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    let cancelled = false;
+
+    loadBodyImage(bodyBasePng).then((image) => {
+      if (cancelled || !canvasRef.current) return;
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      if (!context) return;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0);
+      if (!colour) return;
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      tintBodyImageData(imageData, colour);
+      context.putImageData(imageData, 0, 0);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [colour]);
+
+  return <canvas ref={canvasRef} className="puppet-body-base" />;
+}
 
 function Eyes({ selections }: Pick<Props, 'selections'>) {
   const eye = selections.eyes;
@@ -110,36 +157,31 @@ function outfitFill(id = '') {
 }
 
 export function PuppetPreview({ selections, closeUp = false, bodyOnly = false, motionKey }: Props) {
-  const body = optionColour(selections.body, '#fffaf0');
+  const bodyColour = selections.body ? optionColour(selections.body) : null;
   const outfit = bodyOnly ? null : selections.outfit;
   const shoes = bodyOnly ? null : selections.shoes;
   const hasRods = !bodyOnly && Boolean(selections.accessory?.id.includes('rod'));
+  const showFeatures = !bodyOnly;
+
   return (
-    <div className={`puppet-stage ${closeUp && !bodyOnly ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="svg-fallback">
-      <svg key={motionKey} className="puppet-svg" viewBox="0 0 400 610" role="img" aria-label="Your customized Pubbet preview">
-        <ellipse cx="200" cy="570" rx="150" ry="30" fill="#8d572f" opacity=".32" />
-        {hasRods && <g stroke="#5b4031" strokeWidth="8" strokeLinecap="round"><path d="M73 364L25 545" /><path d="M327 364L375 545" /></g>}
-        <g className="puppet-body" fill={body} stroke="#3b261e" strokeWidth="5" strokeLinejoin="round">
-          <path d="M133 344 Q94 350 74 410 L45 461 Q34 482 53 494 Q72 507 88 486 L117 448 L151 388Z" />
-          <path d="M267 344 Q306 350 326 410 L355 461 Q366 482 347 494 Q328 507 312 486 L283 448 L249 388Z" />
-          <path d="M144 470 L140 550 Q139 575 165 578 Q190 579 193 553 L197 474Z" />
-          <path d="M256 470 L260 550 Q261 575 235 578 Q210 579 207 553 L203 474Z" />
-          <ellipse cx="200" cy="397" rx="91" ry="116" />
-          <path d="M174 290 Q200 305 226 290 L226 353 Q200 368 174 353Z" />
-          <circle cx="200" cy="202" r="123" />
-          <circle cx="79" cy="205" r="30" />
-          <circle cx="321" cy="205" r="30" />
-        </g>
-        {outfit && <path d="M128 345 Q200 317 272 345 L283 444 Q245 485 200 486 Q155 485 117 444Z" fill={outfitFill(outfit.id)} stroke="#3b261e" strokeWidth="5" />}
-        {outfit?.id.includes('gingham') && <g opacity=".45" stroke="#fff" strokeWidth="8"><path d="M145 350V468 M180 336V482 M220 336V482 M255 350V468" /><path d="M123 380H277 M119 420H281 M125 458H275" /></g>}
-        {!bodyOnly && <Hair selections={selections} />}
-        {!bodyOnly && <Eyes selections={selections} />}
-        {!bodyOnly && <Nose selections={selections} />}
-        {!bodyOnly && <Glasses selections={selections} />}
-        <path d="M147 282 Q200 331 253 282 Q245 347 200 350 Q155 347 147 282Z" fill="#b7192e" stroke="#3b261e" strokeWidth="5" />
-        <path d="M181 321 Q200 300 219 321 Q216 342 200 345 Q184 342 181 321Z" fill="#f4859d" />
-        {shoes && <g fill={outfitFill(shoes.id)} stroke="#3b261e" strokeWidth="5"><path d="M126 548 Q159 536 194 556 L192 585 Q152 602 112 581Z" /><path d="M274 548 Q241 536 206 556 L208 585 Q248 602 288 581Z" /></g>}
-      </svg>
+    <div className={`puppet-stage ${closeUp && !bodyOnly ? 'is-close' : ''} ${bodyOnly ? 'is-body-only' : ''}`} data-preview-engine="png-base">
+      <div key={motionKey} className="puppet-assembled" role="img" aria-label="Your customized Pubbet preview">
+        <TintedBodyBase colour={bodyColour} />
+        {showFeatures && (
+          <svg className="puppet-feature-overlays" viewBox="0 0 2000 3000" aria-hidden="true">
+            <g transform="translate(0 -220) scale(5)">
+              {outfit && <path d="M128 345 Q200 317 272 345 L283 444 Q245 485 200 486 Q155 485 117 444Z" fill={outfitFill(outfit.id)} stroke="#3b261e" strokeWidth="5" />}
+              {outfit?.id.includes('gingham') && <g opacity=".45" stroke="#fff" strokeWidth="8"><path d="M145 350V468 M180 336V482 M220 336V482 M255 350V468" /><path d="M123 380H277 M119 420H281 M125 458H275" /></g>}
+              {shoes && <g fill={outfitFill(shoes.id)} stroke="#3b261e" strokeWidth="5"><path d="M126 548 Q159 536 194 556 L192 585 Q152 602 112 581Z" /><path d="M274 548 Q241 536 206 556 L208 585 Q248 602 288 581Z" /></g>}
+              <Hair selections={selections} />
+              <Eyes selections={selections} />
+              <Glasses selections={selections} />
+              <Nose selections={selections} />
+              {hasRods && <g stroke="#5b4031" strokeWidth="8" strokeLinecap="round"><path d="M73 364L25 545" /><path d="M327 364L375 545" /></g>}
+            </g>
+          </svg>
+        )}
+      </div>
       <div className="wooden-plinth" aria-hidden="true" />
     </div>
   );
