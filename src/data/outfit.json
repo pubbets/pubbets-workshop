@@ -7,7 +7,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-gingham-dress-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-gingham-dress-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-gingham-dress-tn.png",
+    "type": "dress"
   },
   {
     "id": "apple-gingham-dress",
@@ -17,7 +18,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_apple-gingham-dress-body.webp",
-    "thumbnailPath": "thumbnails/outfit_apple-gingham-dress-tn.png"
+    "thumbnailPath": "thumbnails/outfit_apple-gingham-dress-tn.png",
+    "type": "dress"
   },
   {
     "id": "pink-floral-dress-with-bag",
@@ -27,7 +29,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_pink-floral-dress-with-bag-body.webp",
-    "thumbnailPath": "thumbnails/outfit_pink-floral-dress-with-bag-tn.png"
+    "thumbnailPath": "thumbnails/outfit_pink-floral-dress-with-bag-tn.png",
+    "type": "dress"
   },
   {
     "id": "violet-floral-dress-with-bag",
@@ -37,7 +40,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_violet-floral-dress-with-bag-body.webp",
-    "thumbnailPath": "thumbnails/outfit_violet-floral-dress-with-bag-tn.png"
+    "thumbnailPath": "thumbnails/outfit_violet-floral-dress-with-bag-tn.png",
+    "type": "dress"
   },
   {
     "id": "red-teddy-dress",
@@ -47,7 +51,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_red-teddy-dress-body.webp",
-    "thumbnailPath": "thumbnails/outfit_red-teddy-dress-tn.png"
+    "thumbnailPath": "thumbnails/outfit_red-teddy-dress-tn.png",
+    "type": "dress"
   },
   {
     "id": "maroon-teddy-dress",
@@ -57,7 +62,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_maroon-teddy-dress-body.webp",
-    "thumbnailPath": "thumbnails/outfit_maroon-teddy-dress-tn.png"
+    "thumbnailPath": "thumbnails/outfit_maroon-teddy-dress-tn.png",
+    "type": "dress"
   },
   {
     "id": "sunflower-2-dress",
@@ -67,7 +73,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_sunflower-2-dress-body.webp",
-    "thumbnailPath": "thumbnails/outfit_sunflower-2-dress-tn.png"
+    "thumbnailPath": "thumbnails/outfit_sunflower-2-dress-tn.png",
+    "type": "dress"
   },
   {
     "id": "sunflower-1-dress-with-bag",
@@ -77,7 +84,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_sunflower-1-dress-with-bag-body.webp",
-    "thumbnailPath": "thumbnails/outfit_sunflower-1-dress-with-bag-tn.png"
+    "thumbnailPath": "thumbnails/outfit_sunflower-1-dress-with-bag-tn.png",
+    "type": "dress"
   },
   {
     "id": "pink-pajamas",
@@ -87,7 +95,8 @@
     "riveArtboardRef": "Puppet/Outfit/Looks",
     "colourBindable": false,
     "textureAssetPath": "outfit_pink-pajamas-body.webp",
-    "thumbnailPath": "thumbnails/outfit_pink-pajamas-tn.png"
+    "thumbnailPath": "thumbnails/outfit_pink-pajamas-tn.png",
+    "type": "dress"
   },
   {
     "id": "premium-bw-fashionista",
@@ -98,7 +107,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-bw-fashionista-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-bw-fashionista-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-bw-fashionista-tn.png",
+    "type": "premium"
   },
   {
     "id": "premium-boy-elf",
@@ -109,7 +119,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-boy-elf-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-boy-elf-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-boy-elf-tn.png",
+    "type": "premium"
   },
   {
     "id": "premium-girl-elf",
@@ -120,7 +131,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-girl-elf-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-girl-elf-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-girl-elf-tn.png",
+    "type": "premium"
   },
   {
     "id": "premium-tuxedo",
@@ -131,7 +143,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-tuxedo-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-tuxedo-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-tuxedo-tn.png",
+    "type": "premium"
   },
   {
     "id": "premium-suit-and-tie",
@@ -142,7 +155,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-suit-and-tie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-suit-and-tie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-suit-and-tie-tn.png",
+    "type": "premium"
   },
   {
     "id": "premium-lil-red",
@@ -153,7 +167,8 @@
     "riveArtboardRef": "Puppet/Outfit/Premium",
     "colourBindable": false,
     "textureAssetPath": "outfit_premium-lil-red-body.webp",
-    "thumbnailPath": "thumbnails/outfit_premium-lil-red-tn.png"
+    "thumbnailPath": "thumbnails/outfit_premium-lil-red-tn.png",
+    "type": "premium"
   },
   {
     "id": "blouse-black-white-striped",
@@ -163,7 +178,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_blouse-black-white-striped-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blouse-black-white-striped-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blouse-black-white-striped-tn.png",
+    "type": "top"
   },
   {
     "id": "tshirt-blue-yellow-collar",
@@ -173,7 +189,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_tshirt-blue-yellow-collar-body.webp",
-    "thumbnailPath": "thumbnails/outfit_tshirt-blue-yellow-collar-tn.png"
+    "thumbnailPath": "thumbnails/outfit_tshirt-blue-yellow-collar-tn.png",
+    "type": "top"
   },
   {
     "id": "tshirt-yellow-green-collar",
@@ -183,7 +200,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_tshirt-yellow-green-collar-body.webp",
-    "thumbnailPath": "thumbnails/outfit_tshirt-yellow-green-collar-tn.png"
+    "thumbnailPath": "thumbnails/outfit_tshirt-yellow-green-collar-tn.png",
+    "type": "top"
   },
   {
     "id": "black-t",
@@ -193,7 +211,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_black-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_black-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_black-t-tn.png",
+    "type": "top"
   },
   {
     "id": "white-t",
@@ -203,7 +222,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_white-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_white-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_white-t-tn.png",
+    "type": "top"
   },
   {
     "id": "blue-t",
@@ -213,7 +233,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-t-tn.png",
+    "type": "top"
   },
   {
     "id": "yellow-t",
@@ -223,7 +244,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_yellow-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_yellow-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_yellow-t-tn.png",
+    "type": "top"
   },
   {
     "id": "red-t",
@@ -233,7 +255,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_red-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_red-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_red-t-tn.png",
+    "type": "top"
   },
   {
     "id": "green-t",
@@ -243,7 +266,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_green-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_green-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_green-t-tn.png",
+    "type": "top"
   },
   {
     "id": "rainbow-t",
@@ -253,7 +277,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_rainbow-t-body.webp",
-    "thumbnailPath": "thumbnails/outfit_rainbow-t-tn.png"
+    "thumbnailPath": "thumbnails/outfit_rainbow-t-tn.png",
+    "type": "top"
   },
   {
     "id": "retro-t-1",
@@ -263,7 +288,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_retro-t-1-body.webp",
-    "thumbnailPath": "thumbnails/outfit_retro-t-1-tn.png"
+    "thumbnailPath": "thumbnails/outfit_retro-t-1-tn.png",
+    "type": "top"
   },
   {
     "id": "retro-t-2",
@@ -273,7 +299,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_retro-t-2-body.webp",
-    "thumbnailPath": "thumbnails/outfit_retro-t-2-tn.png"
+    "thumbnailPath": "thumbnails/outfit_retro-t-2-tn.png",
+    "type": "top"
   },
   {
     "id": "retro-t-3",
@@ -283,7 +310,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_retro-t-3-body.webp",
-    "thumbnailPath": "thumbnails/outfit_retro-t-3-tn.png"
+    "thumbnailPath": "thumbnails/outfit_retro-t-3-tn.png",
+    "type": "top"
   },
   {
     "id": "polo-white-crowns",
@@ -293,7 +321,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_polo-white-crowns-body.webp",
-    "thumbnailPath": "thumbnails/outfit_polo-white-crowns-tn.png"
+    "thumbnailPath": "thumbnails/outfit_polo-white-crowns-tn.png",
+    "type": "top"
   },
   {
     "id": "polo-dark-blue-crowns",
@@ -303,7 +332,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_polo-dark-blue-crowns-body.webp",
-    "thumbnailPath": "thumbnails/outfit_polo-dark-blue-crowns-tn.png"
+    "thumbnailPath": "thumbnails/outfit_polo-dark-blue-crowns-tn.png",
+    "type": "top"
   },
   {
     "id": "jersey-blue",
@@ -313,7 +343,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_jersey-blue-body.webp",
-    "thumbnailPath": "thumbnails/outfit_jersey-blue-tn.png"
+    "thumbnailPath": "thumbnails/outfit_jersey-blue-tn.png",
+    "type": "top"
   },
   {
     "id": "jersey-black",
@@ -323,7 +354,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_jersey-black-body.webp",
-    "thumbnailPath": "thumbnails/outfit_jersey-black-tn.png"
+    "thumbnailPath": "thumbnails/outfit_jersey-black-tn.png",
+    "type": "top"
   },
   {
     "id": "jersey-yellow",
@@ -333,7 +365,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_jersey-yellow-body.webp",
-    "thumbnailPath": "thumbnails/outfit_jersey-yellow-tn.png"
+    "thumbnailPath": "thumbnails/outfit_jersey-yellow-tn.png",
+    "type": "top"
   },
   {
     "id": "jersey-green",
@@ -343,7 +376,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_jersey-green-body.webp",
-    "thumbnailPath": "thumbnails/outfit_jersey-green-tn.png"
+    "thumbnailPath": "thumbnails/outfit_jersey-green-tn.png",
+    "type": "top"
   },
   {
     "id": "jersey-red",
@@ -353,7 +387,8 @@
     "riveArtboardRef": "Puppet/Outfit/Top",
     "colourBindable": false,
     "textureAssetPath": "outfit_jersey-red-body.webp",
-    "thumbnailPath": "thumbnails/outfit_jersey-red-tn.png"
+    "thumbnailPath": "thumbnails/outfit_jersey-red-tn.png",
+    "type": "top"
   },
   {
     "id": "black-pants",
@@ -363,7 +398,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_black-pants-body.webp",
-    "thumbnailPath": "thumbnails/outfit_black-pants-tn.png"
+    "thumbnailPath": "thumbnails/outfit_black-pants-tn.png",
+    "type": "bottom"
   },
   {
     "id": "blue-pants",
@@ -373,7 +409,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-pants-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-pants-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-pants-tn.png",
+    "type": "bottom"
   },
   {
     "id": "blue-3-4-pants",
@@ -383,7 +420,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-3-4-pants-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-3-4-pants-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-3-4-pants-tn.png",
+    "type": "bottom"
   },
   {
     "id": "blue-jeans",
@@ -393,7 +431,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-jeans-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-jeans-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-jeans-tn.png",
+    "type": "bottom"
   },
   {
     "id": "athletic-shorts-red",
@@ -403,7 +442,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_athletic-shorts-red-body.webp",
-    "thumbnailPath": "thumbnails/outfit_athletic-shorts-red-tn.png"
+    "thumbnailPath": "thumbnails/outfit_athletic-shorts-red-tn.png",
+    "type": "bottom"
   },
   {
     "id": "athletic-shorts-blue",
@@ -413,7 +453,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_athletic-shorts-blue-body.webp",
-    "thumbnailPath": "thumbnails/outfit_athletic-shorts-blue-tn.png"
+    "thumbnailPath": "thumbnails/outfit_athletic-shorts-blue-tn.png",
+    "type": "bottom"
   },
   {
     "id": "athletic-shorts-black",
@@ -423,7 +464,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_athletic-shorts-black-body.webp",
-    "thumbnailPath": "thumbnails/outfit_athletic-shorts-black-tn.png"
+    "thumbnailPath": "thumbnails/outfit_athletic-shorts-black-tn.png",
+    "type": "bottom"
   },
   {
     "id": "athletic-shorts-green",
@@ -433,7 +475,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_athletic-shorts-green-body.webp",
-    "thumbnailPath": "thumbnails/outfit_athletic-shorts-green-tn.png"
+    "thumbnailPath": "thumbnails/outfit_athletic-shorts-green-tn.png",
+    "type": "bottom"
   },
   {
     "id": "athletic-shorts-yellow",
@@ -443,7 +486,8 @@
     "riveArtboardRef": "Puppet/Outfit/Bottom",
     "colourBindable": false,
     "textureAssetPath": "outfit_athletic-shorts-yellow-body.webp",
-    "thumbnailPath": "thumbnails/outfit_athletic-shorts-yellow-tn.png"
+    "thumbnailPath": "thumbnails/outfit_athletic-shorts-yellow-tn.png",
+    "type": "bottom"
   },
   {
     "id": "overalls-blue-teddy",
@@ -454,7 +498,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_overalls-blue-teddy-body.webp",
-    "thumbnailPath": "thumbnails/outfit_overalls-blue-teddy-tn.png"
+    "thumbnailPath": "thumbnails/outfit_overalls-blue-teddy-tn.png",
+    "type": "overlayer"
   },
   {
     "id": "overalls-girls-black",
@@ -465,7 +510,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_overalls-girls-black-body.webp",
-    "thumbnailPath": "thumbnails/outfit_overalls-girls-black-tn.png"
+    "thumbnailPath": "thumbnails/outfit_overalls-girls-black-tn.png",
+    "type": "overlayer"
   },
   {
     "id": "blue-check-shirt",
@@ -476,7 +522,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-check-shirt-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-check-shirt-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-check-shirt-tn.png",
+    "type": "top"
   },
   {
     "id": "orange-check-shirt",
@@ -487,7 +534,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_orange-check-shirt-body.webp",
-    "thumbnailPath": "thumbnails/outfit_orange-check-shirt-tn.png"
+    "thumbnailPath": "thumbnails/outfit_orange-check-shirt-tn.png",
+    "type": "top"
   },
   {
     "id": "red-check-shirt",
@@ -498,7 +546,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_red-check-shirt-body.webp",
-    "thumbnailPath": "thumbnails/outfit_red-check-shirt-tn.png"
+    "thumbnailPath": "thumbnails/outfit_red-check-shirt-tn.png",
+    "type": "top"
   },
   {
     "id": "overshirt-blue-plaid",
@@ -509,7 +558,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_overshirt-blue-plaid-body.webp",
-    "thumbnailPath": "thumbnails/outfit_overshirt-blue-plaid-tn.png"
+    "thumbnailPath": "thumbnails/outfit_overshirt-blue-plaid-tn.png",
+    "type": "top"
   },
   {
     "id": "overshirt-orange-plaid",
@@ -520,7 +570,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_overshirt-orange-plaid-body.webp",
-    "thumbnailPath": "thumbnails/outfit_overshirt-orange-plaid-tn.png"
+    "thumbnailPath": "thumbnails/outfit_overshirt-orange-plaid-tn.png",
+    "type": "top"
   },
   {
     "id": "overshirt-red-plaid",
@@ -531,7 +582,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_overshirt-red-plaid-body.webp",
-    "thumbnailPath": "thumbnails/outfit_overshirt-red-plaid-tn.png"
+    "thumbnailPath": "thumbnails/outfit_overshirt-red-plaid-tn.png",
+    "type": "top"
   },
   {
     "id": "red-plaid-hoodie",
@@ -542,7 +594,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_red-plaid-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_red-plaid-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_red-plaid-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "yellow-plaid-hoodie",
@@ -553,7 +606,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_yellow-plaid-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_yellow-plaid-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_yellow-plaid-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "black-white-hoodie",
@@ -564,7 +618,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_black-white-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_black-white-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_black-white-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "blue-plaid-hoodie",
@@ -575,7 +630,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-plaid-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-plaid-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-plaid-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "pink-plaid-hoodie",
@@ -586,7 +642,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_pink-plaid-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_pink-plaid-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_pink-plaid-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "tan-plaid-hoodie",
@@ -597,7 +654,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_tan-plaid-hoodie-body.webp",
-    "thumbnailPath": "thumbnails/outfit_tan-plaid-hoodie-tn.png"
+    "thumbnailPath": "thumbnails/outfit_tan-plaid-hoodie-tn.png",
+    "type": "top"
   },
   {
     "id": "black-white-button-up",
@@ -608,7 +666,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_black-white-button-up-body.webp",
-    "thumbnailPath": "thumbnails/outfit_black-white-button-up-tn.png"
+    "thumbnailPath": "thumbnails/outfit_black-white-button-up-tn.png",
+    "type": "top"
   },
   {
     "id": "brown-blue-button-up",
@@ -619,7 +678,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_brown-blue-button-up-body.webp",
-    "thumbnailPath": "thumbnails/outfit_brown-blue-button-up-tn.png"
+    "thumbnailPath": "thumbnails/outfit_brown-blue-button-up-tn.png",
+    "type": "top"
   },
   {
     "id": "pink-plaid-button-up",
@@ -630,7 +690,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_pink-plaid-button-up-body.webp",
-    "thumbnailPath": "thumbnails/outfit_pink-plaid-button-up-tn.png"
+    "thumbnailPath": "thumbnails/outfit_pink-plaid-button-up-tn.png",
+    "type": "top"
   },
   {
     "id": "blue-plaid-button-up",
@@ -641,7 +702,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_blue-plaid-button-up-body.webp",
-    "thumbnailPath": "thumbnails/outfit_blue-plaid-button-up-tn.png"
+    "thumbnailPath": "thumbnails/outfit_blue-plaid-button-up-tn.png",
+    "type": "top"
   },
   {
     "id": "pale-yellow-jacket",
@@ -652,7 +714,8 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_pale-yellow-jacket-body.webp",
-    "thumbnailPath": "thumbnails/outfit_pale-yellow-jacket-tn.png"
+    "thumbnailPath": "thumbnails/outfit_pale-yellow-jacket-tn.png",
+    "type": "top"
   },
   {
     "id": "denim-overalls",
@@ -663,6 +726,7 @@
     "riveArtboardRef": "Puppet/Outfit/Over",
     "colourBindable": false,
     "textureAssetPath": "outfit_denim-overalls-body.webp",
-    "thumbnailPath": "thumbnails/outfit_denim-overalls-tn.png"
+    "thumbnailPath": "thumbnails/outfit_denim-overalls-tn.png",
+    "type": "overlayer"
   }
 ]

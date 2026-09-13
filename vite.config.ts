@@ -7,6 +7,8 @@ export default defineConfig({
   server: {
     port: 8000,
     strictPort: true,
+    host: true,
+    allowedHosts: ['.trycloudflare.com'],
     watch: {
       ignored: [
         '**/assets/canva-converted/**',
