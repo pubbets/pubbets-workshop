@@ -4,11 +4,13 @@ import { calculateTotal } from './pricing';
 
 describe('v1 catalog and pricing', () => {
   it('contains the generated launch records', () => {
-    expect(categoryCount).toBe(409);
+    // 466 = 409 (old) - 64 (old outfits) + 121 (new outfit catalog)
+    expect(categoryCount).toBe(466);
   });
 
-  it('starts at the base price with free defaults', () => {
-    expect(calculateTotal(199.95, defaultSelections())).toBe(199.95);
+  it('applies skip discounts when outfit and hair are unselected', () => {
+    // Base 199.95, no outfit (-14.95) and no hair (-9.95) = 175.05
+    expect(calculateTotal(199.95, defaultSelections())).toBe(175.05);
   });
 
   it('adds metadata surcharges', () => {
@@ -17,6 +19,7 @@ describe('v1 catalog and pricing', () => {
       id: 'arm-rods', label: 'Arm rods', category: 'accessory', price: 10,
       riveArtboardRef: 'Puppet/Accessory', colourBindable: false, thumbnailPath: ''
     };
-    expect(calculateTotal(199.95, selections)).toBe(209.95);
+    // 199.95 + 10 (arm rods) - 14.95 (no outfit) - 9.95 (no hair) = 185.05
+    expect(calculateTotal(199.95, selections)).toBe(185.05);
   });
 });

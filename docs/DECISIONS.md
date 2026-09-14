@@ -306,3 +306,23 @@ Final confirmed structure:
 - Retail **Rod + Sticker Fan bundle ($19.95)** unchanged: extendable rods + stickers sold
   on the store.
 
+## 2026-09-13 — Outfit catalog rebuilt to the 2026 live structure
+
+James's Canva "2026 THUMBNAILS" file (139 pages) is the MASTER LIST for
+outfit pieces. The repo outfit.json was rebuilt from it (121 entries),
+replacing the old 64-entry catalog (looks/premium/top/bottom/over).
+
+New groups (match live CPB outfit categories):
+- `premium` (7 live + PAJAMAS BLUE kept flagged outOfStock)
+- `sets` (7), `dresses` (19), `top` (50), `over` (14), `bottom` (23)
+
+Key facts locked:
+- Every outfit entry carries `canvaPage` (1:1 with the thumbnail file) and `sku`.
+- Two Canva pages are DISREGARDED by James (not in the app):
+  p125 orange shorts, p43 solid blue tee ("T Blue", not in stock).
+- Live CPB SKU fixes needed (James updating CPB): Blue/Green Jersey 23/65
+  reused red SKUs; Yellow/Green tees reused shorts SKUs; "Green Jesery 65"
+  label typo; all JEANS & PANTS have empty SKUs.
+- catalog.ts `resolveThumbnail` for outfit now reads `thumbnailPath` from
+  data instead of a hardcoded map.
+

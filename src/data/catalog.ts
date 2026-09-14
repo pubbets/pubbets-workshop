@@ -81,24 +81,9 @@ export function resolveThumbnail(option: AssetOption): string | null {
       const fileId = id.replace(/-xl$/, '');
       return `/thumbnails/glasses_${fileId}.webp`;
     }
-    case 'outfit': {
-      const outfitMap: Record<string, string> = {
-        'blue-gingham-dress': 'outfit_blue-gingham-dress.webp',
-        'apple-gingham-dress': 'outfit_apple-gingham-dress.webp',
-        'pink-floral-dress-with-bag': 'outfit_pink-floral-dress.webp',
-        'pink-pajamas': 'outfit_pink-pajamas.webp',
-        'red-teddy-dress': 'outfit_red-teddy-dress.webp',
-        'premium-boy-elf': 'outfit_premium-boy-elf.webp',
-        'premium-girl-elf': 'outfit_premium-girl-elf.webp',
-        'premium-bw-fashionista': 'outfit_premium-bw-fashionista.webp',
-        'premium-tuxedo': 'outfit_premium-tuxedo.webp',
-        'black-t': 'outfit_black-t.webp',
-        'blue-t': 'outfit_blue-t.webp',
-        'white-t': 'outfit_white-t.webp',
-        'blue-jeans': 'outfit_blue-jeans.webp'
-      };
-      return outfitMap[id] ? `/thumbnails/${outfitMap[id]}` : null;
-    }
+    case 'outfit':
+      // Data-driven: thumbnailPath is set for every outfit in outfit.json.
+      return option.thumbnailPath ? `/${option.thumbnailPath}` : null;
     default:
       return null;
   }

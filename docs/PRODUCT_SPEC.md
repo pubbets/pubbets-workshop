@@ -13,7 +13,10 @@ screens reviewed on 2026-08-06.
   exits, selection reactions, and the final celebration.
 - Rive is postponed and is not a V1 dependency or app engine.
 - Keep option metadata flat and prices data-driven.
-- Keep outfit layering: `top`, `bottom`, `over`, `looks`, and `premium`.
+- Keep outfit layering. The 2026 catalog (locked 13 Sep) uses these groups:
+  `premium`, `sets`, `dresses`, `top`, `over`, `bottom` — matching the live
+  CPB outfit categories (PREMIUM SETS, OUTFIT SETS, DRESSES, T-SHIRTS &
+  JERSEYS, SHIRTS, LAYERS, JEANS & PANTS, SHORTS).
 - Do not add gender or subgroup filters in v1.0.
 - Keep all launch labels unisex.
 
