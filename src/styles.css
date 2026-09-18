@@ -90,9 +90,9 @@ button:focus-visible {
   background:
     radial-gradient(120% 140% at 50% 18%, rgb(255 255 255 / 42%), transparent 46%),
     linear-gradient(180deg, #f6c877 0%, #e8a94e 52%, #c97f2e 100%);
-  border: 2px dashed rgb(255 236 186 / 78%);
+  border: 4px dashed rgb(255 236 186 / 88%);
   box-shadow:
-    inset 0 0 0 3px rgb(122 62 20 / 30%),
+    inset 0 0 0 4px rgb(122 62 20 / 32%),
     inset 0 -6px 0 rgb(122 62 20 / 22%),
     0 4px 0 #7a3e18,
     0 8px 12px rgb(44 21 8 / 26%);
@@ -167,13 +167,13 @@ button:focus-visible {
 
 /* ---- Sizes ---- */
 .ui-art-button--long {
-  width: clamp(240px, 72vw, 480px);
-  height: clamp(64px, 16vw, 96px);
+  width: clamp(260px, 76vw, 500px);
+  height: clamp(70px, 17vw, 104px);
   border-radius: 999px;
 }
 
 .ui-art-button--long .ui-art-button__label {
-  font-size: clamp(1.15rem, 4.6vw, 1.6rem);
+  font-size: clamp(1.2rem, 4.8vw, 1.7rem);
 }
 
 .ui-art-button--long .ui-art-button__icon {
@@ -198,14 +198,18 @@ button:focus-visible {
 
 /* Square icon buttons (randomise / sound / undo in header) */
 .ui-art-button--square {
-  width: clamp(42px, 10vw, 56px);
-  height: clamp(42px, 10vw, 56px);
+  width: clamp(46px, 11vw, 60px);
+  height: clamp(46px, 11vw, 60px);
   border-radius: 50%;
 }
 
 .ui-art-button--square .ui-art-button__icon {
-  width: 48%;
-  height: 48%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52%;
+  height: 52%;
 }
 
 .ui-art-button--square .ui-art-button__label {
@@ -1484,8 +1488,24 @@ button:focus-visible {
   }
 
   .ui-art-button--square {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .ui-art-button--square .ui-art-button__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56%;
+    height: 56%;
+    display: block;
+  }
+
+  .ui-art-button--square .ui-art-button__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .step-rail {
