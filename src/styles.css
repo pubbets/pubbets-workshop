@@ -62,34 +62,101 @@ button:focus-visible {
   border: 0;
 }
 
+/* ============================================================
+   FELT BUTTONS — pure CSS (no raster art)
+   Chunky craft-felt look: gradient fill, stitched dashed rim,
+   pressed 3D edge, squash-and-stretch juice.
+   ============================================================ */
 .ui-art-button {
+  position: relative;
   display: inline-grid;
   place-items: center;
   border: 0;
   padding: 0;
   background: transparent;
   filter: drop-shadow(0 7px 8px rgb(57 29 12 / 22%));
-  transition: transform 0.14s ease, filter 0.14s ease, opacity 0.14s ease;
+  transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.14s ease, opacity 0.14s ease;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 
-.ui-art-button img,
-.ui-art-image img {
-  display: block;
+/* Felt face: rounded pill, warm gradient, stitched dashed rim */
+.ui-art-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background:
+    radial-gradient(120% 140% at 50% 18%, rgb(255 255 255 / 42%), transparent 46%),
+    linear-gradient(180deg, #f6c877 0%, #e8a94e 52%, #c97f2e 100%);
+  border: 2px dashed rgb(255 236 186 / 78%);
+  box-shadow:
+    inset 0 0 0 3px rgb(122 62 20 / 30%),
+    inset 0 -6px 0 rgb(122 62 20 / 22%),
+    0 4px 0 #7a3e18,
+    0 8px 12px rgb(44 21 8 / 26%);
+}
+
+/* Icon + label stack */
+.ui-art-button__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34%;
+  height: 46%;
+  color: #5b2f10;
+}
+
+.ui-art-button__icon svg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
+  filter: drop-shadow(0 2px 0 rgb(255 238 200 / 55%));
 }
 
+.ui-art-button__text {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 0.06em;
+  color: #4a2608;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1.5px 0 rgb(255 232 178 / 65%);
+  font-family: inherit;
+}
+
+.ui-art-button__label {
+  display: block;
+}
+
+.ui-art-button__sub {
+  display: block;
+  font-size: 0.52em;
+  opacity: 0.82;
+  letter-spacing: 0.04em;
+}
+
+/* Hover lift */
 .ui-art-button:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: drop-shadow(0 10px 10px rgb(57 29 12 / 28%)) brightness(1.04);
 }
 
+/* Press: squash & stretch — the Nintendo juice */
 .ui-art-button:active:not(:disabled) {
-  transform: translateY(2px) scale(0.985);
+  transform: translateY(2px) scale(0.94, 0.86);
+  filter: drop-shadow(0 3px 4px rgb(57 29 12 / 24%));
+}
+
+.ui-art-button:active:not(:disabled)::before {
+  box-shadow:
+    inset 0 0 0 3px rgb(122 62 20 / 34%),
+    inset 0 -3px 0 rgb(122 62 20 / 26%),
+    0 1px 0 #7a3e18,
+    0 2px 3px rgb(44 21 8 / 24%);
 }
 
 .ui-art-button:disabled {
@@ -98,35 +165,110 @@ button:focus-visible {
   filter: grayscale(0.22) drop-shadow(0 3px 4px rgb(57 29 12 / 14%));
 }
 
+/* ---- Sizes ---- */
 .ui-art-button--long {
-  width: clamp(260px, 34vw, 500px);
-  height: auto;
-  aspect-ratio: 2.7 / 1;
+  width: clamp(240px, 72vw, 480px);
+  height: clamp(64px, 16vw, 96px);
+  border-radius: 999px;
 }
 
-.ui-art-button--asset-randomiseWide.ui-art-button--long {
-  aspect-ratio: 3.69 / 1;
+.ui-art-button--long .ui-art-button__label {
+  font-size: clamp(1.15rem, 4.6vw, 1.6rem);
+}
+
+.ui-art-button--long .ui-art-button__icon {
+  width: 22%;
+  height: 40%;
 }
 
 .ui-art-button--wide {
-  width: clamp(112px, 12vw, 180px);
-  height: auto;
-  aspect-ratio: 2.7 / 1;
+  width: clamp(96px, 30vw, 170px);
+  height: clamp(46px, 11vw, 62px);
+  border-radius: 999px;
 }
 
+.ui-art-button--wide .ui-art-button__label {
+  font-size: clamp(0.72rem, 2.6vw, 0.92rem);
+}
+
+.ui-art-button--wide .ui-art-button__icon {
+  width: 26%;
+  height: 42%;
+}
+
+/* Square icon buttons (randomise / sound / undo in header) */
 .ui-art-button--square {
-  width: clamp(42px, 4.2vw, 58px);
-  height: clamp(42px, 4.2vw, 58px);
+  width: clamp(42px, 10vw, 56px);
+  height: clamp(42px, 10vw, 56px);
+  border-radius: 50%;
 }
 
+.ui-art-button--square .ui-art-button__icon {
+  width: 48%;
+  height: 48%;
+}
+
+.ui-art-button--square .ui-art-button__label {
+  display: none;
+}
+
+/* Badge (completion tick on step tokens) */
 .ui-art-button--badge {
   width: 30px;
   height: 30px;
+  border-radius: 50%;
 }
 
+.ui-art-button--badge .ui-art-button__icon {
+  width: 62%;
+  height: 62%;
+}
+
+.ui-art-button--badge .ui-art-button__label {
+  display: none;
+}
+
+/* Art-image variant (non-interactive display of the same felt look) */
 .ui-art-image {
+  position: relative;
   display: inline-grid;
   place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(120% 140% at 50% 18%, rgb(255 255 255 / 42%), transparent 46%),
+    linear-gradient(180deg, #f6c877 0%, #e8a94e 52%, #c97f2e 100%);
+  border: 2px dashed rgb(255 236 186 / 78%);
+  box-shadow:
+    inset 0 0 0 3px rgb(122 62 20 / 30%),
+    inset 0 -6px 0 rgb(122 62 20 / 22%),
+    0 4px 0 #7a3e18,
+    0 8px 12px rgb(44 21 8 / 26%);
+}
+
+.ui-art-image .ui-art-button__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34%;
+  height: 46%;
+  color: #5b2f10;
+}
+
+.ui-art-image .ui-art-button__icon svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 0 rgb(255 238 200 / 55%));
+}
+
+.ui-art-image .ui-art-button__text {
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #4a2608;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 1.5px 0 rgb(255 232 178 / 65%);
 }
 
 .utility-button {
@@ -459,11 +601,11 @@ button:focus-visible {
   animation: welcome-logo-sway 482ms ease-in-out infinite alternate both;
 }
 
-.welcome-screen.is-tune-playing .welcome-actions .ui-art-button img {
+.welcome-screen.is-tune-playing .welcome-actions .ui-art-button {
   animation: welcome-button-sway 482ms ease-in-out infinite alternate both;
 }
 
-.welcome-screen.is-tune-playing .welcome-actions .ui-art-button:nth-child(2) img {
+.welcome-screen.is-tune-playing .welcome-actions .ui-art-button:nth-child(2) {
   animation-delay: -482ms;
 }
 
@@ -487,7 +629,7 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .welcome-screen.is-tune-playing .welcome-logo,
-  .welcome-screen.is-tune-playing .welcome-actions .ui-art-button img {
+  .welcome-screen.is-tune-playing .welcome-actions .ui-art-button {
     animation: none;
   }
 }
@@ -508,6 +650,37 @@ button:focus-visible {
     linear-gradient(rgb(62 30 10 / 12%), rgb(62 30 10 / 18%)),
     url("../assets/ui/backgrounds/workshop-full-body-stage-v1.jpg") center 45% / cover no-repeat,
     linear-gradient(135deg, #d8994c, #f3c377 50%, #cc8437);
+  /* Fabric stitched border — felt frame around the whole app */
+  border: clamp(10px, 2.2vw, 26px) solid transparent;
+  border-image: repeating-linear-gradient(
+    45deg,
+    #8a4b22 0 14px,
+    #6e3818 14px 28px
+  ) 28;
+  background-clip: padding-box;
+  position: relative;
+}
+
+/* Outer stitching — dashed "thread" line hugging the felt frame */
+.workshop-app::before {
+  content: "";
+  position: absolute;
+  inset: clamp(4px, 0.8vw, 8px);
+  border: 3px dashed rgb(255 232 170 / 82%);
+  border-radius: clamp(10px, 1.6vw, 18px);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Inner stitching — second thread line inside the frame */
+.workshop-app::after {
+  content: "";
+  position: absolute;
+  inset: clamp(12px, 2.6vw, 30px);
+  border: 2px dashed rgb(255 222 154 / 45%);
+  border-radius: clamp(8px, 1.2vw, 14px);
+  pointer-events: none;
+  z-index: 40;
 }
 
 .workshop-app[data-step-id="body"] {
@@ -1038,8 +1211,8 @@ button:focus-visible {
 
 .skip-card-art {
   width: min(100%, 170px);
-  height: auto;
-  aspect-ratio: 3.65 / 1;
+  height: 46px;
+  border-radius: 999px;
 }
 
 .catalog-note {
@@ -1223,6 +1396,31 @@ button:focus-visible {
 }
 
 @media (min-width: 901px) {
+  /* Wide screens (desktop/tablet): navigation rail moves to the TOP */
+  .workshop-app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "steps"
+      "builder";
+    gap: clamp(8px, 1.1vw, 14px);
+  }
+
+  .step-rail {
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(9, minmax(64px, 1fr));
+    grid-auto-rows: auto;
+    width: min(1360px, 100%);
+    max-width: none;
+    margin: 0 auto;
+    gap: clamp(5px, 0.8vw, 9px);
+    padding: clamp(7px, 1vw, 11px);
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
   .workshop-app[data-step-id="body"] .builder-layout {
     grid-template-rows: minmax(0, 1fr) auto;
   }
@@ -1251,7 +1449,18 @@ button:focus-visible {
     grid-template-columns: 62px minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr);
     gap: 6px;
-    padding: 6px;
+    padding: 8px;
+    border-width: 14px;
+  }
+
+  .workshop-app::before {
+    inset: 5px;
+    border-width: 2px;
+  }
+
+  .workshop-app::after {
+    inset: 15px;
+    border-width: 1px;
   }
 
   .app-header {
@@ -1334,9 +1543,11 @@ button:focus-visible {
   .mobile-step-heading {
     display: block;
     align-self: start;
+    justify-self: stretch;
     width: 100%;
+    padding: 2px clamp(116px, 32vw, 136px) 0 6px;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: #3d2618;
@@ -1442,11 +1653,12 @@ button:focus-visible {
 
   .navigation-bar {
     gap: 4px;
+    padding-bottom: 6px;
   }
 
   .navigation-bar .ui-art-button {
     width: min(100%, 116px);
-    height: 38px;
+    height: 40px;
   }
 
   .body-ok-row,
@@ -1502,6 +1714,17 @@ button:focus-visible {
   .workshop-app {
     grid-template-columns: 54px minmax(0, 1fr);
     padding: 5px;
+    border-width: 10px;
+  }
+
+  .workshop-app::before {
+    inset: 4px;
+    border-width: 2px;
+  }
+
+  .workshop-app::after {
+    inset: 12px;
+    border-width: 1px;
   }
 
   .app-header {
@@ -1548,16 +1771,17 @@ button:focus-visible {
   }
 
   .workshop-app[data-step-id="body"] .builder-layout {
-    grid-template-rows: minmax(220px, 50%) minmax(0, 50%);
+    grid-template-rows: minmax(150px, 40%) minmax(0, 60%);
   }
 
   .workshop-app[data-step-id="body"] .option-panel {
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .workshop-app[data-step-id="body"] .option-grid--body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px 6px;
+    gap: 5px 4px;
   }
 
   .workshop-app[data-step-id="body"] .option-card {
@@ -1570,12 +1794,15 @@ button:focus-visible {
   }
 
   .workshop-app[data-step-id="body"] .option-card__swatch {
-    width: min(100%, clamp(48px, 15vw, 70px));
+    width: min(100%, clamp(40px, 13vw, 58px));
     border-width: 2px;
+    aspect-ratio: 1 / 1;
   }
 
   .workshop-app[data-step-id="body"] .option-card__label {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
+    line-height: 1.1;
+    margin-top: 1px;
   }
 
   .workshop-app[data-step-id="body"] .catalog-note {
@@ -1583,7 +1810,7 @@ button:focus-visible {
   }
 
   .workshop-app[data-step-id="body"] .controls-column {
-    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto;
   }
 
   .workshop-app[data-step-id="body"] .controls-heading {

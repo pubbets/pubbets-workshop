@@ -4,8 +4,8 @@ import { calculateTotal } from './pricing';
 
 describe('v1 catalog and pricing', () => {
   it('contains the generated launch records', () => {
-    // 466 = 409 (old) - 64 (old outfits) + 121 (new outfit catalog)
-    expect(categoryCount).toBe(466);
+    // 472 = 409 (old) - 64 (old outfits) + 121 (new outfit catalog) + 6 (body 9→15)
+    expect(categoryCount).toBe(472);
   });
 
   it('applies skip discounts when outfit and hair are unselected', () => {

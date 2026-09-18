@@ -15,13 +15,13 @@ function option(category: AssetOption['category'], id: string, colour?: string):
 }
 
 describe('approved body colours', () => {
-  it('contains all nine customer body colours', () => {
-    expect(Object.keys(bodyColourHex)).toHaveLength(9);
+  it('contains the full 2026 range (8 in stock + 7 manufacturing)', () => {
+    expect(Object.keys(bodyColourHex)).toHaveLength(15);
   });
 
   it('uses the supplied body palette exactly', () => {
     expect(optionColour(option('body', 'dark-green'))).toBe('#006553');
-    expect(optionColour(option('body', 'caramel-brown'))).toBe('#B9843C');
+    expect(optionColour(option('body', 'light-brown'))).toBe('#B9843C');
     expect(optionColour(option('body', 'light-orange'))).toBe('#E6B327');
     expect(optionColour(option('body', 'green'))).toBe('#7BAA37');
     expect(optionColour(option('body', 'blue'))).toBe('#58AAD6');

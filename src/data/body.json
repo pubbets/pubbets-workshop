@@ -1,35 +1,21 @@
 [
   {
-    "id": "dark-green",
-    "label": "Dark Green",
-    "category": "body",
-    "riveArtboardRef": "Puppet/Body",
-    "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_dark-green-tn.webp"
-  },
-  {
-    "id": "caramel-brown",
-    "label": "Caramel Brown",
-    "category": "body",
-    "riveArtboardRef": "Puppet/Body",
-    "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_caramel-brown-tn.webp"
-  },
-  {
-    "id": "light-purple",
-    "label": "Light Purple",
-    "category": "body",
-    "riveArtboardRef": "Puppet/Body",
-    "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_light-purple-tn.webp"
-  },
-  {
     "id": "blue",
     "label": "Blue",
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_blue-tn.webp"
+    "thumbnailPath": "thumbnails/body_blue-tn.webp",
+    "canvaFile": "BODY BLUE.png"
+  },
+  {
+    "id": "dark-green",
+    "label": "Dark Green",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_dark-green-tn.webp",
+    "canvaFile": "BODY DARK GREEN.png"
   },
   {
     "id": "green",
@@ -37,15 +23,17 @@
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_green-tn.webp"
+    "thumbnailPath": "thumbnails/body_green-tn.webp",
+    "canvaFile": "BODY GREEN.png"
   },
   {
-    "id": "yellow",
-    "label": "Yellow",
+    "id": "light-brown",
+    "label": "Light Brown",
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_yellow-tn.webp"
+    "thumbnailPath": "thumbnails/body_light-brown-tn.webp",
+    "canvaFile": "BODY LIGHT BROWN.png"
   },
   {
     "id": "light-orange",
@@ -53,15 +41,35 @@
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_light-orange-tn.webp"
+    "thumbnailPath": "thumbnails/body_light-orange-tn.webp",
+    "canvaFile": "BODY LIGHT ORANGE.png"
   },
   {
-    "id": "pink",
-    "label": "Pink",
+    "id": "light-pink",
+    "label": "Light Pink",
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_pink-tn.webp"
+    "thumbnailPath": "thumbnails/body_light-pink-tn.webp",
+    "canvaFile": "BODY LIGHT PINK.png"
+  },
+  {
+    "id": "light-purple",
+    "label": "Light Purple",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_light-purple-tn.webp",
+    "canvaFile": "BODY LIGHT PURPLE.png"
+  },
+  {
+    "id": "yellow",
+    "label": "Yellow",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_yellow-tn.webp",
+    "canvaFile": "BODY YELLOW.png"
   },
   {
     "id": "beige",
@@ -69,6 +77,68 @@
     "category": "body",
     "riveArtboardRef": "Puppet/Body",
     "colourBindable": true,
-    "thumbnailPath": "thumbnails/body_beige-tn.webp"
+    "thumbnailPath": "thumbnails/body_beige-tn.webp",
+    "canvaFile": "NEW BODY BEIGE.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "deep-blue",
+    "label": "Deep Blue",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_deep-blue-tn.webp",
+    "canvaFile": "NEW BODY BLUE.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "brown",
+    "label": "Brown",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_brown-tn.webp",
+    "canvaFile": "NEW BODY BROWN.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "coral-pink",
+    "label": "Coral Pink",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_coral-pink-tn.webp",
+    "canvaFile": "NEW BODY CORAL PINK.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "orange",
+    "label": "Orange",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_orange-tn.webp",
+    "canvaFile": "NEW BODY ORANGE.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "purple",
+    "label": "Purple",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_purple-tn.webp",
+    "canvaFile": "NEW BODY PURPLE.png",
+    "availability": "manufacturing"
+  },
+  {
+    "id": "red",
+    "label": "Red",
+    "category": "body",
+    "riveArtboardRef": "Puppet/Body",
+    "colourBindable": true,
+    "thumbnailPath": "thumbnails/body_red-tn.webp",
+    "canvaFile": "NEW BODY RED.png",
+    "availability": "manufacturing"
   }
 ]

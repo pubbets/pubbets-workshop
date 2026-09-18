@@ -326,3 +326,54 @@ Key facts locked:
 - catalog.ts `resolveThumbnail` for outfit now reads `thumbnailPath` from
   data instead of a hardcoded map.
 
+## 2026-09-15 — App vision: standalone mobile-game feel (locked direction)
+
+James's target: the app should look and feel like a **standalone app / mobile
+game**, not a website. Key design pillars (locked):
+
+- **Mobile-first**: phone is the main traffic device — design for it first.
+- **Dynamically sized** to the user's device (responsive scaling, no fixed
+  desktop layout assumptions).
+- **Fabric stitched border** around the UI frame.
+- **Logo top-left corner.**
+- **Navigation badges down the LEFT side** on mobile; **along the TOP** on
+  desktop/tablet (per James's follow-up).
+- **Each wizard step has a UNIQUE background** — every step is its own scene,
+  not one shared stage.
+- Craft / felt / workshop aesthetic throughout (existing wood theme stays).
+
+Body colour range (from Canva, 2026-09-15): 15 colours total —
+- **In stock (8)**: Blue, Dark Green, Green, Light Brown, Light Orange,
+  Light Pink, Light Purple, Yellow
+- **Being manufactured (7, NEW BODY)**: Beige, Blue, Brown, Coral Pink,
+  Orange, Purple, Red
+- App body.json must eventually reflect these 15 (currently has 9, some
+  labels differ, e.g. caramel-brown vs Light Brown).
+
+## 2026-09-16 — CSS felt buttons replace PNG/SVG button art
+
+James approved scrapping ALL raster button assets (52 PNG/SVG/JPG files in
+`assets/ui/buttons/` deleted) in favour of **pure CSS buttons**:
+
+- Felt look: gradient fill, stitched dashed rim, pressed 3D edge — matches
+  the craft/workshop aesthetic without image assets.
+- Inline SVG icons (back/next/reset/randomise/sound/undo/tick) — crisp at any
+  device size; key for "dynamically sized" scaling.
+- Text labels built into the button (no art dependency for copy changes).
+- **Squash-and-stretch** press animation (`scale(0.94, 0.86)`) — Nintendo-style juice.
+- Header square buttons are icon-only (label hidden) to avoid overlap.
+
+Layout fixes in the same pass:
+- Mobile step heading no longer overlaps the CLOSE-UP VIEW toggle (left-aligned
+  with reserved right padding).
+- Body-step controls column grid corrected from 3 rows to 2 (heading is hidden
+  on that step) — Back/Reset buttons were collapsing to 0px and overflowing.
+- All 15 body colour swatches fit on one phone screen (3×5 grid, no scroll).
+- Body colour hexes tuned: Deep Blue darker (#1E4E9C), Brown lighter (#8A5A2E),
+  Coral Pink more coral (#F0838A).
+- Body catalog now 15 colours (8 stock + 7 manufacturing flagged
+  `availability: "manufacturing"`); `caramel-brown`→`light-brown`, `pink`→`light-pink`.
+
+Verified: 7/7 tests, typecheck, production build all pass; checked live at
+390×844 (mobile, left rail) and 1280×800 (desktop, top rail).
+
