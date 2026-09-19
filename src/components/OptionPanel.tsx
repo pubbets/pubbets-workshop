@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { optionColour } from '../data/catalog';
+import { bodyRenderPath, optionColour } from '../data/catalog';
 import type { AssetOption, Category } from '../types';
 import { UiArtButton, UiArtImage } from './UiArtButton';
 
@@ -80,7 +80,12 @@ function optionGroup(option: AssetOption) {
 
 function OptionCard({ option, selected, onSelect }: { option: AssetOption; selected: boolean; onSelect: () => void }) {
   const isBodyColour = option.category === 'body';
-  const swatchStyle = isBodyColour ? ({ '--swatch-colour': optionColour(option) } as React.CSSProperties) : undefined;
+  const bodyImg = isBodyColour ? bodyRenderPath(option.id) : null;
+  const swatchStyle = isBodyColour ? (
+    bodyImg
+      ? { '--swatch-colour': optionColour(option), backgroundImage: `url(${bodyImg})` } as React.CSSProperties
+      : { '--swatch-colour': optionColour(option) } as React.CSSProperties
+  ) : undefined;
 
   return (
     <button className={`option-card ${selected ? 'is-selected' : ''}`} onClick={onSelect} aria-pressed={selected}>

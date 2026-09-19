@@ -8,6 +8,16 @@ import outfitData from './outfit.json';
 import shoesData from './shoes.json';
 import type { AssetOption, Category, SelectionState, StepDefinition } from '../types';
 
+// Body render images — eagerly loaded via Vite glob, typed as string URLs
+const bodyRenderUrls = import.meta.glob<string>('../assets/body-renders/body-*.png', { eager: true, query: '?url' });
+
+/** Map colour id → pre-built body render URL. Returns null for unknown ids. */
+export function bodyRenderPath(id: string): string | null {
+  // Derive key from path: '../assets/body-renders/body-blue.png' → 'blue'
+  const key = Object.keys(bodyRenderUrls).find((p) => p.endsWith(`body-${id}.png`));
+  return key ? bodyRenderUrls[key] : null;
+}
+
 const asOptions = (items: unknown) => items as AssetOption[];
 
 export const catalog: Record<Category, AssetOption[]> = {

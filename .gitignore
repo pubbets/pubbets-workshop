@@ -10,3 +10,4 @@ vite.config.d.ts
 *.log
 .DS_Store
 Thumbs.db
+core
