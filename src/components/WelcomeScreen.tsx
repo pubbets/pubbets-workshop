@@ -1,8 +1,43 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { UiArtButton } from './UiArtButton';
 import pubbetsWorkshopLogo from '../../assets/ui/logo/pubbets-workshop-logo.png';
-import { bodyRenderPath } from '../data/catalog';
-import { catalog } from '../data/catalog';
+
+// Statically import all body renders — relative from src/components/
+import bodyBlue from '../assets/body-renders/body-blue.png';
+import bodyDarkGreen from '../assets/body-renders/body-dark-green.png';
+import bodyGreen from '../assets/body-renders/body-green.png';
+import bodyLightBrown from '../assets/body-renders/body-light-brown.png';
+import bodyLightOrange from '../assets/body-renders/body-light-orange.png';
+import bodyLightPink from '../assets/body-renders/body-light-pink.png';
+import bodyLightPurple from '../assets/body-renders/body-light-purple.png';
+import bodyYellow from '../assets/body-renders/body-yellow.png';
+import bodyBeige from '../assets/body-renders/body-beige.png';
+import bodyDeepBlue from '../assets/body-renders/body-deep-blue.png';
+import bodyBrown from '../assets/body-renders/body-brown.png';
+import bodyCoralPink from '../assets/body-renders/body-coral-pink.png';
+import bodyOrange from '../assets/body-renders/body-orange.png';
+import bodyPurple from '../assets/body-renders/body-purple.png';
+import bodyRed from '../assets/body-renders/body-red.png';
+
+const bodyRenderUrls: Record<string, string> = {
+  blue: bodyBlue,
+  'dark-green': bodyDarkGreen,
+  green: bodyGreen,
+  'light-brown': bodyLightBrown,
+  'light-orange': bodyLightOrange,
+  'light-pink': bodyLightPink,
+  'light-purple': bodyLightPurple,
+  yellow: bodyYellow,
+  beige: bodyBeige,
+  'deep-blue': bodyDeepBlue,
+  brown: bodyBrown,
+  'coral-pink': bodyCoralPink,
+  orange: bodyOrange,
+  purple: bodyPurple,
+  red: bodyRed,
+};
+
+const bodyColourIds = Object.keys(bodyRenderUrls);
 
 type Props = {
   onStart: () => void;
@@ -13,20 +48,13 @@ type Props = {
   onPlayTune: () => void;
 };
 
-const BODY_COLOURS = [
-  'blue', 'dark-green', 'green', 'light-brown', 'light-orange',
-  'light-pink', 'light-purple', 'yellow', 'beige', 'deep-blue',
-  'brown', 'coral-pink', 'orange', 'purple', 'red',
-];
-
 export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying, onToggleSound, onPlayTune }: Props) {
   const tuneRequested = useRef(false);
-
-  const [currentBody, setCurrentBody] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentBody((prev) => (prev + 1) % BODY_COLOURS.length);
+      setCurrentIndex((prev) => (prev + 1) % bodyColourIds.length);
     }, 2800);
     return () => clearInterval(timer);
   }, []);
@@ -37,7 +65,8 @@ export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying,
     onPlayTune();
   };
 
-  const bodyRenderUrl = useMemo(() => bodyRenderPath(BODY_COLOURS[currentBody]), [currentBody]);
+  const colourId = bodyColourIds[currentIndex];
+  const currentRenderUrl = bodyRenderUrls[colourId] ?? null;
 
   return (
     <main
@@ -57,7 +86,7 @@ export function WelcomeScreen({ onStart, onRandomize, soundEnabled, tunePlaying,
         <img className="welcome-logo" src={pubbetsWorkshopLogo} alt="Pubbets Workshop" />
       </header>
       <div className="welcome-puppet-stage" aria-hidden="true">
-        {bodyRenderUrl && <img className="welcome-puppet" src={bodyRenderUrl} alt="" />}
+        {currentRenderUrl && <img className="welcome-puppet" src={currentRenderUrl} alt="" />}
       </div>
       <div className="welcome-actions">
         <UiArtButton asset="startBuilding" label="Start building" size="long" onClick={onStart} />

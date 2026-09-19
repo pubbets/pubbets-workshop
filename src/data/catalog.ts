@@ -13,9 +13,12 @@ const bodyRenderUrls = import.meta.glob<string>('../assets/body-renders/body-*.p
 
 /** Map colour id → pre-built body render URL. Returns null for unknown ids. */
 export function bodyRenderPath(id: string): string | null {
-  // Derive key from path: '../assets/body-renders/body-blue.png' → 'blue'
-  const key = Object.keys(bodyRenderUrls).find((p) => p.endsWith(`body-${id}.png`));
-  return key ? bodyRenderUrls[key] : null;
+  try {
+    const key = Object.keys(bodyRenderUrls).find((p) => p.endsWith(`body-${id}.png`));
+    return key ? bodyRenderUrls[key] : null;
+  } catch {
+    return null;
+  }
 }
 
 const asOptions = (items: unknown) => items as AssetOption[];
